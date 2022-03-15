@@ -23,12 +23,12 @@ body {
   display: flex;
   justify-content: space-between;
   border: 1px solid green;
-  height: 60%;
+  height: 70%;
 }
 
 .bottom-flex {
   display: flex;
   justify-content: space-between;
   border: 1px solid green;
-  height: 40%;
+  height: 30%;
 }

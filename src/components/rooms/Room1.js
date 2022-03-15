@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import entryway from "../../images/entryway.jpg";
-import "./home.css";
+import "./room1.css";
 import ImageMap from "image-map";
 // import $ from "jquery";
 
@@ -91,35 +91,38 @@ export default function Room1(props) {
   };
 
   return (
-    <div className="image-container">
-      <img
-        className="background"
-        src={entryway}
-        alt="entryway"
-        useMap="#image-map"
-      />
-      <map name="image-map">
-        <area
-          className="rug"
-          onClick={rugClicked}
-          target=""
-          alt="rug"
-          title="rug"
-          href=""
-          coords="1023,1584,879,1594,658,1677,607,1726,680,1810,905,1873,1141,1893,1633,1893,1930,1851,2101,1787,2138,1724,2040,1648,1599,1562,1219,1562"
-          shape="poly"
+    <div className="top-left-flex-container">
+      <div className="image-container">
+        <img
+          className="background"
+          src={entryway}
+          alt="entryway"
+          useMap="#image-map"
         />
-        <area
-          className="lamp"
-          onClick={lampClicked}
-          target=""
-          alt="small lamp"
-          title="small lamp"
-          href=""
-          coords="391,792,364,868,352,917,411,932,443,934,443,971,399,991,450,995,502,988,479,929,496,932,531,919,531,875,506,792,445,780"
-          shape="poly"
-        />
-      </map>
+        <map name="image-map">
+          <area
+            className="rug"
+            onClick={rugClicked}
+            target=""
+            alt="rug"
+            title="rug"
+            href=""
+            coords="1023,1584,879,1594,658,1677,607,1726,680,1810,905,1873,1141,1893,1633,1893,1930,1851,2101,1787,2138,1724,2040,1648,1599,1562,1219,1562"
+            shape="poly"
+          />
+          <area
+            className="lamp"
+            onClick={lampClicked}
+            target=""
+            alt="small lamp"
+            title="small lamp"
+            href=""
+            coords="391,792,364,868,352,917,411,932,443,934,443,971,399,991,450,995,502,988,479,929,496,932,531,919,531,875,506,792,445,780"
+            shape="poly"
+          />
+        </map>
+      </div>
+      <div className="text-box"></div>
       <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
       {/* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  */}
     </div>
