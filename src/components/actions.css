@@ -1,0 +1,11 @@
+.player-actions {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  width: 70%;
+  border: 1px solid red;
+}
+
+.player-actions div {
+  margin-top: 0;
+}

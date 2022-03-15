@@ -1,0 +1,26 @@
+.image-container {
+  width: 60%;
+  border: solid 1px gold;
+}
+
+.image-container img {
+  width: 100%;
+  border: 1px solid tan;
+}
+
+map,
+area {
+  outline: solid 1px white;
+}
+
+map:hover {
+  outline: solid 1px green;
+  background-color: forestgreen;
+  color: aqua;
+}
+
+area:hover {
+  outline: solid 1px green;
+  background-color: forestgreen;
+  color: aqua;
+}
