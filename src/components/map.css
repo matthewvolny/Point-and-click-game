@@ -1,3 +1,13 @@
-/* .map-container * {
+.map-container {
+  width: 30%;
+  border: solid 1px grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.map {
+  border: 1px solid lightgreen;
   width: 80%;
-} */
+  height: 80%;
+}
