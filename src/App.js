@@ -10,10 +10,34 @@ import ImageMapper from "react-img-mapper";
 
 import "./App.css";
 
+const roomMap = [
+  {
+    currentRoom: 1,
+    mapCoordinates: [
+      { roomNum: 2, route: "/room2", position: "top" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+    ],
+  },
+  {
+    currentRoom: 2,
+    mapCoordinates: [
+      { roomNum: 3, route: "/room3", position: "top" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: 1, route: "/", position: "bottom" },
+    ],
+  },
+];
+
 function App() {
   const [room, setRoom] = useState("room1");
-  const [roomDetails, setRoomDetails] = useState("");
   const [action, setAction] = useState({ playerAction: "", item: "" });
+  const [roomDetails, setRoomDetails] = useState({
+    currentRoom: roomMap[0].currentRoom,
+    currentRoomInfo: roomMap[0].mapCoordinates,
+  });
 
   const updatePlayerAction = (playerAction) => {
     setAction({ action: playerAction, item: "" });
@@ -21,6 +45,20 @@ function App() {
 
   const updateItem = (item) => {
     setAction({ action: action.playerAction, item: item });
+  };
+
+  // currently here (need to change room)
+  const updateCurrentRoom = (newRoom) => {
+    const selectedRoom = roomMap.filter((room) => {
+      return room.currentRoom === newRoom;
+    });
+    console.log(newRoom);
+    console.log("clicked link");
+    console.log(selectedRoom);
+    // setRoomDetails({
+    //   currentRoom: selectedRoom.roomNum,
+    //   currentRoomInfo: selectedRoom.mapCoordinates,
+    // });
   };
 
   return (
@@ -35,7 +73,10 @@ function App() {
           <Inventory action={action} room={room} />
         </div>
         <div className="bottom-flex">
-          <Map />
+          <Map
+            roomDetails={roomDetails}
+            updateCurrentRoom={updateCurrentRoom}
+          />
           <Actions updatePlayerAction={updatePlayerAction} />
         </div>
       </BrowserRouter>
