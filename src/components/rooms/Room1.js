@@ -88,6 +88,7 @@ export default function Room1(props) {
   const lampClicked = (event) => {
     event.preventDefault();
     console.log("lamp clicked");
+    props.updateItem("lamp");
   };
 
   return (

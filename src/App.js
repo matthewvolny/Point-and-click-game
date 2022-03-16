@@ -44,7 +44,7 @@ function App() {
   };
 
   const updateItem = (item) => {
-    setAction({ action: action.playerAction, item: item });
+    setAction({ ...action, item: item });
   };
 
   // currently here (need to change room)
@@ -52,11 +52,6 @@ function App() {
     const selectedRoom = roomMap.find((room) => {
       return room.currentRoom === newRoom;
     });
-    console.log(newRoom);
-    console.log("clicked link");
-    console.log(selectedRoom);
-    console.log(selectedRoom.currentRoom);
-    console.log(selectedRoom.mapCoordinates);
     setRoomDetails({
       currentRoom: selectedRoom.currentRoom,
       currentRoomInfo: selectedRoom.mapCoordinates,
