@@ -49,16 +49,18 @@ function App() {
 
   // currently here (need to change room)
   const updateCurrentRoom = (newRoom) => {
-    const selectedRoom = roomMap.filter((room) => {
+    const selectedRoom = roomMap.find((room) => {
       return room.currentRoom === newRoom;
     });
     console.log(newRoom);
     console.log("clicked link");
     console.log(selectedRoom);
-    // setRoomDetails({
-    //   currentRoom: selectedRoom.roomNum,
-    //   currentRoomInfo: selectedRoom.mapCoordinates,
-    // });
+    console.log(selectedRoom.currentRoom);
+    console.log(selectedRoom.mapCoordinates);
+    setRoomDetails({
+      currentRoom: selectedRoom.currentRoom,
+      currentRoomInfo: selectedRoom.mapCoordinates,
+    });
   };
 
   return (
