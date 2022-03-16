@@ -3,6 +3,8 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Inventory from "./components/Inventory";
 import Actions from "./components/Actions";
 import Room1 from "./components/rooms/Room1";
+import Room2 from "./components/rooms/Room2";
+import Room3 from "./components/rooms/Room3";
 import Map from "./components/Map";
 import ImageMapper from "react-img-mapper";
 
@@ -23,18 +25,20 @@ function App() {
 
   return (
     <div className="container">
-      <div className="top-flex">
-        <BrowserRouter>
+      <BrowserRouter>
+        <div className="top-flex">
           <Routes>
             <Route path="/" element={<Room1 updateItem={updateItem} />} />
+            <Route path="/room2" element={<Room2 updateItem={updateItem} />} />
+            <Route path="/room3" element={<Room3 updateItem={updateItem} />} />
           </Routes>
-        </BrowserRouter>
-        <Inventory action={action} room={room} />
-      </div>
-      <div className="bottom-flex">
-        <Map />
-        <Actions updatePlayerAction={updatePlayerAction} />
-      </div>
+          <Inventory action={action} room={room} />
+        </div>
+        <div className="bottom-flex">
+          <Map />
+          <Actions updatePlayerAction={updatePlayerAction} />
+        </div>
+      </BrowserRouter>
     </div>
   );
 }

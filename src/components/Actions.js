@@ -2,16 +2,15 @@ import React, { useEffect, useState } from "react";
 import "./actions.css";
 
 export default function Actions(props) {
-  const [PlayerAction, setPlayerAction] = useState();
+  // const [PlayerAction, setPlayerAction] = useState();
 
   const handleClick = (e) => {
-    setPlayerAction(e.target.textContent);
+    // setPlayerAction(e.target.textContent);
+    props.updatePlayerAction(e.target.textContent);
     console.log("click");
   };
 
-  useEffect(() => {
-    // props.updatePlayerAction(PlayerAction);
-  }, [props, PlayerAction]);
+  // useEffect(() => {}, [props, PlayerAction]);
 
   return (
     <div className="player-actions">

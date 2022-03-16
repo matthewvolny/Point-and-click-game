@@ -1,0 +1,42 @@
+.top-left-flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space space-between;
+  width: 70%;
+  border: solid 1px gold;
+  padding: 0;
+  margin: 0;
+  height: 100%;
+}
+
+.image-container {
+  width: 100%;
+  border: 1px solid blue;
+}
+
+.image-container img {
+  width: 100%;
+  border: 1px solid tan;
+}
+
+.text-box {
+  border: 1px solid purple;
+  height: 20%;
+}
+
+map,
+area {
+  outline: solid 1px white;
+}
+
+map:hover {
+  outline: solid 1px green;
+  background-color: forestgreen;
+  color: aqua;
+}
+
+area:hover {
+  outline: solid 1px green;
+  background-color: forestgreen;
+  color: aqua;
+}

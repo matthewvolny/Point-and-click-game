@@ -10,4 +10,43 @@
   border: 1px solid lightgreen;
   width: 80%;
   height: 80%;
+  position: relative;
+}
+
+/*map coordinates */
+.top {
+  position: absolute;
+  left: 50px;
+  /*top: 300px; */
+  width: 20px;
+  height: 20px;
+  border: black 2px solid;
+  z-index: 10;
+}
+
+.bottom {
+  position: absolute;
+  left: 40px;
+  top: 90px;
+  width: 20px;
+  height: 20px;
+  border: red 2px solid;
+}
+
+.left {
+  position: absolute;
+  /* left: 50px;*/
+  top: 25px;
+  width: 20px;
+  height: 20px;
+  border: green 2px solid;
+}
+
+.right {
+  position: absolute;
+  left: 90px;
+  top: 30px;
+  width: 20px;
+  height: 20px;
+  border: orange 2px solid;
 }
