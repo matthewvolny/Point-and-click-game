@@ -38,7 +38,7 @@ const roomEvaluateInfo = [
     room: 1,
     entryScript: "So this is Richard's Valley.  Let me find Richard",
     reentryScript: "Something tells me I have been here before",
-    objects: [
+    items: [
       {
         name: "Rug",
         lookText: "it is an old rug on the floor",
@@ -71,6 +71,7 @@ const roomEvaluateInfo = [
       },
     ],
   },
+  { second: "to be replaced" },
 ];
 
 function App() {
@@ -82,6 +83,8 @@ function App() {
   const [roomEvaluateDetails, setRoomEvaluateDetails] = useState(
     roomEvaluateInfo[0]
   );
+  const [selectedItemInfo, setSelectedItemInfo] = useState();
+
   const [playerInventory, setPlayerInventory] = useState();
 
   const updatePlayerAction = (playerAction) => {
@@ -92,40 +95,48 @@ function App() {
     setAction({ ...action, item: item });
   };
 
-  //functions called based on the 'action' taken and the 'item' selected
-  const evaluateFunction = () => {
+  //adds the selected item details to state
+  const updateSelectedItemInfo = () => {
     const { playerAction, item } = action;
-    // if (playerAction === "Look" && roomObjectDetails.openText != "") {
-    //   console.log(itemProperties.lookText);
-    //   console.log(itemProperties.lookUrl);
-    // } else if (playerAction === "Open" && itemProperties.openText != "") {
-    //   console.log(itemProperties.openText);
-    //   console.log(itemProperties.openUrl);
-    // } else if (playerAction === "Use" && itemProperties.useText != "") {
-    //   console.log(itemProperties.useText);
-    //   console.log(itemProperties.useUrl);
-    // } else if (playerAction === "Take" && itemProperties.takeText != "") {
-    //   console.log(itemProperties.takeText);
-    //   if (
-    //     itemProperties.takeText[0] === `The ${itemProperties.name} is in hand`
-    //   ) {
-    //     playerInventoryArray.push(itemProperties.name);
-    //     console.log(itemProperties.takeUrl);
-    //   }
-    // } else if (playerAction === "Hit" && itemProperties.hitText != "") {
-    //   console.log(itemProperties.hitText);
-    //   console.log(itemProperties.hitUrl);
-    // } else if (playerAction === "Speak" && itemProperties.speakText != "") {
-    //   console.log(itemProperties.speakText);
-    //   console.log(itemProperties.speakUrl);
-    // } else {
-    // }
+    const { items } = roomEvaluateDetails;
+    const selectedItemDetails = items.find((detailedItem) => {
+      return detailedItem.name === item;
+    });
+    setSelectedItemInfo(selectedItemDetails);
   };
+
+  // const selectedObject=
+
+  // if (playerAction === "Look" && roomObjectDetails.openText != "") {
+  //   console.log(itemProperties.lookText);
+  //   console.log(itemProperties.lookUrl);
+  // } else if (playerAction === "Open" && itemProperties.openText != "") {
+  //   console.log(itemProperties.openText);
+  //   console.log(itemProperties.openUrl);
+  // } else if (playerAction === "Use" && itemProperties.useText != "") {
+  //   console.log(itemProperties.useText);
+  //   console.log(itemProperties.useUrl);
+  // } else if (playerAction === "Take" && itemProperties.takeText != "") {
+  //   console.log(itemProperties.takeText);
+  //   if (
+  //     itemProperties.takeText[0] === `The ${itemProperties.name} is in hand`
+  //   ) {
+  //     playerInventoryArray.push(itemProperties.name);
+  //     console.log(itemProperties.takeUrl);
+  //   }
+  // } else if (playerAction === "Hit" && itemProperties.hitText != "") {
+  //   console.log(itemProperties.hitText);
+  //   console.log(itemProperties.hitUrl);
+  // } else if (playerAction === "Speak" && itemProperties.speakText != "") {
+  //   console.log(itemProperties.speakText);
+  //   console.log(itemProperties.speakUrl);
+  // } else {
+  // }
 
   useEffect(() => {
     if (action.playerAction !== "" && action.item !== "") {
       console.log("action array made");
-      evaluateFunction();
+      updateSelectedItemInfo();
     }
   });
 

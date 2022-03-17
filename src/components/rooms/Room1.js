@@ -9,6 +9,8 @@ import ImageMap from "image-map";
 
 export default function Room1(props) {
   const { entryScript, reentryScript } = props.roomEvaluateDetails;
+  //need to set up re-entry script display
+
   // $(".background").css("border-bottom", "solid 1px red");
   // $("img[usemap]").mapster();
   // useEffect(() => {
@@ -25,13 +27,13 @@ export default function Room1(props) {
   const rugClicked = (event) => {
     event.preventDefault();
     console.log("rug clicked");
-    props.updateItem("rug");
+    props.updateItem("Rug");
   };
 
   const lampClicked = (event) => {
     event.preventDefault();
     console.log("lamp clicked");
-    props.updateItem("lamp");
+    props.updateItem("Lamp");
   };
 
   return (
