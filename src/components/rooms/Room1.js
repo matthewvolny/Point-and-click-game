@@ -6,66 +6,9 @@ import ImageMap from "image-map";
 
 //room details
 //room details (unique object for each room)
-const room = {
-  entryScript: "So this is Richard's Valley.  Let me find Richard",
-  reentryScript: "Something tells me I have been here before",
-  mapCoordinates: [
-    { index: 1, position: "top" }, //top
-    { index: "", position: "" }, //right
-    { index: "", position: "" }, //bottom
-    { index: "", position: "" }, //left
-  ],
-  items: [
-    {
-      name: "skull",
-      position: "skull",
-      lookText:
-        "It's the skull of some creature. Its meaning seems quite clear: death lurks inside.",
-      openText: "As if by magic, the skull rises.",
-      useText: "",
-      takeText: "",
-      hitText: "",
-      speakText: "",
-      lookEffect: "",
-      openEffect: "itemAppears(key)",
-      useEffect: "",
-      takeEffect: "",
-      hitEffect: "",
-      speakEffect: "",
-      lookUrl: "",
-      openUrl: "./room1-doorway.png",
-      useUrl: "",
-      takeUrl: "",
-      hitUrl: "",
-      speakUrl: "",
-    },
-    {
-      name: "skull",
-      position: "skull",
-      lookText:
-        "It's the skull of some creature. Its meaning seems quite clear: death lurks inside.",
-      openText: "As if by magic, the skull rises.",
-      useText: "",
-      takeText: "",
-      hitText: "",
-      speakText: "",
-      lookEffect: "",
-      openEffect: "itemAppears(key)",
-      useEffect: "",
-      takeEffect: "",
-      hitEffect: "",
-      speakEffect: "",
-      lookUrl: "",
-      openUrl: "./room1-doorway.png",
-      useUrl: "",
-      takeUrl: "",
-      hitUrl: "",
-      speakUrl: "",
-    },
-  ],
-};
 
 export default function Room1(props) {
+  const { entryScript, reentryScript } = props.roomEvaluateDetails;
   // $(".background").css("border-bottom", "solid 1px red");
   // $("img[usemap]").mapster();
   // useEffect(() => {
@@ -123,7 +66,7 @@ export default function Room1(props) {
           />
         </map>
       </div>
-      <div className="text-box"></div>
+      <div className="text-box">{entryScript}</div>
       <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
       {/* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  */}
     </div>
