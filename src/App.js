@@ -41,33 +41,24 @@ const roomEvaluateInfo = [
     items: [
       {
         name: "Rug",
-        lookText: "it is an old rug on the floor",
-        openText: "",
-        useText: "",
-        takeText: "you have taken the rug",
-        hitText: "",
-        speakText: "",
-        lookEffect: "",
-        openEffect: "",
-        useEffect: "",
-        takeEffect: "",
-        hitEffect: "",
-        speakEffect: "",
+        Look: { text: "it is an old rug on the floor", effect: "" },
+        Open: { text: "", effect: "" },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "you have taken the rug",
+          effect: "add rug to inventory",
+        },
+        Hit: { text: "", effect: "" },
+        Speak: { text: "", effect: "" },
       },
       {
         name: "Lamp",
-        lookText: "it is a solid metal lamp",
-        openText: "",
-        useText: "you turn the lamp on",
-        takeText: "you have taken the lamp",
-        hitText: "",
-        speakText: "",
-        lookEffect: "",
-        openEffect: "",
-        useEffect: "",
-        takeEffect: "",
-        hitEffect: "",
-        speakEffect: "",
+        Look: { text: "it is a solid metal lamp", effect: "" },
+        Open: { text: "", effect: "" },
+        Use: { text: "you turn the lamp on", effect: "turn on lamp function" },
+        Take: { text: "you have taken the lamp", effect: "take lamp function" },
+        Hit: { text: "", effect: "" },
+        Speak: { text: "", effect: "" },
       },
     ],
   },
@@ -84,13 +75,15 @@ function App() {
     roomEvaluateInfo[0]
   );
   const [selectedItemInfo, setSelectedItemInfo] = useState();
-
+  const [selectedItemInfoForAction, setSelectedItemInfoForAction] = useState();
   const [playerInventory, setPlayerInventory] = useState();
 
-  const updatePlayerAction = (playerAction) => {
-    setAction({ action: playerAction, item: "" });
+  //updates state with selected player action
+  const updatePlayerAction = (action) => {
+    setAction({ playerAction: action, item: "" });
   };
 
+  //updates state with selected item
   const updateItem = (item) => {
     setAction({ ...action, item: item });
   };
@@ -103,35 +96,8 @@ function App() {
       return detailedItem.name === item;
     });
     setSelectedItemInfo(selectedItemDetails);
+    setSelectedItemInfoForAction(selectedItemDetails[playerAction]);
   };
-
-  // const selectedObject=
-
-  // if (playerAction === "Look" && roomObjectDetails.openText != "") {
-  //   console.log(itemProperties.lookText);
-  //   console.log(itemProperties.lookUrl);
-  // } else if (playerAction === "Open" && itemProperties.openText != "") {
-  //   console.log(itemProperties.openText);
-  //   console.log(itemProperties.openUrl);
-  // } else if (playerAction === "Use" && itemProperties.useText != "") {
-  //   console.log(itemProperties.useText);
-  //   console.log(itemProperties.useUrl);
-  // } else if (playerAction === "Take" && itemProperties.takeText != "") {
-  //   console.log(itemProperties.takeText);
-  //   if (
-  //     itemProperties.takeText[0] === `The ${itemProperties.name} is in hand`
-  //   ) {
-  //     playerInventoryArray.push(itemProperties.name);
-  //     console.log(itemProperties.takeUrl);
-  //   }
-  // } else if (playerAction === "Hit" && itemProperties.hitText != "") {
-  //   console.log(itemProperties.hitText);
-  //   console.log(itemProperties.hitUrl);
-  // } else if (playerAction === "Speak" && itemProperties.speakText != "") {
-  //   console.log(itemProperties.speakText);
-  //   console.log(itemProperties.speakUrl);
-  // } else {
-  // }
 
   useEffect(() => {
     if (action.playerAction !== "" && action.item !== "") {
