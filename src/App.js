@@ -47,6 +47,7 @@ const roomEvaluateInfo = [
         Take: {
           text: "you have taken the rug",
           effect: "add rug to inventory",
+          canTake: true,
         },
         Hit: { text: "", effect: "" },
         Speak: { text: "", effect: "" },
@@ -56,7 +57,11 @@ const roomEvaluateInfo = [
         Look: { text: "it is a solid metal lamp", effect: "" },
         Open: { text: "", effect: "" },
         Use: { text: "you turn the lamp on", effect: "turn on lamp function" },
-        Take: { text: "you have taken the lamp", effect: "take lamp function" },
+        Take: {
+          text: "you have taken the lamp",
+          effect: "take lamp function",
+          canTake: true,
+        },
         Hit: { text: "", effect: "" },
         Speak: { text: "", effect: "" },
       },

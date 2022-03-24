@@ -14,8 +14,28 @@ export default function Room1(props) {
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
 
+  // useEffect(() => {
+  //   playerAction === "Look" && setScript(text);
+  // });
+
   useEffect(() => {
-    playerAction === "Look" && setScript(text);
+    switch (playerAction) {
+      case "Look":
+        return setScript(text);
+      case "Open":
+        return setScript(text);
+      case "Use":
+        return setScript(text);
+      case "Take":
+        return setScript(text);
+      case "Hit":
+        return setScript(text);
+      case "Speak":
+        return setScript(text);
+      default:
+        //this line does not seem to be working
+        return setScript("what you expected did not happen");
+    }
   });
 
   //need to set up re-entry script display
