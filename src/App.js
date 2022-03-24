@@ -67,7 +67,39 @@ const roomEvaluateInfo = [
       },
     ],
   },
-  { second: "to be replaced" },
+  {
+    room: 2,
+    entryScript: "Room2",
+    reentryScript: "Room2-re-entry",
+    items: [
+      {
+        name: "Rug",
+        Look: { text: "it is an old rug on the floor", effect: "" },
+        Open: { text: "", effect: "" },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "you have taken the rug",
+          effect: "add rug to inventory",
+          canTake: true,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: { text: "", effect: "" },
+      },
+      {
+        name: "Lamp",
+        Look: { text: "it is a solid metal lamp", effect: "" },
+        Open: { text: "", effect: "" },
+        Use: { text: "you turn the lamp on", effect: "turn on lamp function" },
+        Take: {
+          text: "you have taken the lamp",
+          effect: "take lamp function",
+          canTake: true,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: { text: "", effect: "" },
+      },
+    ],
+  },
 ];
 
 function App() {
@@ -76,6 +108,7 @@ function App() {
     currentRoom: roomMap[0].currentRoom,
     currentRoomInfo: roomMap[0].mapCoordinates,
   });
+
   const [roomEvaluateDetails, setRoomEvaluateDetails] = useState(
     roomEvaluateInfo[0]
   );
@@ -84,6 +117,8 @@ function App() {
     text: "",
     effect: "",
   });
+
+  //!not used yet, needed?
   const [playerInventory, setPlayerInventory] = useState();
 
   //updates state with selected player action
@@ -100,6 +135,10 @@ function App() {
   const updateSelectedItemInfo = () => {
     const { playerAction, item } = action;
     const { items } = roomEvaluateDetails;
+    console.log(playerAction);
+    console.log(item);
+    console.log(items);
+    //!something here is throwing error on selecting action after room change
     const selectedItemDetails = items.find((detailedItem) => {
       return detailedItem.name === item;
     });
@@ -107,9 +146,9 @@ function App() {
     setSelectedItemInfoForAction(selectedItemDetails[playerAction]);
   };
 
+  //if user has selected an action and an item, call function to put detailed info about the item in state
   useEffect(() => {
     if (action.playerAction !== "" && action.item !== "") {
-      console.log("action array made");
       updateSelectedItemInfo();
     }
   });
@@ -135,6 +174,11 @@ function App() {
 
   //called from the map component, updates the room on link click, adds info to state
   const updateCurrentRoom = (newRoom) => {
+    setAction({ playerAction: "", item: "" });
+    setSelectedItemInfoForAction({
+      text: "",
+      effect: "",
+    });
     updateRoomMapDetails(newRoom);
     updateRoomEvaluateDetails(newRoom);
   };

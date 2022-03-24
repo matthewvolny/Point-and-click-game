@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import entryway from "../../images/entryway.jpg";
 import "./room1.css";
 import ImageMap from "image-map";
@@ -9,34 +9,35 @@ import ImageMap from "image-map";
 
 export default function Room1(props) {
   const { entryScript, reentryScript } = props.roomEvaluateDetails;
+  const isMounted = useRef(false);
   const [script, setScript] = useState(entryScript);
 
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
 
-  // useEffect(() => {
-  //   playerAction === "Look" && setScript(text);
-  // });
-
   useEffect(() => {
-    switch (playerAction) {
-      case "Look":
-        return setScript(text);
-      case "Open":
-        return setScript(text);
-      case "Use":
-        return setScript(text);
-      case "Take":
-        return setScript(text);
-      case "Hit":
-        return setScript(text);
-      case "Speak":
-        return setScript(text);
-      default:
-        //this line does not seem to be working
-        return setScript("what you expected did not happen");
+    if (isMounted.current) {
+      switch (playerAction) {
+        case "Look":
+          return setScript(text);
+        case "Open":
+          return setScript(text);
+        case "Use":
+          return setScript(text);
+        case "Take":
+          return setScript(text);
+        case "Hit":
+          return setScript(text);
+        case "Speak":
+          return setScript(text);
+        default:
+          //!this line does not seem to be working
+          return setScript("what you expected did not happen");
+      }
+    } else {
+      isMounted.current = true;
     }
-  });
+  }, [text]);
 
   //need to set up re-entry script display
 
@@ -55,13 +56,13 @@ export default function Room1(props) {
 
   const rugClicked = (event) => {
     event.preventDefault();
-    console.log("rug clicked");
+    // console.log("rug clicked");
     props.updateItem("Rug");
   };
 
   const lampClicked = (event) => {
     event.preventDefault();
-    console.log("lamp clicked");
+    // console.log("lamp clicked");
     props.updateItem("Lamp");
   };
 

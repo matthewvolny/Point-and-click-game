@@ -12,8 +12,8 @@ export default function Inventory(props) {
     if (playerAction === "Take" && canTake) {
       let inventoryArray = [...inventory];
       inventoryArray.push({ item: item, number: 1 });
-      console.log("inventory array below");
-      console.log(inventoryArray);
+      // console.log("inventory array below");
+      // console.log(inventoryArray);
       setInventory(inventoryArray);
     }
   }, [item, canTake]);
