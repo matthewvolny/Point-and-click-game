@@ -75,7 +75,10 @@ function App() {
     roomEvaluateInfo[0]
   );
   const [selectedItemInfo, setSelectedItemInfo] = useState();
-  const [selectedItemInfoForAction, setSelectedItemInfoForAction] = useState();
+  const [selectedItemInfoForAction, setSelectedItemInfoForAction] = useState({
+    text: "",
+    effect: "",
+  });
   const [playerInventory, setPlayerInventory] = useState();
 
   //updates state with selected player action
@@ -88,7 +91,7 @@ function App() {
     setAction({ ...action, item: item });
   };
 
-  //adds the selected item details to state
+  //adds the selected item details (general item info, and specifics info) to state
   const updateSelectedItemInfo = () => {
     const { playerAction, item } = action;
     const { items } = roomEvaluateDetails;
@@ -142,6 +145,8 @@ function App() {
                 <Room1
                   updateItem={updateItem}
                   roomEvaluateDetails={roomEvaluateDetails}
+                  action={action}
+                  selectedItemInfoForAction={selectedItemInfoForAction}
                 />
               }
             />
@@ -164,7 +169,11 @@ function App() {
               }
             />
           </Routes>
-          <Inventory action={action} />
+          <Inventory
+            action={action}
+            selectedItemInfo={selectedItemInfo}
+            selectedItemInfoForAction={selectedItemInfoForAction}
+          />
         </div>
         <div className="bottom-flex">
           <Map

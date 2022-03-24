@@ -4,7 +4,6 @@ import "./actions.css";
 export default function Actions(props) {
   const handleClick = (e) => {
     props.updatePlayerAction(e.target.textContent);
-    console.log("click");
   };
 
   return (

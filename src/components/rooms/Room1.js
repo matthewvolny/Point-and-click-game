@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import entryway from "../../images/entryway.jpg";
 import "./room1.css";
 import ImageMap from "image-map";
@@ -9,6 +9,15 @@ import ImageMap from "image-map";
 
 export default function Room1(props) {
   const { entryScript, reentryScript } = props.roomEvaluateDetails;
+  const [script, setScript] = useState(entryScript);
+
+  const { playerAction } = props.action;
+  const { text } = props.selectedItemInfoForAction;
+
+  useEffect(() => {
+    playerAction === "Look" && setScript(text);
+  });
+
   //need to set up re-entry script display
 
   // $(".background").css("border-bottom", "solid 1px red");
@@ -68,7 +77,7 @@ export default function Room1(props) {
           />
         </map>
       </div>
-      <div className="text-box">{entryScript}</div>
+      <div className="text-box">{script}</div>
       <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
       {/* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  */}
     </div>
