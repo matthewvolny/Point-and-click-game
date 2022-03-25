@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import entryway from "../../images/lamp.png";
+import room1b from "../../images/room1b.png";
 import "./room1.css";
 import ImageMap from "image-map";
 // import $ from "jquery";
@@ -95,7 +95,7 @@ export default function Room1(props) {
       <div className="image-container">
         <img
           className="background"
-          src={entryway}
+          src={room1b}
           alt="entryway"
           useMap="#image-map"
         />

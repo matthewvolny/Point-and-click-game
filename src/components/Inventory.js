@@ -11,12 +11,16 @@ export default function Inventory(props) {
   useEffect(() => {
     if (playerAction === "Take" && canTake) {
       let inventoryArray = [...inventory];
-      inventoryArray.push({ item: item, number: 1 });
+      inventoryArray.push({ item: item });
       // console.log("inventory array below");
       // console.log(inventoryArray);
       setInventory(inventoryArray);
     }
   }, [item, canTake]);
+
+  useEffect(() => {
+    props.updateInventory(inventory);
+  }, [inventory]);
 
   const inventoryList = inventory?.map((item) => {
     return (

@@ -38,9 +38,16 @@ const roomEvaluateInfo = [
     room: 1,
     entryScript: "So this is Richard's Valley.  Let me find Richard",
     reentryScript: "Something tells me I have been here before",
+    images: [
+      { file: "room1a.jpg", itemsCollected: [] },
+      { file: "room1b.jpg", itemsCollected: ["Rug"] },
+      { file: "room1c.jpg", itemsCollected: ["Lamp"] },
+      { file: "room1d.jpg", itemsCollected: ["Lamp", "Rug"] },
+    ],
     items: [
       {
         name: "Rug",
+        present: true,
         Look: { text: "it is an old rug on the floor", effect: "" },
         Open: { text: "", effect: "" },
         Use: { text: "", effect: "" },
@@ -54,6 +61,7 @@ const roomEvaluateInfo = [
       },
       {
         name: "Lamp",
+        present: true,
         Look: { text: "it is a solid metal lamp", effect: "" },
         Open: { text: "", effect: "" },
         Use: { text: "you turn the lamp on", effect: "turn on lamp function" },
@@ -74,6 +82,7 @@ const roomEvaluateInfo = [
     items: [
       {
         name: "Rug",
+        present: true,
         Look: { text: "it is an old rug on the floor", effect: "" },
         Open: { text: "", effect: "" },
         Use: { text: "", effect: "" },
@@ -87,6 +96,7 @@ const roomEvaluateInfo = [
       },
       {
         name: "Lamp",
+        present: true,
         Look: { text: "it is a solid metal lamp", effect: "" },
         Open: { text: "", effect: "" },
         Use: { text: "you turn the lamp on", effect: "turn on lamp function" },
@@ -187,6 +197,11 @@ function App() {
     updateRoomMapDetails(newRoom);
   };
 
+  const updateInventory = (inventory) => {
+    console.log(inventory);
+    setPlayerInventory(inventory);
+  };
+
   return (
     <div className="container">
       <BrowserRouter>
@@ -226,6 +241,7 @@ function App() {
             action={action}
             selectedItemInfo={selectedItemInfo}
             selectedItemInfoForAction={selectedItemInfoForAction}
+            updateInventory={updateInventory}
           />
         </div>
         <div className="bottom-flex">

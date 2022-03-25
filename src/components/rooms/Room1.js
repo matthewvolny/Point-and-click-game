@@ -1,19 +1,29 @@
 import React, { useEffect, useState, useRef } from "react";
-import entryway from "../../images/entryway.jpg";
+import room1a from "../../images/room1a.jpg";
+import room1b from "../../images/room1b.png";
 import "./room1.css";
 import ImageMap from "image-map";
+
+const imagesArray = [room1a, room1b];
 // import $ from "jquery";
 
 //room details
 //room details (unique object for each room)
 
 export default function Room1(props) {
-  const { entryScript, reentryScript } = props.roomEvaluateDetails;
+  const { entryScript, reentryScript, images } = props.roomEvaluateDetails;
   const isMounted = useRef(false);
   const [script, setScript] = useState(entryScript);
-
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
+
+  const [currentImage, setCurrentImage] = useState(imagesArray[0]);
+
+  //   useEffect(() => {
+  // images.forEach((image) => {
+  //   //if the item is in the array (-1), or not
+  // })
+  //   });
 
   useEffect(() => {
     if (isMounted.current) {
@@ -71,7 +81,7 @@ export default function Room1(props) {
       <div className="image-container">
         <img
           className="background"
-          src={entryway}
+          src={currentImage}
           alt="entryway"
           useMap="#image-map"
         />
