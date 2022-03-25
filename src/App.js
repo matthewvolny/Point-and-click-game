@@ -137,7 +137,8 @@ function App() {
     const { items } = roomEvaluateDetails;
     console.log(playerAction);
     console.log(item);
-    console.log(items);
+    console.log(roomEvaluateDetails);
+    console.log(items); //not here after room change
     //!something here is throwing error on selecting action after room change
     const selectedItemDetails = items.find((detailedItem) => {
       return detailedItem.name === item;
@@ -169,18 +170,21 @@ function App() {
     let roomInfo = roomEvaluateInfo.find((currentRoom) => {
       return currentRoom.room === newRoom;
     });
-    setRoomEvaluateDetails({ roomInfo });
+    console.log("here is the room info!");
+    console.log(roomInfo);
+    setRoomEvaluateDetails(roomInfo);
   };
 
   //called from the map component, updates the room on link click, adds info to state
   const updateCurrentRoom = (newRoom) => {
     setAction({ playerAction: "", item: "" });
+    setSelectedItemInfo();
     setSelectedItemInfoForAction({
       text: "",
       effect: "",
     });
-    updateRoomMapDetails(newRoom);
     updateRoomEvaluateDetails(newRoom);
+    updateRoomMapDetails(newRoom);
   };
 
   return (
