@@ -5,28 +5,49 @@ import "./room1.css";
 import ImageMap from "image-map";
 
 const imagesArray = [room1a, room1b];
+
+//map the string value to the variable holding the file
+const imagesArrayObject = {
+  room1a: room1a,
+  room1b: room1b,
+  // room1c: room1c,
+  // room1d: room1d,
+};
 // import $ from "jquery";
-
-//room details
 //room details (unique object for each room)
-
 export default function Room1(props) {
-  const { entryScript, reentryScript, images } = props.roomEvaluateDetails;
+  const { entryScript, reentryScript, images, room } =
+    props.roomEvaluateDetails;
   const isMounted = useRef(false);
+  const isMountedTwo = useRef(false);
   const [script, setScript] = useState(entryScript);
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
+  //need this to be an array of items
+  const [itemsCollectedInRoom, setItemsCollectedInRoom] = useState([]);
 
-  const [currentImage, setCurrentImage] = useState(imagesArray[0]);
+  //search for match of items array for the room, then set the "currentImage" with room string
+  const [currentImage, setCurrentImage] = useState(imagesArrayObject["room1a"]);
 
-  //   useEffect(() => {
-  // images.forEach((image) => {
-  //   //if the item is in the array (-1), or not
-  // })
-  //   });
-
+  //creates array of items collected from this specific room
   useEffect(() => {
     if (isMounted.current) {
+      const itemsCollected = [];
+      props.playerInventory.forEach((item) => {
+        if (item.room === room) {
+          itemsCollected.push(item.item);
+        }
+      });
+      console.log(itemsCollected);
+      setItemsCollectedInRoom(itemsCollected);
+    } else {
+      isMounted.current = true;
+    }
+  }, [props.playerInventory]);
+
+  useEffect(() => {
+    if (isMountedTwo.current) {
+      console.log("hello");
       switch (playerAction) {
         case "Look":
           return setScript(text);
@@ -45,9 +66,23 @@ export default function Room1(props) {
           return setScript("what you expected did not happen");
       }
     } else {
-      isMounted.current = true;
+      isMountedTwo.current = true;
     }
   }, [text]);
+
+  useEffect(() => {
+    images.forEach((image) => {
+      console.log("running");
+      if (image.itemsCollected.length === itemsCollectedInRoom.length) {
+        for (let i = 0; i < image.itemsCollected.length; i++) {
+          if (itemsCollectedInRoom.indexOf(image.itemsCollected[i]) !== -1) {
+            console.log(image.file);
+            setCurrentImage(imagesArrayObject[image.file]);
+          }
+        }
+      }
+    });
+  }, [itemsCollectedInRoom]);
 
   //need to set up re-entry script display
 

@@ -39,10 +39,10 @@ const roomEvaluateInfo = [
     entryScript: "So this is Richard's Valley.  Let me find Richard",
     reentryScript: "Something tells me I have been here before",
     images: [
-      { file: "room1a.jpg", itemsCollected: [] },
-      { file: "room1b.jpg", itemsCollected: ["Rug"] },
-      { file: "room1c.jpg", itemsCollected: ["Lamp"] },
-      { file: "room1d.jpg", itemsCollected: ["Lamp", "Rug"] },
+      { file: "room1a", itemsCollected: [] },
+      { file: "room1b", itemsCollected: ["Rug"] },
+      { file: "room1c", itemsCollected: ["Lamp"] },
+      { file: "room1d", itemsCollected: ["Lamp", "Rug"] },
     ],
     items: [
       {
@@ -128,8 +128,8 @@ function App() {
     effect: "",
   });
 
-  //!not used yet, needed?
-  const [playerInventory, setPlayerInventory] = useState();
+  //playerInventory
+  const [playerInventory, setPlayerInventory] = useState([]);
 
   //updates state with selected player action
   const updatePlayerAction = (action) => {
@@ -145,11 +145,6 @@ function App() {
   const updateSelectedItemInfo = () => {
     const { playerAction, item } = action;
     const { items } = roomEvaluateDetails;
-    console.log(playerAction);
-    console.log(item);
-    console.log(roomEvaluateDetails);
-    console.log(items); //not here after room change
-    //!something here is throwing error on selecting action after room change
     const selectedItemDetails = items.find((detailedItem) => {
       return detailedItem.name === item;
     });
@@ -180,8 +175,6 @@ function App() {
     let roomInfo = roomEvaluateInfo.find((currentRoom) => {
       return currentRoom.room === newRoom;
     });
-    console.log("here is the room info!");
-    console.log(roomInfo);
     setRoomEvaluateDetails(roomInfo);
   };
 
@@ -197,9 +190,18 @@ function App() {
     updateRoomMapDetails(newRoom);
   };
 
+  //add room# to inventory items
   const updateInventory = (inventory) => {
-    console.log(inventory);
-    setPlayerInventory(inventory);
+    inventory.forEach((item) => {
+      const keyValue = roomEvaluateDetails.room;
+      setPlayerInventory([
+        ...playerInventory,
+        {
+          item: item.item,
+          room: keyValue,
+        },
+      ]);
+    });
   };
 
   return (
@@ -215,6 +217,7 @@ function App() {
                   roomEvaluateDetails={roomEvaluateDetails}
                   action={action}
                   selectedItemInfoForAction={selectedItemInfoForAction}
+                  playerInventory={playerInventory}
                 />
               }
             />

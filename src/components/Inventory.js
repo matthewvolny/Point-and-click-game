@@ -1,10 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
 export default function Inventory(props) {
+  const isMounted = useRef(false);
+  // console.log(props);
   const [inventory, setInventory] = useState([]);
   // console.log(props.room);
 
   const { playerAction, item } = props.action;
+
   //!need text to read in room component
   const { text, canTake } = props.selectedItemInfoForAction;
 
@@ -19,7 +22,11 @@ export default function Inventory(props) {
   }, [item, canTake]);
 
   useEffect(() => {
-    props.updateInventory(inventory);
+    if (isMounted.current) {
+      props.updateInventory(inventory);
+    } else {
+      isMounted.current = true;
+    }
   }, [inventory]);
 
   const inventoryList = inventory?.map((item) => {

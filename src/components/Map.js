@@ -4,8 +4,6 @@ import "./map.css";
 
 export default function Map(props) {
   const { currentRoomInfo } = props.roomMapDetails;
-  console.log("currentRoomInfo");
-  console.log(currentRoomInfo);
 
   //generates map points
   const PopulateMap = () => {
