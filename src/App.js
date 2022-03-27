@@ -15,6 +15,33 @@ const roomMap = [
   {
     currentRoom: 1,
     mapCoordinates: [
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+    ],
+  },
+  {
+    currentRoom: 2,
+    mapCoordinates: [
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+    ],
+  },
+  {
+    currentRoom: 1,
+    mapCoordinates: [
+      { roomNum: 2, route: "/room2", position: "top" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+    ],
+  },
+  {
+    currentRoom: 1,
+    mapCoordinates: [
       { roomNum: 2, route: "/room2", position: "top" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
@@ -34,6 +61,21 @@ const roomMap = [
 
 //room item info (should also be in another file), added to state when entering a new room
 const roomEvaluateInfo = [
+  {
+    room: 1,
+    entryScript:
+      "Richard's Valley is a truly wonderful place, where man and animal live in complete harmony with nature.  We love it here.",
+    reentryScript: "",
+    images: [{ file: "room1", itemsCollected: [] }],
+    items: [],
+  },
+  {
+    room: 2,
+    entryScript:
+      "There are many dangers in the outside world, principle among those are toxins in the food, air, and water.  Luckily we have these magic stones which filter our water for us.",
+    reentryScript: "",
+    items: [],
+  },
   {
     room: 1,
     entryScript: "So this is Richard's Valley.  Let me find Richard",
@@ -76,9 +118,15 @@ const roomEvaluateInfo = [
     ],
   },
   {
-    room: 2,
-    entryScript: "Room2",
-    reentryScript: "Room2-re-entry",
+    room: 1,
+    entryScript: "So this is Richard's Valley.  Let me find Richard",
+    reentryScript: "Something tells me I have been here before",
+    images: [
+      { file: "room1a", itemsCollected: [] },
+      { file: "room1b", itemsCollected: ["Rug"] },
+      { file: "room1c", itemsCollected: ["Lamp"] },
+      { file: "room1d", itemsCollected: ["Lamp", "Rug"] },
+    ],
     items: [
       {
         name: "Rug",
@@ -162,7 +210,7 @@ function App() {
   // on map link click, updates the map for the current room
   const updateRoomMapDetails = (newRoom) => {
     const selectedRoom = roomMap.find((room) => {
-      return room.currentRoom === newRoom;
+      return room.currentRoom == newRoom;
     });
     setRoomMapDetails({
       currentRoom: selectedRoom.currentRoom,
@@ -172,14 +220,18 @@ function App() {
 
   //add evaluate details object for the current room to state
   const updateRoomEvaluateDetails = (newRoom) => {
+    console.log("updateRoomEvaluateDetails");
+    console.log(newRoom);
     let roomInfo = roomEvaluateInfo.find((currentRoom) => {
-      return currentRoom.room === newRoom;
+      return currentRoom.room == newRoom;
     });
     setRoomEvaluateDetails(roomInfo);
   };
 
   //called from the map component, updates the room on link click, adds info to state
   const updateCurrentRoom = (newRoom) => {
+    console.log("updateCurrentRoom");
+    console.log(newRoom);
     setAction({ playerAction: "", item: "" });
     setSelectedItemInfo();
     setSelectedItemInfoForAction({
@@ -218,6 +270,7 @@ function App() {
                   action={action}
                   selectedItemInfoForAction={selectedItemInfoForAction}
                   playerInventory={playerInventory}
+                  updateCurrentRoom={updateCurrentRoom}
                 />
               }
             />
