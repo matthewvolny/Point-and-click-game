@@ -15,7 +15,7 @@ const imagesArrayObject = {
 };
 // import $ from "jquery";
 //room details (unique object for each room)
-export default function Room1(props) {
+export default function Room8(props) {
   const { entryScript, reentryScript, images, room } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
@@ -47,7 +47,6 @@ export default function Room1(props) {
 
   useEffect(() => {
     if (isMountedTwo.current) {
-      console.log("hello");
       switch (playerAction) {
         case "Look":
           return setScript(text);
@@ -72,7 +71,7 @@ export default function Room1(props) {
 
   //changes the image based on the items collected in the room
   useEffect(() => {
-    images.forEach((image) => {
+    images?.forEach((image) => {
       console.log("running");
       if (image.itemsCollected.length === itemsCollectedInRoom.length) {
         for (let i = 0; i < image.itemsCollected.length; i++) {

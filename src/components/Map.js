@@ -8,20 +8,20 @@ export default function Map(props) {
   //generates map points
   const PopulateMap = () => {
     const mapCoordinates = currentRoomInfo.map((coordinate) => {
-      return coordinate.position !== "" ? (
-        <div
-          key={Math.floor(Math.random() * 10000)}
-          className={coordinate.position}
-        >
-          <NavLink
-            to={coordinate.route}
-            onClick={() => props.updateCurrentRoom(coordinate.roomNum)}
+      return (
+        coordinate.position !== "" && (
+          <div
+            key={Math.floor(Math.random() * 10000)}
+            className={coordinate.position}
           >
-            X
-          </NavLink>
-        </div>
-      ) : (
-        console.log("no map")
+            <NavLink
+              to={coordinate.route}
+              onClick={() => props.updateCurrentRoom(coordinate.roomNum)}
+            >
+              X
+            </NavLink>
+          </div>
+        )
       );
     });
     return <>{mapCoordinates}</>;

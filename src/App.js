@@ -5,10 +5,11 @@ import Actions from "./components/Actions";
 import Room1 from "./components/rooms/Room1";
 import Room2 from "./components/rooms/Room2";
 import Room3 from "./components/rooms/Room3";
-import Room4 from "./components/rooms/Room1";
-import Room5 from "./components/rooms/Room2";
-import Room6 from "./components/rooms/Room3";
-import Room7 from "./components/rooms/Room3";
+import Room4 from "./components/rooms/Room4";
+import Room5 from "./components/rooms/Room5";
+import Room6 from "./components/rooms/Room6";
+import Room7 from "./components/rooms/Room7";
+import Room8 from "./components/rooms/Room8";
 import Map from "./components/Map";
 
 //!not needed?
@@ -55,30 +56,48 @@ const roomMap = [
     ],
   },
   {
-    currentRoom: 1,
+    currentRoom: 5,
     mapCoordinates: [
-      { roomNum: 2, route: "/room2", position: "top" },
+      { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
     ],
   },
   {
-    currentRoom: 1,
+    currentRoom: 6,
     mapCoordinates: [
-      { roomNum: 2, route: "/room2", position: "top" },
+      { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
     ],
   },
   {
-    currentRoom: 2,
+    currentRoom: 7,
     mapCoordinates: [
-      { roomNum: 3, route: "/room3", position: "top" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
-      { roomNum: 1, route: "/", position: "bottom" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+    ],
+  },
+  {
+    currentRoom: 8,
+    mapCoordinates: [
+      { roomNum: 9, route: "/room9", position: "top" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+    ],
+  },
+  {
+    currentRoom: 9,
+    mapCoordinates: [
+      { roomNum: 10, route: "/room10", position: "top" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: 8, route: "/room8", position: "bottom" },
     ],
   },
 ];
@@ -227,6 +246,33 @@ function App() {
   const [roomEvaluateDetails, setRoomEvaluateDetails] = useState(
     roomEvaluateInfo[0]
   );
+
+  //retrieves stored room details from local storage on page refresh
+  useEffect(() => {
+    setRoomEvaluateDetails(
+      JSON.parse(window.sessionStorage.getItem("roomEvaluateDetails"))
+    );
+    setRoomMapDetails(
+      JSON.parse(window.sessionStorage.getItem("roomMapDetails"))
+    );
+  }, []);
+
+  //stores room details in local storage (when it updates)
+  useEffect(() => {
+    window.sessionStorage.setItem(
+      "roomEvaluateDetails",
+      JSON.stringify(roomEvaluateDetails)
+    );
+  }, [roomEvaluateDetails]);
+
+  //stores room map details in local storage (when it updates)
+  useEffect(() => {
+    window.sessionStorage.setItem(
+      "roomMapDetails",
+      JSON.stringify(roomMapDetails)
+    );
+  }, [roomMapDetails]);
+
   const [selectedItemInfo, setSelectedItemInfo] = useState();
   const [selectedItemInfoForAction, setSelectedItemInfoForAction] = useState({
     text: "",
@@ -322,11 +368,7 @@ function App() {
               path="/"
               element={
                 <Room1
-                  updateItem={updateItem}
                   roomEvaluateDetails={roomEvaluateDetails}
-                  action={action}
-                  selectedItemInfoForAction={selectedItemInfoForAction}
-                  playerInventory={playerInventory}
                   updateCurrentRoom={updateCurrentRoom}
                 />
               }
@@ -335,11 +377,7 @@ function App() {
               path="/room2"
               element={
                 <Room2
-                  updateItem={updateItem}
                   roomEvaluateDetails={roomEvaluateDetails}
-                  action={action}
-                  selectedItemInfoForAction={selectedItemInfoForAction}
-                  playerInventory={playerInventory}
                   updateCurrentRoom={updateCurrentRoom}
                 />
               }
@@ -348,11 +386,7 @@ function App() {
               path="/room3"
               element={
                 <Room3
-                  updateItem={updateItem}
                   roomEvaluateDetails={roomEvaluateDetails}
-                  action={action}
-                  selectedItemInfoForAction={selectedItemInfoForAction}
-                  playerInventory={playerInventory}
                   updateCurrentRoom={updateCurrentRoom}
                 />
               }
@@ -361,11 +395,7 @@ function App() {
               path="/room4"
               element={
                 <Room4
-                  updateItem={updateItem}
                   roomEvaluateDetails={roomEvaluateDetails}
-                  action={action}
-                  selectedItemInfoForAction={selectedItemInfoForAction}
-                  playerInventory={playerInventory}
                   updateCurrentRoom={updateCurrentRoom}
                 />
               }
@@ -374,11 +404,7 @@ function App() {
               path="/room5"
               element={
                 <Room5
-                  updateItem={updateItem}
                   roomEvaluateDetails={roomEvaluateDetails}
-                  action={action}
-                  selectedItemInfoForAction={selectedItemInfoForAction}
-                  playerInventory={playerInventory}
                   updateCurrentRoom={updateCurrentRoom}
                 />
               }
@@ -387,11 +413,7 @@ function App() {
               path="/room6"
               element={
                 <Room6
-                  updateItem={updateItem}
                   roomEvaluateDetails={roomEvaluateDetails}
-                  action={action}
-                  selectedItemInfoForAction={selectedItemInfoForAction}
-                  playerInventory={playerInventory}
                   updateCurrentRoom={updateCurrentRoom}
                 />
               }
@@ -400,6 +422,15 @@ function App() {
               path="/room7"
               element={
                 <Room7
+                  roomEvaluateDetails={roomEvaluateDetails}
+                  updateCurrentRoom={updateCurrentRoom}
+                />
+              }
+            />
+            <Route
+              path="/room8"
+              element={
+                <Room8
                   updateItem={updateItem}
                   roomEvaluateDetails={roomEvaluateDetails}
                   action={action}
