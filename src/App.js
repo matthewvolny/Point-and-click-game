@@ -5,7 +5,13 @@ import Actions from "./components/Actions";
 import Room1 from "./components/rooms/Room1";
 import Room2 from "./components/rooms/Room2";
 import Room3 from "./components/rooms/Room3";
+import Room4 from "./components/rooms/Room1";
+import Room5 from "./components/rooms/Room2";
+import Room6 from "./components/rooms/Room3";
+import Room7 from "./components/rooms/Room3";
 import Map from "./components/Map";
+
+//!not needed?
 import ImageMapper from "react-img-mapper";
 
 import "./App.css";
@@ -23,6 +29,24 @@ const roomMap = [
   },
   {
     currentRoom: 2,
+    mapCoordinates: [
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+    ],
+  },
+  {
+    currentRoom: 3,
+    mapCoordinates: [
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+    ],
+  },
+  {
+    currentRoom: 4,
     mapCoordinates: [
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
@@ -64,7 +88,7 @@ const roomEvaluateInfo = [
   {
     room: 1,
     entryScript:
-      "Richard's Valley is a truly wonderful place, where man and animal live in complete harmony with nature.  We love it here.",
+      "Richard's Valley is a truly wonderful place, where man and animal live in complete harmony with nature.",
     reentryScript: "",
     images: [{ file: "room1", itemsCollected: [] }],
     items: [],
@@ -72,13 +96,46 @@ const roomEvaluateInfo = [
   {
     room: 2,
     entryScript:
-      "There are many dangers in the outside world, principle among those are toxins in the food, air, and water.  Luckily we have these magic stones which filter our water for us.",
+      "Yes, life in the valley is great, but the residents the valley are keenly aware of the dangers of the outside world.  It is a known fact for example, that city dwellers are constantly exposed to poisonous toxins.",
     reentryScript: "",
     items: [],
   },
   {
-    room: 1,
-    entryScript: "So this is Richard's Valley.  Let me find Richard",
+    room: 3,
+    entryScript:
+      "For this very reason, Richard makes sure that we filter all of our water through special stones, which we also rub all over our bodies.",
+    reentryScript: "",
+    items: [],
+  },
+  {
+    room: 4,
+    entryScript: "Lyle...! What's wrong?!?  Are you not feeling well!?!",
+    reentryScript: "",
+    items: [],
+  },
+  {
+    room: 5,
+    entryScript: "I... I think I drank too much water.",
+    reentryScript: "",
+    items: [],
+  },
+  {
+    room: 6,
+    entryScript:
+      "Seeing their friend in such poor shape, Neville (a dog) and Omar (a spider) decide right then and there that they will do whatever they can to help.",
+    reentryScript: "",
+    items: [],
+  },
+  {
+    room: 7,
+    entryScript:
+      "I think that Lyle would do well to have some medicine.  Let's see what we can gather up, and then see if Ellie (the squirrel) wouldn't mind helping us prepare it.",
+    reentryScript: "",
+    items: [],
+  },
+  {
+    room: 8,
+    entryScript: "You enter a leaf and debris strewn area",
     reentryScript: "Something tells me I have been here before",
     images: [
       { file: "room1a", itemsCollected: [] },
@@ -280,6 +337,10 @@ function App() {
                 <Room2
                   updateItem={updateItem}
                   roomEvaluateDetails={roomEvaluateDetails}
+                  action={action}
+                  selectedItemInfoForAction={selectedItemInfoForAction}
+                  playerInventory={playerInventory}
+                  updateCurrentRoom={updateCurrentRoom}
                 />
               }
             />
@@ -289,6 +350,62 @@ function App() {
                 <Room3
                   updateItem={updateItem}
                   roomEvaluateDetails={roomEvaluateDetails}
+                  action={action}
+                  selectedItemInfoForAction={selectedItemInfoForAction}
+                  playerInventory={playerInventory}
+                  updateCurrentRoom={updateCurrentRoom}
+                />
+              }
+            />
+            <Route
+              path="/room4"
+              element={
+                <Room4
+                  updateItem={updateItem}
+                  roomEvaluateDetails={roomEvaluateDetails}
+                  action={action}
+                  selectedItemInfoForAction={selectedItemInfoForAction}
+                  playerInventory={playerInventory}
+                  updateCurrentRoom={updateCurrentRoom}
+                />
+              }
+            />
+            <Route
+              path="/room5"
+              element={
+                <Room5
+                  updateItem={updateItem}
+                  roomEvaluateDetails={roomEvaluateDetails}
+                  action={action}
+                  selectedItemInfoForAction={selectedItemInfoForAction}
+                  playerInventory={playerInventory}
+                  updateCurrentRoom={updateCurrentRoom}
+                />
+              }
+            />
+            <Route
+              path="/room6"
+              element={
+                <Room6
+                  updateItem={updateItem}
+                  roomEvaluateDetails={roomEvaluateDetails}
+                  action={action}
+                  selectedItemInfoForAction={selectedItemInfoForAction}
+                  playerInventory={playerInventory}
+                  updateCurrentRoom={updateCurrentRoom}
+                />
+              }
+            />
+            <Route
+              path="/room7"
+              element={
+                <Room7
+                  updateItem={updateItem}
+                  roomEvaluateDetails={roomEvaluateDetails}
+                  action={action}
+                  selectedItemInfoForAction={selectedItemInfoForAction}
+                  playerInventory={playerInventory}
+                  updateCurrentRoom={updateCurrentRoom}
                 />
               }
             />

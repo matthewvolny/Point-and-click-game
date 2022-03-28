@@ -22,7 +22,7 @@ export default function Room1(props) {
     setTimeout(() => {
       navigate(`/room${room + 1}`);
       props.updateCurrentRoom(`${room + 1}`);
-    }, 3000);
+    }, 4000);
   });
 
   return (

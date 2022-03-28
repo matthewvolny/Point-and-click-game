@@ -18,12 +18,14 @@ export default function Room2(props) {
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState(imagesArrayObject["room2"]);
 
-  // const navigate = useNavigate();
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     navigate("/room2");
-  //   }, 2000);
-  // });
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setTimeout(() => {
+      navigate(`/room${room + 1}`);
+      props.updateCurrentRoom(`${room + 1}`);
+    }, 4000);
+  });
 
   useEffect(() => {
     if (isMounted.current) {
