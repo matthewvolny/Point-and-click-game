@@ -20,7 +20,8 @@ export default function Room8(props) {
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
   const isMountedTwo = useRef(false);
-  const [script, setScript] = useState(entryScript);
+  const isMountedThree = useRef(false);
+  const [script, setScript] = useState();
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
   //need this to be an array of items
@@ -28,6 +29,14 @@ export default function Room8(props) {
 
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState(imagesArrayObject["room1a"]);
+
+  useEffect(() => {
+    if (isMountedThree.current) {
+      setScript(entryScript);
+    } else {
+      isMountedThree.current = true;
+    }
+  }, [entryScript]);
 
   //creates array of items collected from this specific room
   useEffect(() => {
