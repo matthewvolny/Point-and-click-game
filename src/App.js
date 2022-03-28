@@ -1,7 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Inventory from "./components/Inventory";
+import Login from "./components/Login";
+import SavedGamesList from "./components/SavedGamesList";
+import Map from "./components/Map";
 import Actions from "./components/Actions";
+import Inventory from "./components/Inventory";
 import Room1 from "./components/rooms/Room1";
 import Room2 from "./components/rooms/Room2";
 import Room3 from "./components/rooms/Room3";
@@ -10,7 +13,6 @@ import Room5 from "./components/rooms/Room5";
 import Room6 from "./components/rooms/Room6";
 import Room7 from "./components/rooms/Room7";
 import Room8 from "./components/rooms/Room8";
-import Map from "./components/Map";
 
 //!not needed?
 import ImageMapper from "react-img-mapper";
@@ -141,7 +143,7 @@ const roomEvaluateInfo = [
   {
     room: 6,
     entryScript:
-      "Seeing their friend in such poor shape, Neville (a dog) and Omar (a spider) decide right then and there that they will do whatever they can to help.",
+      "Seeing their friend in such poor shape, Neville and Omar decide right then and there that they will do whatever they can to help.",
     reentryScript: "",
     items: [],
   },
@@ -154,7 +156,7 @@ const roomEvaluateInfo = [
   },
   {
     room: 8,
-    entryScript: "You enter a leaf and debris strewn area",
+    entryScript: `You enter a leaf and debris strewn area. "Boy I hope we can find something to cure Lyle, he looks pretty bad..."`,
     reentryScript: "Something tells me I have been here before",
     images: [
       { file: "room1a", itemsCollected: [] },
@@ -237,6 +239,7 @@ const roomEvaluateInfo = [
 ];
 
 function App() {
+  const [userLoggedIn, setUserLoggedIn] = useState(true);
   const [action, setAction] = useState({ playerAction: "", item: "" });
   const [roomMapDetails, setRoomMapDetails] = useState({
     currentRoom: roomMap[0].currentRoom,
@@ -359,103 +362,116 @@ function App() {
     });
   };
 
+  const loginUser = () => {
+    console.log("login");
+    // setUserLoggedIn(true);
+  };
+
   return (
     <div className="container">
-      <BrowserRouter>
-        <div className="top-flex">
-          <Routes>
-            <Route
-              path="/"
-              element={
-                <Room1
-                  roomEvaluateDetails={roomEvaluateDetails}
-                  updateCurrentRoom={updateCurrentRoom}
-                />
-              }
+      {userLoggedIn ? (
+        <BrowserRouter>
+          <div className="top-flex">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <Room1
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+              <Route
+                path="/room2"
+                element={
+                  <Room2
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+              <Route
+                path="/room3"
+                element={
+                  <Room3
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+              <Route
+                path="/room4"
+                element={
+                  <Room4
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+              <Route
+                path="/room5"
+                element={
+                  <Room5
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+              <Route
+                path="/room6"
+                element={
+                  <Room6
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+              <Route
+                path="/room7"
+                element={
+                  <Room7
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+              <Route
+                path="/room8"
+                element={
+                  <Room8
+                    updateItem={updateItem}
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    action={action}
+                    selectedItemInfoForAction={selectedItemInfoForAction}
+                    playerInventory={playerInventory}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+            </Routes>
+            <Inventory
+              action={action}
+              selectedItemInfo={selectedItemInfo}
+              selectedItemInfoForAction={selectedItemInfoForAction}
+              updateInventory={updateInventory}
             />
-            <Route
-              path="/room2"
-              element={
-                <Room2
-                  roomEvaluateDetails={roomEvaluateDetails}
-                  updateCurrentRoom={updateCurrentRoom}
-                />
-              }
+          </div>
+          <div className="bottom-flex">
+            <Map
+              roomMapDetails={roomMapDetails}
+              updateCurrentRoom={updateCurrentRoom}
             />
-            <Route
-              path="/room3"
-              element={
-                <Room3
-                  roomEvaluateDetails={roomEvaluateDetails}
-                  updateCurrentRoom={updateCurrentRoom}
-                />
-              }
-            />
-            <Route
-              path="/room4"
-              element={
-                <Room4
-                  roomEvaluateDetails={roomEvaluateDetails}
-                  updateCurrentRoom={updateCurrentRoom}
-                />
-              }
-            />
-            <Route
-              path="/room5"
-              element={
-                <Room5
-                  roomEvaluateDetails={roomEvaluateDetails}
-                  updateCurrentRoom={updateCurrentRoom}
-                />
-              }
-            />
-            <Route
-              path="/room6"
-              element={
-                <Room6
-                  roomEvaluateDetails={roomEvaluateDetails}
-                  updateCurrentRoom={updateCurrentRoom}
-                />
-              }
-            />
-            <Route
-              path="/room7"
-              element={
-                <Room7
-                  roomEvaluateDetails={roomEvaluateDetails}
-                  updateCurrentRoom={updateCurrentRoom}
-                />
-              }
-            />
-            <Route
-              path="/room8"
-              element={
-                <Room8
-                  updateItem={updateItem}
-                  roomEvaluateDetails={roomEvaluateDetails}
-                  action={action}
-                  selectedItemInfoForAction={selectedItemInfoForAction}
-                  playerInventory={playerInventory}
-                  updateCurrentRoom={updateCurrentRoom}
-                />
-              }
-            />
-          </Routes>
-          <Inventory
-            action={action}
-            selectedItemInfo={selectedItemInfo}
-            selectedItemInfoForAction={selectedItemInfoForAction}
-            updateInventory={updateInventory}
-          />
-        </div>
-        <div className="bottom-flex">
-          <Map
-            roomMapDetails={roomMapDetails}
-            updateCurrentRoom={updateCurrentRoom}
-          />
-          <Actions updatePlayerAction={updatePlayerAction} />
-        </div>
-      </BrowserRouter>
+            <Actions updatePlayerAction={updatePlayerAction} />
+          </div>
+        </BrowserRouter>
+      ) : (
+        <>
+          <div className="title">Leaving Richards Valley</div>
+          <SavedGamesList />
+          <Login loginUser={loginUser} />
+        </>
+      )}
     </div>
   );
 }
