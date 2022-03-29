@@ -1,13 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
-import room8 from "../../images/room8.jpg";
+import room1a from "../../images/room1a.jpg";
+import room1b from "../../images/room1b.png";
+import "./room1.css";
 import ImageMap from "image-map";
 
-const imagesArray = [room8, room8];
+const imagesArray = [room1a, room1b];
 
 //map the string value to the variable holding the file
 const imagesArrayObject = {
-  room8: room8,
-
+  room1a: room1a,
+  room1b: room1b,
   // room1c: room1c,
   // room1d: room1d,
 };
@@ -26,7 +28,7 @@ export default function Room8(props) {
   const [itemsCollectedInRoom, setItemsCollectedInRoom] = useState([]);
 
   //search for match of items array for the room, then set the "currentImage" with room string
-  const [currentImage, setCurrentImage] = useState(imagesArrayObject["room8"]);
+  const [currentImage, setCurrentImage] = useState(imagesArrayObject["room1a"]);
 
   useEffect(() => {
     if (isMountedThree.current) {
@@ -106,49 +108,47 @@ export default function Room8(props) {
     // console.log(imageMapData);
   });
 
-  const plantClicked = (event) => {
+  const rugClicked = (event) => {
     event.preventDefault();
     // console.log("rug clicked");
-    props.updateItem("Plant");
+    props.updateItem("Rug");
   };
 
-  const rockClicked = (event) => {
+  const lampClicked = (event) => {
     event.preventDefault();
     // console.log("lamp clicked");
-    props.updateItem("Rock");
+    props.updateItem("Lamp");
   };
 
   return (
     <div className="top-left-flex-container">
       <div className="image-container">
-        <img src={currentImage} useMap="#image-map" alt="room8" />
+        <img
+          className="background"
+          src={currentImage}
+          alt="entryway"
+          useMap="#image-map"
+        />
         <map name="image-map">
           <area
-            onClick={plantClicked}
+            className="rug"
+            onClick={rugClicked}
             target=""
-            alt="plant"
-            title="plant"
+            alt="rug"
+            title="rug"
             href=""
-            coords="537,1002,76"
-            shape="circle"
+            coords="1023,1584,879,1594,658,1677,607,1726,680,1810,905,1873,1141,1893,1633,1893,1930,1851,2101,1787,2138,1724,2040,1648,1599,1562,1219,1562"
+            shape="poly"
           />
           <area
-            onClick={plantClicked}
+            className="lamp"
+            onClick={lampClicked}
             target=""
-            alt="plant"
-            title="plant"
+            alt="small lamp"
+            title="small lamp"
             href=""
-            coords="1127,1422,81"
-            shape="circle"
-          />
-          <area
-            onClick={rockClicked}
-            target=""
-            alt="rock"
-            title="rock"
-            href=""
-            coords="1446,1161,59"
-            shape="circle"
+            coords="391,792,364,868,352,917,411,932,443,934,443,971,399,991,450,995,502,988,479,929,496,932,531,919,531,875,506,792,445,780"
+            shape="poly"
           />
         </map>
       </div>
