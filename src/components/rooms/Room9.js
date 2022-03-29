@@ -21,9 +21,26 @@ export default function Room8(props) {
   const { text } = props.selectedItemInfoForAction;
   //need this to be an array of items
   const [itemsCollectedInRoom, setItemsCollectedInRoom] = useState([]);
-
+  const [newImage, setNewImage] = useState();
   //search for match of items array for the room, then set the "currentImage" with room string
-  const [currentImage, setCurrentImage] = useState(imagesArrayObject["room9a"]);
+  const [currentImage, setCurrentImage] = useState();
+
+  //retrieves newImage from session storage on page refresh
+  useEffect(() => {
+    setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));
+  }, []);
+
+  //stores newImage in session storage (when it updates)
+  useEffect(() => {
+    window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
+  }, [newImage]);
+
+  //sets currentImage to the newImage (i.e. item taken) if there is one
+  useEffect(() => {
+    newImage
+      ? setCurrentImage(newImage)
+      : setCurrentImage(imagesArrayObject["room9a"]);
+  }, [newImage]);
 
   useEffect(() => {
     if (isMountedThree.current) {
@@ -76,12 +93,12 @@ export default function Room8(props) {
   //changes the image based on the items collected in the room
   useEffect(() => {
     images?.forEach((image) => {
-      console.log("running");
       if (image.itemsCollected.length === itemsCollectedInRoom.length) {
         for (let i = 0; i < image.itemsCollected.length; i++) {
           if (itemsCollectedInRoom.indexOf(image.itemsCollected[i]) !== -1) {
             console.log(image.file);
-            setCurrentImage(imagesArrayObject[image.file]);
+            // setCurrentImage(imagesArrayObject[image.file]);
+            setNewImage(imagesArrayObject[image.file]);
           }
         }
       }
@@ -107,6 +124,9 @@ export default function Room8(props) {
     event.preventDefault();
     // console.log("rug clicked");
     props.updateItem("Leaf");
+    //would need an event listener for each ".leaf" element, and delete based on the event.target
+    const leaf = document.querySelector(".leaf");
+    leaf.remove();
   };
 
   const shallowPoolClicked = (event) => {
@@ -127,6 +147,7 @@ export default function Room8(props) {
         <img src={currentImage} useMap="#image-map" alt="room9a" />
         <map name="image-map">
           <area
+            className="leaf"
             onClick={leafClicked}
             target=""
             alt="leaf"
