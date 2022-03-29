@@ -13,6 +13,10 @@ import Room5 from "./components/rooms/Room5";
 import Room6 from "./components/rooms/Room6";
 import Room7 from "./components/rooms/Room7";
 import Room8 from "./components/rooms/Room8";
+import Room9 from "./components/rooms/Room9";
+import Room10 from "./components/rooms/Room10";
+import Room11 from "./components/rooms/Room11";
+import Room12 from "./components/rooms/Room12";
 
 //!not needed?
 import ImageMapper from "react-img-mapper";
@@ -202,40 +206,61 @@ const roomEvaluateInfo = [
     ],
   },
   {
-    room: 1,
-    entryScript: "So this is Richard's Valley.  Let me find Richard",
+    room: 9,
+    entryScript: "It is a damp clearing, strewn with aquatic plants",
     reentryScript: "Something tells me I have been here before",
     images: [
-      { file: "room1a", itemsCollected: [] },
-      { file: "room1b", itemsCollected: ["Rug"] },
-      { file: "room1c", itemsCollected: ["Lamp"] },
-      { file: "room1d", itemsCollected: ["Lamp", "Rug"] },
+      { file: "room9a", itemsCollected: [] },
+      { file: "room9b", itemsCollected: ["Leaf"] },
     ],
     items: [
       {
-        name: "Rug",
+        name: "Leaf",
         present: true,
-        Look: { text: "it is an old rug on the floor", effect: "" },
+        Look: { text: "A small leaf of shimmering green and gold", effect: "" },
         Open: { text: "", effect: "" },
         Use: { text: "", effect: "" },
         Take: {
-          text: "you have taken the rug",
-          effect: "add rug to inventory",
+          text: "you have taken the leaf",
+          effect: "add leaf to inventory",
           canTake: true,
         },
         Hit: { text: "", effect: "" },
         Speak: { text: "", effect: "" },
       },
       {
-        name: "Lamp",
+        name: "Shallow Pool",
         present: true,
-        Look: { text: "it is a solid metal lamp", effect: "" },
+        Look: {
+          text: "a shallow pool of water, this is a low lying area after all",
+          effect: "",
+        },
         Open: { text: "", effect: "" },
-        Use: { text: "you turn the lamp on", effect: "turn on lamp function" },
+        Use: {
+          text: "you splash some water on your face, it sure is a hot day",
+          effect: "",
+        },
         Take: {
-          text: "you have taken the lamp",
-          effect: "take lamp function",
-          canTake: true,
+          text: "you cannot take it",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: { text: "", effect: "" },
+      },
+      {
+        name: "Large Reed",
+        present: true,
+        Look: {
+          text: "A cluster of reeds, these are abundant in the area",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "These are growing in un-purified water, best to leave them be",
+          effect: "",
+          canTake: false,
         },
         Hit: { text: "", effect: "" },
         Speak: { text: "", effect: "" },
@@ -528,6 +553,58 @@ function App() {
                 path="/room8"
                 element={
                   <Room8
+                    updateItem={updateItem}
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    action={action}
+                    selectedItemInfoForAction={selectedItemInfoForAction}
+                    playerInventory={playerInventory}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+              <Route
+                path="/room9"
+                element={
+                  <Room9
+                    updateItem={updateItem}
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    action={action}
+                    selectedItemInfoForAction={selectedItemInfoForAction}
+                    playerInventory={playerInventory}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+              <Route
+                path="/room10"
+                element={
+                  <Room10
+                    updateItem={updateItem}
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    action={action}
+                    selectedItemInfoForAction={selectedItemInfoForAction}
+                    playerInventory={playerInventory}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+              <Route
+                path="/room11"
+                element={
+                  <Room11
+                    updateItem={updateItem}
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    action={action}
+                    selectedItemInfoForAction={selectedItemInfoForAction}
+                    playerInventory={playerInventory}
+                    updateCurrentRoom={updateCurrentRoom}
+                  />
+                }
+              />
+              <Route
+                path="/room12"
+                element={
+                  <Room12
                     updateItem={updateItem}
                     roomEvaluateDetails={roomEvaluateDetails}
                     action={action}

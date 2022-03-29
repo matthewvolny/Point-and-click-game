@@ -1,12 +1,17 @@
 import React, { useEffect, useState, useRef } from "react";
-import room9a from "../../images/room9a.jpg";
-import room9b from "../../images/room9b.jpg";
+import room1a from "../../images/room1a.jpg";
+import room1b from "../../images/room1b.png";
+import "./room1.css";
 import ImageMap from "image-map";
+
+const imagesArray = [room1a, room1b];
 
 //map the string value to the variable holding the file
 const imagesArrayObject = {
-  room9a: room9a,
-  room9b: room9b,
+  room1a: room1a,
+  room1b: room1b,
+  // room1c: room1c,
+  // room1d: room1d,
 };
 // import $ from "jquery";
 //room details (unique object for each room)
@@ -23,7 +28,7 @@ export default function Room8(props) {
   const [itemsCollectedInRoom, setItemsCollectedInRoom] = useState([]);
 
   //search for match of items array for the room, then set the "currentImage" with room string
-  const [currentImage, setCurrentImage] = useState(imagesArrayObject["room9a"]);
+  const [currentImage, setCurrentImage] = useState(imagesArrayObject["room1a"]);
 
   useEffect(() => {
     if (isMountedThree.current) {
@@ -103,55 +108,47 @@ export default function Room8(props) {
     // console.log(imageMapData);
   });
 
-  const leafClicked = (event) => {
+  const rugClicked = (event) => {
     event.preventDefault();
     // console.log("rug clicked");
-    props.updateItem("Leaf");
+    props.updateItem("Rug");
   };
 
-  const shallowPoolClicked = (event) => {
+  const lampClicked = (event) => {
     event.preventDefault();
     // console.log("lamp clicked");
-    props.updateItem("Shallow Pool");
-  };
-
-  const largeReedClicked = (event) => {
-    event.preventDefault();
-    // console.log("lamp clicked");
-    props.updateItem("Large Reed");
+    props.updateItem("Lamp");
   };
 
   return (
     <div className="top-left-flex-container">
       <div className="image-container">
-        <img src={currentImage} useMap="#image-map" alt="room9a" />
+        <img
+          className="background"
+          src={currentImage}
+          alt="entryway"
+          useMap="#image-map"
+        />
         <map name="image-map">
           <area
-            onClick={leafClicked}
+            className="rug"
+            onClick={rugClicked}
             target=""
-            alt="leaf"
-            title="leaf"
+            alt="rug"
+            title="rug"
             href=""
-            coords="776,1146,67"
-            shape="circle"
+            coords="1023,1584,879,1594,658,1677,607,1726,680,1810,905,1873,1141,1893,1633,1893,1930,1851,2101,1787,2138,1724,2040,1648,1599,1562,1219,1562"
+            shape="poly"
           />
           <area
-            onClick={shallowPoolClicked}
+            className="lamp"
+            onClick={lampClicked}
             target=""
-            alt="shallow pool"
-            title="shallow pool"
+            alt="small lamp"
+            title="small lamp"
             href=""
-            coords="1371,446,179"
-            shape="circle"
-          />
-          <area
-            onClick={largeReedClicked}
-            target=""
-            alt="large reed"
-            title="large reed"
-            href=""
-            coords="555,567,172"
-            shape="circle"
+            coords="391,792,364,868,352,917,411,932,443,934,443,971,399,991,450,995,502,988,479,929,496,932,531,919,531,875,506,792,445,780"
+            shape="poly"
           />
         </map>
       </div>
