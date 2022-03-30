@@ -10,8 +10,8 @@ const imagesArrayObject = {
 };
 // import $ from "jquery";
 //room details (unique object for each room)
-export default function Room8(props) {
-  const { entryScript, reentryScript, images, room } =
+export default function Room9(props) {
+  const { entryScript, reentryScript, images, room, visited } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
   const isMountedTwo = useRef(false);
@@ -25,15 +25,15 @@ export default function Room8(props) {
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
 
-  //retrieves newImage from session storage on page refresh
-  useEffect(() => {
-    setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));
-  }, []);
+  //!retrieves newImage from session storage on page refresh
+  // useEffect(() => {
+  //   setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));
+  // }, []);
 
-  //stores newImage in session storage (when it updates)
-  useEffect(() => {
-    window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
-  }, [newImage]);
+  //!stores newImage in session storage (when it updates)
+  // useEffect(() => {
+  //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
+  // }, [newImage]);
 
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
@@ -42,11 +42,13 @@ export default function Room8(props) {
       : setCurrentImage(imagesArrayObject["room9a"]);
   }, [newImage]);
 
+  //conditionally shows entry or re-entry script
   useEffect(() => {
-    if (isMountedThree.current) {
+    if (!visited) {
       setScript(entryScript);
+      props.updateLocationsVisited(room);
     } else {
-      isMountedThree.current = true;
+      setScript(reentryScript);
     }
   }, [entryScript]);
 

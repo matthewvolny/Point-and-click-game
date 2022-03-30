@@ -597,6 +597,7 @@ function App() {
                     selectedItemInfoForAction={selectedItemInfoForAction}
                     playerInventory={playerInventory}
                     updateCurrentRoom={updateCurrentRoom}
+                    updateLocationsVisited={updateLocationsVisited}
                   />
                 }
               />
@@ -610,6 +611,7 @@ function App() {
                     selectedItemInfoForAction={selectedItemInfoForAction}
                     playerInventory={playerInventory}
                     updateCurrentRoom={updateCurrentRoom}
+                    updateLocationsVisited={updateLocationsVisited}
                   />
                 }
               />
@@ -623,6 +625,7 @@ function App() {
                     selectedItemInfoForAction={selectedItemInfoForAction}
                     playerInventory={playerInventory}
                     updateCurrentRoom={updateCurrentRoom}
+                    updateLocationsVisited={updateLocationsVisited}
                   />
                 }
               />
@@ -636,6 +639,7 @@ function App() {
                     selectedItemInfoForAction={selectedItemInfoForAction}
                     playerInventory={playerInventory}
                     updateCurrentRoom={updateCurrentRoom}
+                    updateLocationsVisited={updateLocationsVisited}
                   />
                 }
               />

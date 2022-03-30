@@ -2,14 +2,9 @@ import React, { useEffect, useState, useRef } from "react";
 import room8 from "../../images/room8.jpg";
 import ImageMap from "image-map";
 
-const imagesArray = [room8, room8];
-
 //map the string value to the variable holding the file
 const imagesArrayObject = {
   room8: room8,
-
-  // room1c: room1c,
-  // room1d: room1d,
 };
 // import $ from "jquery";
 //room details (unique object for each room)
@@ -25,8 +20,26 @@ export default function Room8(props) {
   //need this to be an array of items
   const [itemsCollectedInRoom, setItemsCollectedInRoom] = useState([]);
 
+  // const [newImage, setNewImage] = useState();
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState(imagesArrayObject["room8"]);
+
+  //retrieves newImage from session storage on page refresh
+  // useEffect(() => {
+  //   setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));
+  // }, []);
+
+  //stores newImage in session storage (when it updates)
+  // useEffect(() => {
+  //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
+  // }, [newImage]);
+
+  //sets currentImage to the newImage (i.e. item taken) if there is one
+  // useEffect(() => {
+  //   newImage
+  //     ? setCurrentImage(newImage)
+  //     : setCurrentImage(imagesArrayObject["room8"]);
+  // }, [newImage]);
 
   //conditionally shows entry or re-entry script
   useEffect(() => {
