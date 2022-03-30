@@ -363,31 +363,31 @@ function App() {
     roomEvaluateInfo[0]
   );
 
-  //retrieves stored room details from local storage on page refresh
-  useEffect(() => {
-    setRoomEvaluateDetails(
-      JSON.parse(window.sessionStorage.getItem("roomEvaluateDetails"))
-    );
-    setRoomMapDetails(
-      JSON.parse(window.sessionStorage.getItem("roomMapDetails"))
-    );
-  }, []);
+  // //retrieves stored room details from local storage on page refresh
+  // useEffect(() => {
+  //   setRoomEvaluateDetails(
+  //     JSON.parse(window.sessionStorage.getItem("roomEvaluateDetails"))
+  //   );
+  //   setRoomMapDetails(
+  //     JSON.parse(window.sessionStorage.getItem("roomMapDetails"))
+  //   );
+  // }, []);
 
-  //stores room details in local storage (when it updates)
-  useEffect(() => {
-    window.sessionStorage.setItem(
-      "roomEvaluateDetails",
-      JSON.stringify(roomEvaluateDetails)
-    );
-  }, [roomEvaluateDetails]);
+  // //stores room details in local storage (when it updates)
+  // useEffect(() => {
+  //   window.sessionStorage.setItem(
+  //     "roomEvaluateDetails",
+  //     JSON.stringify(roomEvaluateDetails)
+  //   );
+  // }, [roomEvaluateDetails]);
 
-  //stores room map details in local storage (when it updates)
-  useEffect(() => {
-    window.sessionStorage.setItem(
-      "roomMapDetails",
-      JSON.stringify(roomMapDetails)
-    );
-  }, [roomMapDetails]);
+  // //stores room map details in local storage (when it updates)
+  // useEffect(() => {
+  //   window.sessionStorage.setItem(
+  //     "roomMapDetails",
+  //     JSON.stringify(roomMapDetails)
+  //   );
+  // }, [roomMapDetails]);
 
   const [selectedItemInfo, setSelectedItemInfo] = useState();
   const [selectedItemInfoForAction, setSelectedItemInfoForAction] = useState({

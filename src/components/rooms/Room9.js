@@ -124,7 +124,8 @@ export default function Room8(props) {
     event.preventDefault();
     // console.log("rug clicked");
     props.updateItem("Leaf");
-    //would need an event listener for each ".leaf" element, and delete based on the event.target
+    //!would need an event listener for each ".leaf" element, and delete based on the event.target
+    //!needs specifically to be a take action
     const leaf = document.querySelector(".leaf");
     leaf.remove();
   };
