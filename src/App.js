@@ -268,7 +268,7 @@ const roomEvaluateInfo = [
     ],
   },
   {
-    room: 1,
+    room: 10,
     entryScript: "So this is Richard's Valley.  Let me find Richard",
     reentryScript: "Something tells me I have been here before",
     images: [
@@ -309,7 +309,7 @@ const roomEvaluateInfo = [
     ],
   },
   {
-    room: 1,
+    room: 11,
     entryScript: "So this is Richard's Valley.  Let me find Richard",
     reentryScript: "Something tells me I have been here before",
     images: [
@@ -428,9 +428,12 @@ function App() {
 
   // on map link click, updates the map for the current room
   const updateRoomMapDetails = (newRoom) => {
+    console.log("updateRoomMapDetails");
+    console.log(newRoom); //2
     const selectedRoom = roomMap.find((room) => {
       return room.currentRoom == newRoom;
     });
+    console.log(selectedRoom);
     setRoomMapDetails({
       currentRoom: selectedRoom.currentRoom,
       currentRoomInfo: selectedRoom.mapCoordinates,
@@ -440,17 +443,18 @@ function App() {
   //add evaluate details object for the current room to state
   const updateRoomEvaluateDetails = (newRoom) => {
     console.log("updateRoomEvaluateDetails");
-    console.log(newRoom);
+    console.log(newRoom); //2
     let roomInfo = roomEvaluateInfo.find((currentRoom) => {
       return currentRoom.room == newRoom;
     });
+    console.log(roomInfo);
     setRoomEvaluateDetails(roomInfo);
   };
 
   //called from the map component, updates the room on link click, adds info to state
   const updateCurrentRoom = (newRoom) => {
-    console.log("updateCurrentRoom");
-    console.log(newRoom);
+    // console.log("updateCurrentRoom");
+    // console.log(newRoom);
     setAction({ playerAction: "", item: "" });
     setSelectedItemInfo();
     setSelectedItemInfoForAction({

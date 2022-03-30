@@ -15,6 +15,8 @@ export default function Room1(props) {
   const [script, setScript] = useState(entryScript);
   const [imageDisplayed, setImageDisplayed] = useState(room1);
   const [finishedInterval, setFinishedInterval] = useState(false);
+  const isMounted = useRef(false);
+
   const navigate = useNavigate();
 
   let images = [];
@@ -30,6 +32,8 @@ export default function Room1(props) {
 
   const changeImages = () => {
     setImageDisplayed(images[i]);
+    console.log(room); //always 1
+    // props.updateCurrentRoom(room + 1);
     i++;
     if (i > images.length - 1) {
       setFinishedInterval(true);
@@ -38,15 +42,27 @@ export default function Room1(props) {
     }
   };
 
-  // props.updateCurrentRoom(`${room + 1}`);
+  useEffect(() => {
+    // console.log("room updated");
+    // console.log(room + 1);
+    props.updateCurrentRoom(room + 1);
+  }, [imageDisplayed]);
+
+  // useEffect(() => {
+  //   if (isMounted.current) {
+  //     props.updateCurrentRoom(`${room + 1}`);
+  //   } else {
+  //     isMounted.current = true;
+  //   }
+  // }, []);
 
   useEffect(() => {
     let intervalForImages;
     if (!finishedInterval) {
       intervalForImages = setInterval(() => {
-        console.log("image changing");
+        // console.log(room); //not changing stays at 1
         changeImages();
-      }, 2000);
+      }, 5000);
     }
     return () => clearInterval(intervalForImages);
   }, [finishedInterval]);
