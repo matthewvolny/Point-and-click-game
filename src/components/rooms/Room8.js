@@ -14,7 +14,7 @@ const imagesArrayObject = {
 // import $ from "jquery";
 //room details (unique object for each room)
 export default function Room8(props) {
-  const { entryScript, reentryScript, images, room } =
+  const { entryScript, reentryScript, images, room, visited } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
   const isMountedTwo = useRef(false);
@@ -28,13 +28,15 @@ export default function Room8(props) {
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState(imagesArrayObject["room8"]);
 
+  //conditionally shows entry or re-entry script
   useEffect(() => {
-    if (isMountedThree.current) {
+    if (!visited) {
       setScript(entryScript);
+      props.updateLocationsVisited(room);
     } else {
-      isMountedThree.current = true;
+      setScript(reentryScript);
     }
-  }, [entryScript]);
+  }, []);
 
   //creates array of items collected from this specific room
   useEffect(() => {

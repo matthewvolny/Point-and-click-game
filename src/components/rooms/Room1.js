@@ -37,32 +37,31 @@ export default function Room1(props) {
     i++;
     if (i > images.length - 1) {
       setFinishedInterval(true);
-      //navigate to the next room
-      // navigate(`/room${room + 1}`);
     }
   };
 
   useEffect(() => {
-    // console.log("room updated");
-    // console.log(room + 1);
     props.updateCurrentRoom(room + 1);
+    //navigate to the next room
   }, [imageDisplayed]);
 
-  // useEffect(() => {
-  //   if (isMounted.current) {
-  //     props.updateCurrentRoom(`${room + 1}`);
-  //   } else {
-  //     isMounted.current = true;
-  //   }
-  // }, []);
+  useEffect(() => {
+    if (isMounted.current) {
+      setScript(entryScript);
+      if (room === 7) {
+        navigate(`/room${room + 1}`);
+      }
+    } else {
+      isMounted.current = true;
+    }
+  }, [imageDisplayed]);
 
   useEffect(() => {
     let intervalForImages;
     if (!finishedInterval) {
       intervalForImages = setInterval(() => {
-        // console.log(room); //not changing stays at 1
         changeImages();
-      }, 5000);
+      }, 1000);
     }
     return () => clearInterval(intervalForImages);
   }, [finishedInterval]);

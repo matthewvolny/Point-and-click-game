@@ -112,6 +112,7 @@ const roomMap = [
 const roomEvaluateInfo = [
   {
     room: 1,
+    visited: false,
     entryScript:
       "Richard's Valley is a truly wonderful place, where man and animal live in complete harmony with nature.",
     reentryScript: "",
@@ -120,6 +121,7 @@ const roomEvaluateInfo = [
   },
   {
     room: 2,
+    visited: false,
     entryScript:
       "Yes, life in the valley is great, but the residents the valley are keenly aware of the dangers of the outside world.  It is a known fact for example, that city dwellers are constantly exposed to poisonous toxins.",
     reentryScript: "",
@@ -127,6 +129,7 @@ const roomEvaluateInfo = [
   },
   {
     room: 3,
+    visited: false,
     entryScript:
       "For this very reason, Richard makes sure that we filter all of our water through special stones, which we also rub all over our bodies.",
     reentryScript: "",
@@ -134,18 +137,21 @@ const roomEvaluateInfo = [
   },
   {
     room: 4,
+    visited: false,
     entryScript: "Lyle...! What's wrong?!?  Are you not feeling well!?!",
     reentryScript: "",
     items: [],
   },
   {
     room: 5,
+    visited: false,
     entryScript: "I... I think I drank too much water.",
     reentryScript: "",
     items: [],
   },
   {
     room: 6,
+    visited: false,
     entryScript:
       "Seeing their friend in such poor shape, Neville and Omar decide right then and there that they will do whatever they can to help.",
     reentryScript: "",
@@ -153,6 +159,7 @@ const roomEvaluateInfo = [
   },
   {
     room: 7,
+    visited: false,
     entryScript:
       "I think that Lyle would do well to have some medicine.  Let's see what we can gather up, and then see if Ellie (the squirrel) wouldn't mind helping us prepare it.",
     reentryScript: "",
@@ -160,6 +167,7 @@ const roomEvaluateInfo = [
   },
   {
     room: 8,
+    visited: false,
     entryScript: `You enter a leaf and debris strewn area. "Boy I hope we can find something to cure Lyle, he looks pretty bad..."`,
     reentryScript: "Something tells me I have been here before",
     images: [
@@ -207,6 +215,7 @@ const roomEvaluateInfo = [
   },
   {
     room: 9,
+    visited: false,
     entryScript: "It is a damp clearing, strewn with aquatic plants",
     reentryScript: "Something tells me I have been here before",
     images: [
@@ -269,6 +278,7 @@ const roomEvaluateInfo = [
   },
   {
     room: 10,
+    visited: false,
     entryScript: "So this is Richard's Valley.  Let me find Richard",
     reentryScript: "Something tells me I have been here before",
     images: [
@@ -310,6 +320,7 @@ const roomEvaluateInfo = [
   },
   {
     room: 11,
+    visited: false,
     entryScript: "So this is Richard's Valley.  Let me find Richard",
     reentryScript: "Something tells me I have been here before",
     images: [
@@ -428,8 +439,8 @@ function App() {
 
   // on map link click, updates the map for the current room
   const updateRoomMapDetails = (newRoom) => {
-    console.log("updateRoomMapDetails");
-    console.log(newRoom); //2
+    // console.log("updateRoomMapDetails");
+    // console.log(newRoom); //2
     const selectedRoom = roomMap.find((room) => {
       return room.currentRoom == newRoom;
     });
@@ -442,12 +453,12 @@ function App() {
 
   //add evaluate details object for the current room to state
   const updateRoomEvaluateDetails = (newRoom) => {
-    console.log("updateRoomEvaluateDetails");
-    console.log(newRoom); //2
+    // console.log("updateRoomEvaluateDetails");
+    // console.log(newRoom); //2
     let roomInfo = roomEvaluateInfo.find((currentRoom) => {
       return currentRoom.room == newRoom;
     });
-    console.log(roomInfo);
+    // console.log(roomInfo);
     setRoomEvaluateDetails(roomInfo);
   };
 
@@ -477,6 +488,15 @@ function App() {
         },
       ]);
     });
+  };
+
+  //record whether a room has been visited or not (to trigger re-entry script)
+  const updateLocationsVisited = (room) => {
+    let roomInfo = roomEvaluateInfo.find((currentRoom) => {
+      return currentRoom.room == room;
+    });
+    roomInfo.visited = true;
+    setRoomEvaluateDetails(roomInfo);
   };
 
   const loginUser = () => {
@@ -563,6 +583,7 @@ function App() {
                     selectedItemInfoForAction={selectedItemInfoForAction}
                     playerInventory={playerInventory}
                     updateCurrentRoom={updateCurrentRoom}
+                    updateLocationsVisited={updateLocationsVisited}
                   />
                 }
               />
