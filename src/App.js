@@ -363,7 +363,7 @@ const roomEvaluateInfo = [
 ];
 
 function App() {
-  const [userLoggedIn, setUserLoggedIn] = useState(true);
+  const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [action, setAction] = useState({ playerAction: "", item: "" });
   const [roomMapDetails, setRoomMapDetails] = useState({
     currentRoom: roomMap[0].currentRoom,
@@ -374,7 +374,7 @@ function App() {
     roomEvaluateInfo[0]
   );
 
-  // //retrieves stored room details from local storage on page refresh
+  //!retrieves stored room details from local storage on page refresh
   // useEffect(() => {
   //   setRoomEvaluateDetails(
   //     JSON.parse(window.sessionStorage.getItem("roomEvaluateDetails"))
@@ -384,7 +384,7 @@ function App() {
   //   );
   // }, []);
 
-  // //stores room details in local storage (when it updates)
+  //!stores room details in local storage (when it updates)
   // useEffect(() => {
   //   window.sessionStorage.setItem(
   //     "roomEvaluateDetails",
@@ -392,7 +392,7 @@ function App() {
   //   );
   // }, [roomEvaluateDetails]);
 
-  // //stores room map details in local storage (when it updates)
+  //!stores room map details in local storage (when it updates)
   // useEffect(() => {
   //   window.sessionStorage.setItem(
   //     "roomMapDetails",
@@ -501,7 +501,7 @@ function App() {
 
   const loginUser = () => {
     console.log("login");
-    // setUserLoggedIn(true);
+    setUserLoggedIn(true);
   };
 
   return (

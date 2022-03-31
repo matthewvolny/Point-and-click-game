@@ -19,7 +19,7 @@ export default function Room9(props) {
   const [script, setScript] = useState();
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
-  //need this to be an array of items
+  //array of items used to determine which image to show
   const [itemsCollectedInRoom, setItemsCollectedInRoom] = useState([]);
   const [newImage, setNewImage] = useState();
   //search for match of items array for the room, then set the "currentImage" with room string
@@ -132,16 +132,19 @@ export default function Room9(props) {
     leaf.remove();
   };
 
-  const shallowPoolClicked = (event) => {
-    event.preventDefault();
-    // console.log("lamp clicked");
-    props.updateItem("Shallow Pool");
-  };
+  //remove clickable image-map areas are items are taken
+  useEffect(() => {
+    console.log(`.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`);
+    const item = document.querySelector(
+      `.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`
+    );
+    item?.remove();
+  }, [itemsCollectedInRoom]);
 
-  const largeReedClicked = (event) => {
+  const handleClick = (event) => {
     event.preventDefault();
-    // console.log("lamp clicked");
-    props.updateItem("Large Reed");
+    console.log(event.target.alt);
+    props.updateItem(event.target.alt);
   };
 
   return (
@@ -150,29 +153,28 @@ export default function Room9(props) {
         <img src={currentImage} useMap="#image-map" alt="room9a" />
         <map name="image-map">
           <area
-            className="leaf"
-            onClick={leafClicked}
+            onClick={handleClick}
             target=""
-            alt="leaf"
-            title="leaf"
+            alt="Leaf"
+            className="Leaf"
             href=""
             coords="776,1146,67"
             shape="circle"
           />
           <area
-            onClick={shallowPoolClicked}
+            onClick={handleClick}
             target=""
-            alt="shallow pool"
-            title="shallow pool"
+            alt="Shallow Pool"
+            className="Shallow Pool"
             href=""
             coords="1371,446,179"
             shape="circle"
           />
           <area
-            onClick={largeReedClicked}
+            onClick={handleClick}
             target=""
-            alt="large reed"
-            title="large reed"
+            alt="Large Reed"
+            className="Large Reed"
             href=""
             coords="555,567,172"
             shape="circle"

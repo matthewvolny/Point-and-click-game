@@ -121,16 +121,10 @@ export default function Room8(props) {
     // console.log(imageMapData);
   });
 
-  const plantClicked = (event) => {
+  const handleClick = (event) => {
     event.preventDefault();
-    // console.log("rug clicked");
-    props.updateItem("Plant");
-  };
-
-  const rockClicked = (event) => {
-    event.preventDefault();
-    // console.log("lamp clicked");
-    props.updateItem("Rock");
+    console.log(event.target.alt);
+    props.updateItem(event.target.alt);
   };
 
   return (
@@ -139,28 +133,28 @@ export default function Room8(props) {
         <img src={currentImage} useMap="#image-map" alt="room8" />
         <map name="image-map">
           <area
-            onClick={plantClicked}
+            onClick={handleClick}
             target=""
-            alt="plant"
-            title="plant"
+            alt="Plant"
+            // title="Plant"
             href=""
             coords="537,1002,76"
             shape="circle"
           />
           <area
-            onClick={plantClicked}
+            onClick={handleClick}
             target=""
-            alt="plant"
-            title="plant"
+            alt="Plant"
+            // title="Plant"
             href=""
             coords="1127,1422,81"
             shape="circle"
           />
           <area
-            onClick={rockClicked}
+            onClick={handleClick}
             target=""
-            alt="rock"
-            title="rock"
+            alt="Rock"
+            // title="Rock"
             href=""
             coords="1446,1161,59"
             shape="circle"
