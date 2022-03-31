@@ -86,6 +86,19 @@ router.post("/updatePlayerInventory", async (req, res) => {
   }
 });
 
+//update user's game state
+router.post("/updatePlayerGameState", async (req, res) => {
+  const playerGameState = JSON.stringify(req.body.roomEvaluateInfo);
+  const userId = req.body.userId;
+  res.send("hello");
+  try {
+    let queryString = `UPDATE user_info SET game_state = $1 WHERE user_id = $2`;
+    await database.none(queryString, [playerGameState, userId]);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
 //add comments to posts
 // router.post("/addComment", async (req, res) => {
 //   console.log(req.body.newComment);

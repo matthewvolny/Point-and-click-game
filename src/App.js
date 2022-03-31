@@ -359,6 +359,7 @@ function App() {
   });
 
   //playerInventory
+  //!set from db on component render
   const [playerInventory, setPlayerInventory] = useState([]);
 
   const isMounted = useRef(false);
@@ -480,12 +481,27 @@ function App() {
   }, [playerInventory]);
 
   //record whether a room has been visited or not (to trigger re-entry script)
+  //!importantly, this also changes the master data object to "visited" for a specific room
   const updateLocationsVisited = (room) => {
     let roomInfo = roomEvaluateInfo.find((currentRoom) => {
+      currentRoom.visited = true;
       return currentRoom.room == room;
     });
     roomInfo.visited = true;
     setRoomEvaluateDetails(roomInfo);
+    //!updates the database with updated game state
+    axios
+      .post("http://localhost:3000/updatePlayerGameState", {
+        roomEvaluateInfo: roomEvaluateInfo,
+        userId: userId,
+      })
+      .then((res) => {
+        console.log(`statusCode: ${res.status}`);
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   const signupUser = (loginInfo) => {

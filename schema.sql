@@ -4,6 +4,7 @@ CREATE TABLE user_info (
     user_name text not null CHECK (user_name <> ''),
     user_password text not null CHECK (user_password <> ''),  
     current_room int,
+    game_state text,
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
