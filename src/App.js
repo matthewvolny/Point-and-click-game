@@ -20,7 +20,7 @@ import Room12 from "./components/rooms/Room12";
 
 //!not needed?
 import ImageMapper from "react-img-mapper";
-
+import axios from "axios";
 import "./App.css";
 
 //roomMap should be in another file
@@ -314,6 +314,7 @@ const roomEvaluateInfo = [
 ];
 
 function App() {
+  const [userId, setUserId] = useState();
   const [userLoggedIn, setUserLoggedIn] = useState(false);
   const [action, setAction] = useState({ playerAction: "", item: "" });
   const [roomMapDetails, setRoomMapDetails] = useState({
@@ -425,6 +426,21 @@ function App() {
     });
     updateRoomEvaluateDetails(newRoom);
     updateRoomMapDetails(newRoom);
+    console.log("newRoom");
+    console.log(newRoom);
+    console.log(userId);
+    axios
+      .post("http://localhost:3000/updateRoom", {
+        newRoom: newRoom,
+        userId: userId,
+      })
+      .then((res) => {
+        console.log(`statusCode: ${res.status}`);
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
   };
 
   //add room# to inventory items
@@ -450,9 +466,24 @@ function App() {
     setRoomEvaluateDetails(roomInfo);
   };
 
-  const loginUser = () => {
+  const signupUser = (loginInfo) => {
     console.log("login");
+    const randomNum = Math.floor(Math.random() * 10000);
+    axios
+      .post("http://localhost:3000/signup", {
+        loginInfo: loginInfo,
+        userId: randomNum,
+        currentRoom: 8, //!default signup room
+      })
+      .then((res) => {
+        console.log(`statusCode: ${res.status}`);
+        console.log(res);
+      })
+      .catch((error) => {
+        console.error(error);
+      });
     setUserLoggedIn(true);
+    setUserId(randomNum);
   };
 
   return (
@@ -614,7 +645,7 @@ function App() {
         <>
           <div className="title">Leaving Richards Valley</div>
           <SavedGamesList />
-          <Login loginUser={loginUser} />
+          <Login signupUser={signupUser} />
         </>
       )}
     </div>

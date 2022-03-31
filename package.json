@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.16.2",
     "@testing-library/react": "^12.1.4",
     "@testing-library/user-event": "^13.5.0",
+    "axios": "^0.26.1",
     "image-map": "^2.0.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -18,10 +19,16 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start-client": "react-scripts start",
+    "start": "npm run build && (cd server && npm start)",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "db:create": "createdb Point-And-Click-Game",
+    "db:destroy": "dropdb Point-And-Click-Game",
+    "db:init": "psql -f schema.sql Point-And-Click-Game",
+    "db:seed": "psql -f seed.sql Point-And-Click-Game",
+    "db:reset": "npm run db:destroy; npm run db:create && npm run db:init"
   },
   "eslintConfig": {
     "extends": [

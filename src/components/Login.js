@@ -5,7 +5,7 @@ export default function Login(props) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.loginUser();
+    props.signupUser(loginInfo);
   };
 
   const handleChange = (event) => {
