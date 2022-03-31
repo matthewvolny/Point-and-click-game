@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import Login from "./components/Login";
 import SavedGamesList from "./components/SavedGamesList";
@@ -361,6 +361,8 @@ function App() {
   //playerInventory
   const [playerInventory, setPlayerInventory] = useState([]);
 
+  const isMounted = useRef(false);
+
   //updates state with selected player action
   const updatePlayerAction = (action) => {
     setAction({ playerAction: action, item: "" });
@@ -456,6 +458,26 @@ function App() {
       ]);
     });
   };
+
+  //update the database with the players current inventory
+  useEffect(() => {
+    if (isMounted.current) {
+      axios
+        .post("http://localhost:3000/updatePlayerInventory", {
+          playerInventory: playerInventory, //this is an array of items
+          userId: userId,
+        })
+        .then((res) => {
+          console.log(`statusCode: ${res.status}`);
+          console.log(res);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      isMounted.current = true;
+    }
+  }, [playerInventory]);
 
   //record whether a room has been visited or not (to trigger re-entry script)
   const updateLocationsVisited = (room) => {

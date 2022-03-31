@@ -9,7 +9,7 @@ CREATE TABLE user_info (
 
 CREATE TABLE user_inventory (
     user_id int references user_info(user_id),
-    item text
+    items text
 );
 
 CREATE TABLE user_roomInfo (

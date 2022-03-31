@@ -47,6 +47,9 @@ router.post("/signup", async (req, res) => {
     let queryString =
       "INSERT INTO user_info (user_id, user_name, user_password, current_room) VALUES ($1, $2, $3, $4)";
     await database.none(queryString, [userId, name, password, currentRoom]);
+
+    let queryStringTwo = "INSERT INTO user_inventory (user_id) VALUES ($1)";
+    await database.none(queryStringTwo, [userId]);
   } catch (error) {
     console.log(error);
   }
@@ -63,6 +66,21 @@ router.post("/updateRoom", async (req, res) => {
   try {
     let queryString = `UPDATE user_info SET current_room = $1 WHERE user_id = $2`;
     await database.none(queryString, [newRoom, userId]);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//update user's player inventory
+router.post("/updatePlayerInventory", async (req, res) => {
+  const playerInventory = JSON.stringify(req.body.playerInventory);
+  const userId = req.body.userId;
+  console.log("hello");
+  console.log(playerInventory);
+  res.send("hello");
+  try {
+    let queryString = `UPDATE user_inventory SET items = $1 WHERE user_id = $2`;
+    await database.none(queryString, [playerInventory, userId]);
   } catch (error) {
     console.log(error);
   }

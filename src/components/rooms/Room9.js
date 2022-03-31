@@ -122,19 +122,19 @@ export default function Room9(props) {
     // console.log(imageMapData);
   });
 
-  const leafClicked = (event) => {
-    event.preventDefault();
-    // console.log("rug clicked");
-    props.updateItem("Leaf");
-    //!would need an event listener for each ".leaf" element, and delete based on the event.target
-    //!needs specifically to be a take action
-    const leaf = document.querySelector(".leaf");
-    leaf.remove();
-  };
+  // const leafClicked = (event) => {
+  //   event.preventDefault();
+  //   // console.log("rug clicked");
+  //   props.updateItem("Leaf");
+  //   //!would need an event listener for each ".leaf" element, and delete based on the event.target
+  //   //!needs specifically to be a take action
+  //   const leaf = document.querySelector(".leaf");
+  //   leaf.remove();
+  // };
 
   //remove clickable image-map areas are items are taken
   useEffect(() => {
-    console.log(`.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`);
+    console.log(`${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`);
     const item = document.querySelector(
       `.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`
     );
