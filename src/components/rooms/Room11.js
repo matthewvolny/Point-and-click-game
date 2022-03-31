@@ -1,22 +1,15 @@
 import React, { useEffect, useState, useRef } from "react";
-import room1a from "../../images/room1a.jpg";
-import room1b from "../../images/room1b.png";
-import "./room1.css";
+import room11 from "../../images/room11.jpg";
 import ImageMap from "image-map";
-
-const imagesArray = [room1a, room1b];
 
 //map the string value to the variable holding the file
 const imagesArrayObject = {
-  room1a: room1a,
-  room1b: room1b,
-  // room1c: room1c,
-  // room1d: room1d,
+  room11: room11,
 };
 // import $ from "jquery";
 //room details (unique object for each room)
-export default function Room8(props) {
-  const { entryScript, reentryScript, images, room } =
+export default function Room11(props) {
+  const { entryScript, reentryScript, images, room, visited } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
   const isMountedTwo = useRef(false);
@@ -24,17 +17,36 @@ export default function Room8(props) {
   const [script, setScript] = useState();
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
-  //need this to be an array of items
+  //array of items used to determine which image to show
   const [itemsCollectedInRoom, setItemsCollectedInRoom] = useState([]);
-
+  const [newImage, setNewImage] = useState();
   //search for match of items array for the room, then set the "currentImage" with room string
-  const [currentImage, setCurrentImage] = useState(imagesArrayObject["room1a"]);
+  const [currentImage, setCurrentImage] = useState();
 
+  //!retrieves newImage from session storage on page refresh
+  // useEffect(() => {
+  //   setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));
+  // }, []);
+
+  //!stores newImage in session storage (when it updates)
+  // useEffect(() => {
+  //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
+  // }, [newImage]);
+
+  //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
-    if (isMountedThree.current) {
+    newImage
+      ? setCurrentImage(newImage)
+      : setCurrentImage(imagesArrayObject["room11"]);
+  }, [newImage]);
+
+  //conditionally shows entry or re-entry script
+  useEffect(() => {
+    if (!visited) {
       setScript(entryScript);
+      props.updateLocationsVisited(room);
     } else {
-      isMountedThree.current = true;
+      setScript(reentryScript);
     }
   }, [entryScript]);
 
@@ -81,12 +93,12 @@ export default function Room8(props) {
   //changes the image based on the items collected in the room
   useEffect(() => {
     images?.forEach((image) => {
-      console.log("running");
       if (image.itemsCollected.length === itemsCollectedInRoom.length) {
         for (let i = 0; i < image.itemsCollected.length; i++) {
           if (itemsCollectedInRoom.indexOf(image.itemsCollected[i]) !== -1) {
             console.log(image.file);
-            setCurrentImage(imagesArrayObject[image.file]);
+            // setCurrentImage(imagesArrayObject[image.file]);
+            setNewImage(imagesArrayObject[image.file]);
           }
         }
       }
@@ -108,47 +120,46 @@ export default function Room8(props) {
     // console.log(imageMapData);
   });
 
-  const rugClicked = (event) => {
-    event.preventDefault();
-    // console.log("rug clicked");
-    props.updateItem("Rug");
-  };
+  //remove clickable image-map areas are items are taken
+  useEffect(() => {
+    console.log(`.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`);
+    const item = document.querySelector(
+      `.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`
+    );
+    item?.remove();
+  }, [itemsCollectedInRoom]);
 
-  const lampClicked = (event) => {
+  const handleClick = (event) => {
     event.preventDefault();
-    // console.log("lamp clicked");
-    props.updateItem("Lamp");
+    console.log(event.target.alt);
+    props.updateItem(event.target.alt);
   };
 
   return (
     <div className="top-left-flex-container">
       <div className="image-container">
-        <img
-          className="background"
-          src={currentImage}
-          alt="entryway"
-          useMap="#image-map"
-        />
+        <img src={currentImage} useMap="#image-map" alt="room9a" />
+
         <map name="image-map">
           <area
-            className="rug"
-            onClick={rugClicked}
+            onClick={handleClick}
+            className="Shallow Puddle"
             target=""
-            alt="rug"
-            title="rug"
+            alt="Shallow Puddle"
+            title="Shallow Puddle"
             href=""
-            coords="1023,1584,879,1594,658,1677,607,1726,680,1810,905,1873,1141,1893,1633,1893,1930,1851,2101,1787,2138,1724,2040,1648,1599,1562,1219,1562"
-            shape="poly"
+            coords="1300,1418,151"
+            shape="circle"
           />
           <area
-            className="lamp"
-            onClick={lampClicked}
+            onClick={handleClick}
+            className="Tall Reed"
             target=""
-            alt="small lamp"
-            title="small lamp"
+            alt="Tall Reed"
+            title="Tall Reed"
             href=""
-            coords="391,792,364,868,352,917,411,932,443,934,443,971,399,991,450,995,502,988,479,929,496,932,531,919,531,875,506,792,445,780"
-            shape="poly"
+            coords="1053,925,249"
+            shape="circle"
           />
         </map>
       </div>

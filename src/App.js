@@ -102,8 +102,26 @@ const roomMap = [
     mapCoordinates: [
       { roomNum: 10, route: "/room10", position: "top" },
       { roomNum: "", route: "", position: "" },
-      { roomNum: "", route: "", position: "" },
+      { roomNum: 11, route: "/room11", position: "right" },
       { roomNum: 8, route: "/room8", position: "bottom" },
+    ],
+  },
+  {
+    currentRoom: 10,
+    mapCoordinates: [
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: 9, route: "/room9", position: "bottom" },
+    ],
+  },
+  {
+    currentRoom: 11,
+    mapCoordinates: [
+      { roomNum: "", route: "", position: "top" },
+      { roomNum: "9", route: "/room9", position: "left" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "bottom" },
     ],
   },
 ];
@@ -279,86 +297,19 @@ const roomEvaluateInfo = [
   {
     room: 10,
     visited: false,
-    entryScript: "So this is Richard's Valley.  Let me find Richard",
-    reentryScript: "Something tells me I have been here before",
-    images: [
-      { file: "room1a", itemsCollected: [] },
-      { file: "room1b", itemsCollected: ["Rug"] },
-      { file: "room1c", itemsCollected: ["Lamp"] },
-      { file: "room1d", itemsCollected: ["Lamp", "Rug"] },
-    ],
-    items: [
-      {
-        name: "Rug",
-        present: true,
-        Look: { text: "it is an old rug on the floor", effect: "" },
-        Open: { text: "", effect: "" },
-        Use: { text: "", effect: "" },
-        Take: {
-          text: "you have taken the rug",
-          effect: "add rug to inventory",
-          canTake: true,
-        },
-        Hit: { text: "", effect: "" },
-        Speak: { text: "", effect: "" },
-      },
-      {
-        name: "Lamp",
-        present: true,
-        Look: { text: "it is a solid metal lamp", effect: "" },
-        Open: { text: "", effect: "" },
-        Use: { text: "you turn the lamp on", effect: "turn on lamp function" },
-        Take: {
-          text: "you have taken the lamp",
-          effect: "take lamp function",
-          canTake: true,
-        },
-        Hit: { text: "", effect: "" },
-        Speak: { text: "", effect: "" },
-      },
-    ],
+    entryScript: `A snake, "isn't his name Mark" is in a small clearing`,
+    reentryScript: "Ah yes, there's Mark",
+    images: [{ file: "room10a", itemsCollected: [] }],
+    items: [],
   },
   {
     room: 11,
     visited: false,
-    entryScript: "So this is Richard's Valley.  Let me find Richard",
+    entryScript:
+      "It is a slightly more rocky area, though still obviously low lying.",
     reentryScript: "Something tells me I have been here before",
-    images: [
-      { file: "room1a", itemsCollected: [] },
-      { file: "room1b", itemsCollected: ["Rug"] },
-      { file: "room1c", itemsCollected: ["Lamp"] },
-      { file: "room1d", itemsCollected: ["Lamp", "Rug"] },
-    ],
-    items: [
-      {
-        name: "Rug",
-        present: true,
-        Look: { text: "it is an old rug on the floor", effect: "" },
-        Open: { text: "", effect: "" },
-        Use: { text: "", effect: "" },
-        Take: {
-          text: "you have taken the rug",
-          effect: "add rug to inventory",
-          canTake: true,
-        },
-        Hit: { text: "", effect: "" },
-        Speak: { text: "", effect: "" },
-      },
-      {
-        name: "Lamp",
-        present: true,
-        Look: { text: "it is a solid metal lamp", effect: "" },
-        Open: { text: "", effect: "" },
-        Use: { text: "you turn the lamp on", effect: "turn on lamp function" },
-        Take: {
-          text: "you have taken the lamp",
-          effect: "take lamp function",
-          canTake: true,
-        },
-        Hit: { text: "", effect: "" },
-        Speak: { text: "", effect: "" },
-      },
-    ],
+    images: [{ file: "room11", itemsCollected: [] }],
+    items: [],
   },
 ];
 
