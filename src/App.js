@@ -355,7 +355,7 @@ function App() {
 
   return (
     <div className="container">
-      {userLoggedIn && startingRoom ? (
+      {userLoggedIn ? (
         <BrowserRouter>
           <div className="top-flex">
             <Routes>
