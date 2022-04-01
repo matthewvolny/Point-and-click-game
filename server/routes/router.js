@@ -42,9 +42,13 @@ router.get("/login", async (req, res) => {
   try {
     const { name, password } = parsedLoginInfo;
     const userId = req.query.userIdNum;
+    // const playerGame = await database.any(
+    //   `SELECT * FROM user_info WHERE user_id = '${userId}' AND user_name = '${name}' AND user_password = '${password}'`
+    // );
     const playerGame = await database.any(
-      `SELECT * FROM user_info WHERE user_id = '${userId}' AND user_name = '${name}' AND user_password = '${password}'`
+      `SELECT * FROM user_info INNER JOIN user_inventory using (user_id) WHERE user_id = '${userId}' AND user_name = '${name}' AND user_password = '${password}'`
     );
+
     res.send(playerGame);
   } catch (error) {
     console.log("sorry, user not found");

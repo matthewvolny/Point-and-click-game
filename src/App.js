@@ -161,19 +161,36 @@ function App() {
       });
   };
 
+  //!
+  //!
+  //!
+  const { playerAction, item } = action;
+  const { canTake } = selectedItemInfoForAction;
+  useEffect(() => {
+    if (playerAction === "Take" && canTake) {
+      let inventoryArray = [...playerInventory];
+      inventoryArray.push({ item: item });
+      //add a room# to each item in the inventoryarray
+      inventoryArray.forEach((item) => {
+        const keyValue = roomEvaluateDetails.room;
+        setPlayerInventory([
+          ...playerInventory,
+          {
+            item: item.item,
+            room: keyValue,
+          },
+        ]);
+      });
+      // updateInventory();
+    }
+  }, [item, canTake]);
+
+  //
+  //
+  //
+
   //add room# to inventory items
-  const updateInventory = (inventory) => {
-    inventory.forEach((item) => {
-      const keyValue = roomEvaluateDetails.room;
-      setPlayerInventory([
-        ...playerInventory,
-        {
-          item: item.item,
-          room: keyValue,
-        },
-      ]);
-    });
-  };
+  const updateInventory = (inventory) => {};
 
   //update the database with the players current inventory
   useEffect(() => {
@@ -257,12 +274,14 @@ function App() {
             //!can display something to the screen here, and clear input
             console.log("login failed");
           } else {
+            //set all aspects of the game state from the db call on login
             setUserLoggedIn(true);
             setStartingRoom(data[0].current_room);
             updateRoomMapDetails(data[0].current_room);
             const gameState = JSON.parse(data[0].game_state);
-            console.log(gameState);
             roomEvaluateInfo = gameState;
+            const savedInventory = JSON.parse(data[0].items);
+            setPlayerInventory(savedInventory);
           }
         })
         .catch((error) => {
@@ -438,10 +457,11 @@ function App() {
               />
             </Routes>
             <Inventory
-              action={action}
-              selectedItemInfo={selectedItemInfo}
-              selectedItemInfoForAction={selectedItemInfoForAction}
-              updateInventory={updateInventory}
+              // action={action}
+              // selectedItemInfo={selectedItemInfo}
+              // selectedItemInfoForAction={selectedItemInfoForAction}
+              // updateInventory={updateInventory}
+              playerInventory={playerInventory}
             />
           </div>
           <div className="bottom-flex">
