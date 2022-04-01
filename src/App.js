@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import Login from "./components/Login";
 import SavedGamesList from "./components/SavedGamesList";
 import Map from "./components/Map";
@@ -29,6 +29,7 @@ function App() {
   const [userId, setUserId] = useState();
   const [userGames, setUserGames] = useState();
   const [userLoggedIn, setUserLoggedIn] = useState(false);
+  const [startingRoom, setStartingRoom] = useState();
   const [action, setAction] = useState({ playerAction: "", item: "" });
   const [roomMapDetails, setRoomMapDetails] = useState({
     currentRoom: roomMap[0].currentRoom,
@@ -76,6 +77,7 @@ function App() {
   const [playerInventory, setPlayerInventory] = useState([]);
 
   const isMounted = useRef(false);
+  const isMountedTwo = useRef(false);
 
   //updates state with selected player action
   const updatePlayerAction = (action) => {
@@ -231,31 +233,45 @@ function App() {
     });
   }, []);
 
-  //enters user data into db when they sign up
+  //enters user data into db when they sign up, or logs them in if they have not
+  // const navigate = useNavigate();
   const signupUser = (loginInfo, userIdNum) => {
     console.log("login");
-    const randomNum = Math.floor(Math.random() * 10000);
+    console.log(loginInfo);
+    console.log(userIdNum);
     if (userIdNum) {
       axios
-        .post("http://localhost:3000/login", {
-          loginInfo: loginInfo,
-          userId: userIdNum,
+        .get("/login", {
+          params: {
+            loginInfo,
+            userIdNum,
+          },
         })
-        .then((res) => {
-          console.log(`statusCode: ${res.status}`);
-          console.log(res);
+        .then((response) => {
+          console.log("data received");
+          console.log(response.data);
+          //user game state
+          const data = response.data;
+          console.log(data[0].current_room);
+          if (data.length === 0) {
+            //!can display something to the screen here, and clear input
+            console.log("login failed");
+          } else {
+            setUserLoggedIn(true);
+            setStartingRoom(data[0].current_room);
+            // navigate(`/room${data.current_room}`);
+          }
         })
         .catch((error) => {
           console.error(error);
         });
-      setUserLoggedIn(true);
-      setUserId(userIdNum);
     } else {
+      const randomNum = Math.floor(Math.random() * 10000);
       axios
         .post("http://localhost:3000/signup", {
           loginInfo: loginInfo,
           userId: randomNum,
-          currentRoom: 8, //!default signup room
+          // currentRoom: 8, //!default signup room
         })
         .then((res) => {
           console.log(`statusCode: ${res.status}`);
@@ -269,23 +285,28 @@ function App() {
     }
   };
 
+  //intermediate function, passes userId from saved games list to state, so it can be sent to login component
   const loginPastUser = (userId) => {
     setUserId(userId);
   };
 
   return (
     <div className="container">
-      {userLoggedIn ? (
+      {userLoggedIn && startingRoom ? (
         <BrowserRouter>
           <div className="top-flex">
             <Routes>
               <Route
                 path="/"
                 element={
-                  <Room1
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    updateCurrentRoom={updateCurrentRoom}
-                  />
+                  startingRoom ? (
+                    <Navigate to={`/room${startingRoom}`} />
+                  ) : (
+                    <Room1
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      updateCurrentRoom={updateCurrentRoom}
+                    />
+                  )
                 }
               />
               <Route
@@ -432,7 +453,11 @@ function App() {
         <>
           <div className="title">Leaving Richards Valley</div>
           <SavedGamesList userGames={userGames} loginPastUser={loginPastUser} />
-          <Login signupUser={signupUser} userId={userId} />
+          <Login
+            signupUser={signupUser}
+            userId={userId}
+            startingRoom={startingRoom}
+          />
         </>
       )}
     </div>

@@ -22,7 +22,6 @@ const database = pgPromise(config);
 
 //retrieve user games
 router.get("/retrieveUserGames", async (req, res) => {
-  console.log("in retrieve");
   try {
     const userGames = await database.any(
       "SELECT * FROM user_info ORDER BY created_at"
@@ -33,19 +32,41 @@ router.get("/retrieveUserGames", async (req, res) => {
   }
 });
 
+//retrieve user game on login
+router.get("/login", async (req, res) => {
+  // console.log("in retrieve /login");
+  const parsedLoginInfo = JSON.parse(req.query.loginInfo);
+  const { name, password } = parsedLoginInfo;
+  const userId = req.query.userIdNum;
+  console.log(name, password, userId); // Mark 123456789 1593
+  try {
+    const { name, password } = parsedLoginInfo;
+    const userId = req.query.userIdNum;
+    const playerGame = await database.any(
+      `SELECT * FROM user_info WHERE user_id = '${userId}' AND user_name = '${name}' AND user_password = '${password}'`
+    );
+    res.send(playerGame);
+  } catch (error) {
+    console.log("sorry, user not found");
+  }
+});
+
 //signup user for a new game
 router.post("/signup", async (req, res) => {
   const { name, password } = req.body.loginInfo;
-  const currentRoom = req.body.currentRoom;
+  // const currentRoom = req.body.currentRoom;
   const userId = req.body.userId;
   console.log(name);
   console.log(password);
-  console.log("hello");
+  console.log("in retrieve /signup");
   res.send("hello");
   try {
     let queryString =
-      "INSERT INTO user_info (user_id, user_name, user_password, current_room) VALUES ($1, $2, $3, $4)";
-    await database.none(queryString, [userId, name, password, currentRoom]);
+      "INSERT INTO user_info (user_id, user_name, user_password) VALUES ($1, $2, $3)";
+    await database.none(queryString, [userId, name, password]);
+    // let queryString =
+    //   "INSERT INTO user_info (user_id, user_name, user_password, current_room) VALUES ($1, $2, $3, $4)";
+    // await database.none(queryString, [userId, name, password, currentRoom]);
 
     let queryStringTwo = "INSERT INTO user_inventory (user_id) VALUES ($1)";
     await database.none(queryStringTwo, [userId]);
