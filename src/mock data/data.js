@@ -102,7 +102,7 @@ const roomMap = [
 ];
 
 //room item info (should also be in another file), added to state when entering a new room
-const roomEvaluateInfo = [
+let roomEvaluateInfo = [
   {
     room: 1,
     visited: false,

@@ -234,7 +234,7 @@ function App() {
   }, []);
 
   //enters user data into db when they sign up, or logs them in if they have not
-  // const navigate = useNavigate();
+  //updates all player game state info on login
   const signupUser = (loginInfo, userIdNum) => {
     console.log("login");
     console.log(loginInfo);
@@ -259,7 +259,10 @@ function App() {
           } else {
             setUserLoggedIn(true);
             setStartingRoom(data[0].current_room);
-            // navigate(`/room${data.current_room}`);
+            updateRoomMapDetails(data[0].current_room);
+            const gameState = JSON.parse(data[0].game_state);
+            console.log(gameState);
+            roomEvaluateInfo = gameState;
           }
         })
         .catch((error) => {
