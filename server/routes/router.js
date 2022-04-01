@@ -20,19 +20,18 @@ const config = {
 
 const database = pgPromise(config);
 
-// //retrieve posts from the db
-// router.get("/retrievePostData", async (req, res) => {
-//   console.log("in get");
-//   try {
-//     const posts = await database.any(
-//       "SELECT * FROM posts LEFT JOIN comments using (post_id) ORDER BY posts.created_at, post_id, comments.created_at"
-//     );
-//     console.log(posts);
-//     res.send(posts);
-//   } catch (error) {
-//     console.log(error);
-//   }
-// });
+//retrieve user games
+router.get("/retrieveUserGames", async (req, res) => {
+  console.log("in retrieve");
+  try {
+    const userGames = await database.any(
+      "SELECT * FROM user_info ORDER BY created_at"
+    );
+    res.send(userGames);
+  } catch (error) {
+    console.log(error);
+  }
+});
 
 //signup user for a new game
 router.post("/signup", async (req, res) => {
@@ -50,6 +49,20 @@ router.post("/signup", async (req, res) => {
 
     let queryStringTwo = "INSERT INTO user_inventory (user_id) VALUES ($1)";
     await database.none(queryStringTwo, [userId]);
+  } catch (error) {
+    console.log(error);
+  }
+});
+
+//retrieve user's game state from db
+router.get("/retrieveGameState", async (req, res) => {
+  console.log("in get");
+  try {
+    const posts = await database.any(
+      "SELECT * FROM posts LEFT JOIN comments using (post_id) ORDER BY posts.created_at, post_id, comments.created_at"
+    );
+    console.log(posts);
+    res.send(posts);
   } catch (error) {
     console.log(error);
   }

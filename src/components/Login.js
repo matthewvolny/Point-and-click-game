@@ -1,11 +1,17 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 
 export default function Login(props) {
   const [loginInfo, setLoginInfo] = useState({ name: "", password: "" });
+  const [alreadyLoggedIn, setAlreadyLoggedIn] = useState(false);
+  const isMounted = useRef(false);
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    props.signupUser(loginInfo);
+    if (props.userId) {
+      props.signupUser(loginInfo, props.userId);
+    } else {
+      props.signupUser(loginInfo);
+    }
   };
 
   const handleChange = (event) => {
@@ -14,9 +20,22 @@ export default function Login(props) {
     setLoginInfo({ ...loginInfo, [inputName]: inputValue });
   };
 
+  // //!to change to login
+  // useEffect(() => {
+  //   if (isMounted.current) {
+  //     setAlreadyLoggedIn(true);
+  //   } else {
+  //     isMounted.current = true;
+  //   }
+  // }, [props.userId]);
+
   return (
     <div>
-      <div>Start a new game</div>
+      {props.userId ? (
+        <div>Login to continue your game</div>
+      ) : (
+        <div>Enter your login info</div>
+      )}
       <form onSubmit={handleSubmit}>
         <label htmlFor="name">Name</label>
         <input
