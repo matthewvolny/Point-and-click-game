@@ -216,12 +216,16 @@ function App() {
   //!importantly, this also changes the master data object to "visited" for a specific room
   const updateLocationsVisited = (room) => {
     let roomInfo = roomEvaluateInfo.find((currentRoom) => {
-      currentRoom.visited = true;
+      //is this line needed
+      // currentRoom.visited = true;
       return currentRoom.room == room;
     });
     roomInfo.visited = true;
     setRoomEvaluateDetails(roomInfo);
-    //!updates the database with updated game state
+    saveGameState();
+  };
+  //!updates the database with updated game state
+  const saveGameState = () => {
     axios
       .post("http://localhost:3000/updatePlayerGameState", {
         roomEvaluateInfo: roomEvaluateInfo,
@@ -306,6 +310,43 @@ function App() {
       setUserId(randomNum);
     }
   };
+
+  //
+  //
+  //
+  //!
+  //
+  //
+
+  //updates the database with items collected for each room
+  useEffect(() => {
+    if (playerInventory.length !== 0) {
+      let roomInfo = roomEvaluateInfo.find((currentRoom) => {
+        return currentRoom.room == roomMapDetails.currentRoom;
+      });
+      console.log(roomInfo);
+      // roomInfo.itemsCollected.push(playerInventory[0]);
+    }
+    // setRoomEvaluateDetails(roomInfo);
+    saveGameState();
+  }, [playerInventory]);
+
+  //creates array of items collected from this specific room
+  // useEffect(() => {
+  //   // if (isMounted.current) {
+  //   const itemsCollected = [];
+  //   playerInventory.forEach((item) => {
+  //     if (item.room === roomMapDetails.currentRoom) {
+  //       itemsCollected.push(item.item);
+  //     }
+  //   });
+  //   console.log(itemsCollected);
+  //   setItemsCollectedInRoom(itemsCollected);
+
+  //   // } else {
+  //   //   isMounted.current = true;
+  //   // }
+  // }, [playerInventory]);
 
   //intermediate function, passes userId from saved games list to state, so it can be sent to login component
   const loginPastUser = (userId) => {

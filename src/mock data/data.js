@@ -106,6 +106,7 @@ let roomEvaluateInfo = [
   {
     room: 1,
     visited: false,
+    itemsCollected: [],
     entryScript:
       "Richard's Valley is a truly wonderful place, where man and animal live in complete harmony with nature.",
     reentryScript: "",
@@ -115,6 +116,7 @@ let roomEvaluateInfo = [
   {
     room: 2,
     visited: false,
+    itemsCollected: [],
     entryScript:
       "Yes, life in the valley is great, but the residents the valley are keenly aware of the dangers of the outside world.  It is a known fact for example, that city dwellers are constantly exposed to poisonous toxins.",
     reentryScript: "",
@@ -123,6 +125,7 @@ let roomEvaluateInfo = [
   {
     room: 3,
     visited: false,
+    itemsCollected: [],
     entryScript:
       "For this very reason, Richard makes sure that we filter all of our water through special stones, which we also rub all over our bodies.",
     reentryScript: "",
@@ -131,6 +134,7 @@ let roomEvaluateInfo = [
   {
     room: 4,
     visited: false,
+    itemsCollected: [],
     entryScript: "Lyle...! What's wrong?!?  Are you not feeling well!?!",
     reentryScript: "",
     items: [],
@@ -138,6 +142,7 @@ let roomEvaluateInfo = [
   {
     room: 5,
     visited: false,
+    itemsCollected: [],
     entryScript: "I... I think I drank too much water.",
     reentryScript: "",
     items: [],
@@ -145,6 +150,7 @@ let roomEvaluateInfo = [
   {
     room: 6,
     visited: false,
+    itemsCollected: [],
     entryScript:
       "Seeing their friend in such poor shape, Neville and Omar decide right then and there that they will do whatever they can to help.",
     reentryScript: "",
@@ -153,6 +159,7 @@ let roomEvaluateInfo = [
   {
     room: 7,
     visited: false,
+    itemsCollected: [],
     entryScript:
       "I think that Lyle would do well to have some medicine.  Let's see what we can gather up, and then see if Ellie (the squirrel) wouldn't mind helping us prepare it.",
     reentryScript: "",
@@ -161,6 +168,7 @@ let roomEvaluateInfo = [
   {
     room: 8,
     visited: false,
+    itemsCollected: [],
     entryScript: `You enter a leaf and debris strewn area. "Boy I hope we can find something to cure Lyle, he looks pretty bad..."`,
     reentryScript: "Something tells me I have been here before",
     images: [
@@ -209,6 +217,7 @@ let roomEvaluateInfo = [
   {
     room: 9,
     visited: false,
+    itemsCollected: [],
     entryScript: "It is a damp clearing, strewn with aquatic plants",
     reentryScript: "Something tells me I have been here before",
     images: [
@@ -272,6 +281,7 @@ let roomEvaluateInfo = [
   {
     room: 10,
     visited: false,
+    itemsCollected: [],
     entryScript: `A snake, "isn't his name Mark" is in a small clearing`,
     reentryScript: "Ah yes, there's Mark",
     images: [{ file: "room10a", itemsCollected: [] }],
@@ -280,6 +290,7 @@ let roomEvaluateInfo = [
   {
     room: 11,
     visited: false,
+    itemsCollected: [],
     entryScript:
       "It is a slightly more rocky area, though still obviously low lying.",
     reentryScript: "Something tells me I have been here before",
