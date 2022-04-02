@@ -25,6 +25,8 @@ export default function Room9(props) {
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
 
+  //!props.roomItemsCollected
+
   //!retrieves newImage from session storage on page refresh
   // useEffect(() => {
   //   setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));

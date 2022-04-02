@@ -32,7 +32,6 @@ export default function Room1(props) {
 
   const changeImages = () => {
     setImageDisplayed(images[i]);
-    console.log(room); //always 1
     // props.updateCurrentRoom(room + 1);
     i++;
     if (i > images.length - 1) {

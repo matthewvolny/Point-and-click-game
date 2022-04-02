@@ -75,7 +75,7 @@ function App() {
   //playerInventory
   //!set from db on component render
   const [playerInventory, setPlayerInventory] = useState([]);
-
+  const [roomItemsCollected, setRoomItemsCollected] = useState();
   const isMounted = useRef(false);
   const isMountedTwo = useRef(false);
 
@@ -144,9 +144,6 @@ function App() {
     });
     updateRoomEvaluateDetails(newRoom);
     updateRoomMapDetails(newRoom);
-    console.log("newRoom");
-    console.log(newRoom);
-    console.log(userId);
     axios
       .post("http://localhost:3000/updateRoom", {
         newRoom: newRoom,
@@ -247,7 +244,8 @@ function App() {
       console.log(response.data);
       const data = response.data;
       const userGamesArray = [];
-      data.forEach((game) => {
+      //!maybe put a question mark after data
+      data?.forEach((game) => {
         userGamesArray.push(game);
       });
       setUserGames(userGamesArray);
@@ -318,35 +316,37 @@ function App() {
   //
   //
 
-  //updates the database with items collected for each room
+  //add items collected to the correct room of the game state object
   useEffect(() => {
     if (playerInventory.length !== 0) {
-      let roomInfo = roomEvaluateInfo.find((currentRoom) => {
-        return currentRoom.room == roomMapDetails.currentRoom;
-      });
-      console.log(roomInfo);
-      // roomInfo.itemsCollected.push(playerInventory[0]);
+      for (let i = 0; i < roomEvaluateInfo.length; i++) {
+        for (let j = 0; j < playerInventory.length; j++) {
+          // console.log("special area");
+          // console.log(playerInventory[j].room);
+          // console.log(roomEvaluateInfo[i].room);
+          if (playerInventory[j].room == roomEvaluateInfo[i].room) {
+            // console.log("same room");
+            roomEvaluateInfo[i].itemsCollected.push(playerInventory[j].item);
+          }
+        }
+      }
     }
-    // setRoomEvaluateDetails(roomInfo);
+    console.log(roomEvaluateInfo);
     saveGameState();
   }, [playerInventory]);
 
-  //creates array of items collected from this specific room
-  // useEffect(() => {
-  //   // if (isMounted.current) {
-  //   const itemsCollected = [];
-  //   playerInventory.forEach((item) => {
-  //     if (item.room === roomMapDetails.currentRoom) {
-  //       itemsCollected.push(item.item);
-  //     }
-  //   });
-  //   console.log(itemsCollected);
-  //   setItemsCollectedInRoom(itemsCollected);
-
-  //   // } else {
-  //   //   isMounted.current = true;
-  //   // }
-  // }, [playerInventory]);
+  //set itemscollectedbyroom state from the updated game state
+  useEffect(() => {
+    const itemsCollectedByRoom = [];
+    for (let i = 0; i < roomEvaluateInfo.length; i++) {
+      console.log("itemscollectedbyroom");
+      itemsCollectedByRoom.push({
+        room: roomEvaluateInfo[i].room,
+        itemsCollected: roomEvaluateInfo[i].itemsCollected,
+      });
+    }
+    setRoomItemsCollected(itemsCollectedByRoom);
+  }, [playerInventory]);
 
   //intermediate function, passes userId from saved games list to state, so it can be sent to login component
   const loginPastUser = (userId) => {
@@ -437,6 +437,7 @@ function App() {
                     playerInventory={playerInventory}
                     updateCurrentRoom={updateCurrentRoom}
                     updateLocationsVisited={updateLocationsVisited}
+                    roomItemsCollected={roomItemsCollected}
                   />
                 }
               />
@@ -451,6 +452,7 @@ function App() {
                     playerInventory={playerInventory}
                     updateCurrentRoom={updateCurrentRoom}
                     updateLocationsVisited={updateLocationsVisited}
+                    roomItemsCollected={roomItemsCollected}
                   />
                 }
               />
@@ -465,6 +467,7 @@ function App() {
                     playerInventory={playerInventory}
                     updateCurrentRoom={updateCurrentRoom}
                     updateLocationsVisited={updateLocationsVisited}
+                    roomItemsCollected={roomItemsCollected}
                   />
                 }
               />
@@ -479,6 +482,7 @@ function App() {
                     playerInventory={playerInventory}
                     updateCurrentRoom={updateCurrentRoom}
                     updateLocationsVisited={updateLocationsVisited}
+                    roomItemsCollected={roomItemsCollected}
                   />
                 }
               />
@@ -493,6 +497,7 @@ function App() {
                     playerInventory={playerInventory}
                     updateCurrentRoom={updateCurrentRoom}
                     updateLocationsVisited={updateLocationsVisited}
+                    roomItemsCollected={roomItemsCollected}
                   />
                 }
               />
