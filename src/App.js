@@ -17,13 +17,12 @@ import Room9 from "./components/rooms/Room9";
 import Room10 from "./components/rooms/Room10";
 import Room11 from "./components/rooms/Room11";
 import Room12 from "./components/rooms/Room12";
+import axios from "axios";
+import { roomMap, roomEvaluateInfo } from "./mock data/data";
+import "./App.css";
 
 //!not needed?
 import ImageMapper from "react-img-mapper";
-import axios from "axios";
-import "./App.css";
-
-import { roomMap, roomEvaluateInfo } from "./mock data/data";
 
 function App() {
   const [userId, setUserId] = useState();
@@ -35,11 +34,18 @@ function App() {
     currentRoom: roomMap[0].currentRoom,
     currentRoomInfo: roomMap[0].mapCoordinates,
   });
-
-  //here is where 'visited' is updated
   const [roomEvaluateDetails, setRoomEvaluateDetails] = useState(
     roomEvaluateInfo[0]
   );
+  const [selectedItemInfo, setSelectedItemInfo] = useState();
+  const [selectedItemInfoForAction, setSelectedItemInfoForAction] = useState({
+    text: "",
+    effect: "",
+  });
+  const [playerInventory, setPlayerInventory] = useState([]);
+  const [roomItemsCollected, setRoomItemsCollected] = useState();
+  const isMounted = useRef(false);
+  const isMountedTwo = useRef(false);
 
   //!retrieves stored room details from local storage on page refresh
   // useEffect(() => {
@@ -67,30 +73,17 @@ function App() {
   //   );
   // }, [roomMapDetails]);
 
-  const [selectedItemInfo, setSelectedItemInfo] = useState();
-  const [selectedItemInfoForAction, setSelectedItemInfoForAction] = useState({
-    text: "",
-    effect: "",
-  });
-
-  //playerInventory
-  //!set from db on component render
-  const [playerInventory, setPlayerInventory] = useState([]);
-  const [roomItemsCollected, setRoomItemsCollected] = useState();
-  const isMounted = useRef(false);
-  const isMountedTwo = useRef(false);
-
-  //updates state with selected player action
+  //(1)updates state with selected player action
   const updatePlayerAction = (action) => {
     setAction({ playerAction: action, item: "" });
   };
 
-  //updates state with selected item
+  //(2)updates state with selected item
   const updateItem = (item) => {
     setAction({ ...action, item: item });
   };
 
-  //adds the selected item details (general item info, and specifics info) to state
+  //(4)adds the selected item details (general item info, and specifics info) to state
   const updateSelectedItemInfo = () => {
     const { playerAction, item } = action;
     const { items } = roomEvaluateDetails;
@@ -101,42 +94,135 @@ function App() {
     setSelectedItemInfoForAction(selectedItemDetails[playerAction]);
   };
 
-  //if user has selected an action and an item, call function to put detailed info about the item in state
+  //(3)if user has selected an action and an item, call function to put detailed info about the item in state
   useEffect(() => {
     if (action.playerAction !== "" && action.item !== "") {
       updateSelectedItemInfo();
     }
   });
 
-  // on map link click, updates the map for the current room
+  //(5) moves the "takeable" item into inventory
+  const { playerAction, item } = action;
+  const { canTake } = selectedItemInfoForAction;
+  useEffect(() => {
+    if (playerAction === "Take" && canTake) {
+      let inventoryArray = [...playerInventory];
+      inventoryArray.push({ item: item });
+      //add a room# to each item in the inventoryarray
+      inventoryArray.forEach((item) => {
+        const keyValue = roomEvaluateDetails.room;
+        setPlayerInventory([
+          ...playerInventory,
+          {
+            item: item.item,
+            room: keyValue,
+          },
+        ]);
+      });
+    }
+  }, [item, canTake]);
+
+  //(6)updates the database with the players current inventory
+  useEffect(() => {
+    if (isMounted.current) {
+      axios
+        .post("http://localhost:3000/updatePlayerInventory", {
+          playerInventory: playerInventory, //this is an array of items
+          userId: userId,
+        })
+        .then((res) => {
+          console.log(`statusCode: ${res.status}`);
+          console.log(res);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    } else {
+      isMounted.current = true;
+    }
+  }, [playerInventory]);
+
+  //!
+  //!
+  //!
+  //add items collected to the correct room of the game state object
+  //!actually not sure this function is doing anything
+  useEffect(() => {
+    if (isMountedTwo.current) {
+      if (playerInventory.length !== 0) {
+        console.log("troubleshooting-before");
+        console.log(roomEvaluateInfo); //!two leaves on login
+        console.log("end troubleshooting");
+        for (let i = 0; i < roomEvaluateInfo.length; i++) {
+          for (let j = 0; j < playerInventory.length; j++) {
+            // console.log("special area");
+            // console.log(playerInventory[j].room);
+            // console.log(roomEvaluateInfo[i].room);
+            if (playerInventory[j].room == roomEvaluateInfo[i].room) {
+              // console.log("same room");
+              roomEvaluateInfo[i].itemsCollected.push(playerInventory[j].item);
+            }
+          }
+        }
+      }
+      console.log("troubleshooting-after");
+      console.log(roomEvaluateInfo); //!two leaves on login
+      console.log("end troubleshooting");
+      saveGameState();
+    } else {
+      isMountedTwo.current = true;
+    }
+  }, [playerInventory]);
+
+  //set itemscollectedbyroom state from the updated game state
+  useEffect(() => {
+    const itemsCollectedByRoom = [];
+    for (let i = 0; i < roomEvaluateInfo.length; i++) {
+      itemsCollectedByRoom.push({
+        room: roomEvaluateInfo[i].room,
+        itemsCollected: roomEvaluateInfo[i].itemsCollected,
+      });
+    }
+    setRoomItemsCollected(itemsCollectedByRoom);
+  }, [playerInventory]);
+
+  //!
+  //!
+  //!
+  //!
+  //!
+
+  //(c) on map link click, updates the map for the current room
   const updateRoomMapDetails = (newRoom) => {
-    // console.log("updateRoomMapDetails");
-    // console.log(newRoom); //2
     const selectedRoom = roomMap.find((room) => {
       return room.currentRoom == newRoom;
     });
-    console.log(selectedRoom);
     setRoomMapDetails({
       currentRoom: selectedRoom.currentRoom,
       currentRoomInfo: selectedRoom.mapCoordinates,
     });
   };
 
-  //add evaluate details object for the current room to state
+  //(b) add evaluate details object for the current room to state
   const updateRoomEvaluateDetails = (newRoom) => {
-    // console.log("updateRoomEvaluateDetails");
-    // console.log(newRoom); //2
     let roomInfo = roomEvaluateInfo.find((currentRoom) => {
       return currentRoom.room == newRoom;
     });
-    // console.log(roomInfo);
     setRoomEvaluateDetails(roomInfo);
   };
 
-  //called from the map component, updates the room on link click, adds info to state
+  //record whether a room has been visited or not (to trigger re-entry script)
+  const updateLocationsVisited = (room) => {
+    let roomInfo = roomEvaluateInfo.find((currentRoom) => {
+      return currentRoom.room == room;
+    });
+    roomInfo.visited = true;
+    setRoomEvaluateDetails(roomInfo);
+    saveGameState();
+  };
+
+  //(a)called from the map component, updates the room on link click, adds "currentRoom" info to state
   const updateCurrentRoom = (newRoom, loginRoomUpdate) => {
-    // console.log("updateCurrentRoom");
-    // console.log(newRoom);
     setAction({ playerAction: "", item: "" });
     setSelectedItemInfo();
     setSelectedItemInfoForAction({
@@ -161,66 +247,7 @@ function App() {
     }
   };
 
-  //!
-  //!
-  //!
-  const { playerAction, item } = action;
-  const { canTake } = selectedItemInfoForAction;
-  useEffect(() => {
-    if (playerAction === "Take" && canTake) {
-      let inventoryArray = [...playerInventory];
-      inventoryArray.push({ item: item });
-      //add a room# to each item in the inventoryarray
-      inventoryArray.forEach((item) => {
-        const keyValue = roomEvaluateDetails.room;
-        setPlayerInventory([
-          ...playerInventory,
-          {
-            item: item.item,
-            room: keyValue,
-          },
-        ]);
-      });
-      // updateInventory();
-    }
-  }, [item, canTake]);
-
-  //update the database with the players current inventory
-  useEffect(() => {
-    if (isMounted.current) {
-      axios
-        .post("http://localhost:3000/updatePlayerInventory", {
-          playerInventory: playerInventory, //this is an array of items
-          userId: userId,
-        })
-        .then((res) => {
-          console.log(`statusCode: ${res.status}`);
-          console.log(res);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    } else {
-      isMounted.current = true;
-    }
-  }, [playerInventory]);
-
-  //record whether a room has been visited or not (to trigger re-entry script)
-  const updateLocationsVisited = (room) => {
-    let roomInfo = roomEvaluateInfo.find((currentRoom) => {
-      //is this line needed
-      // currentRoom.visited = true;
-      return currentRoom.room == room;
-    });
-    // console.log("visited sequence");
-    // console.log(roomInfo);
-    // console.log(roomInfo.visited);
-    roomInfo.visited = true;
-    setRoomEvaluateDetails(roomInfo);
-    saveGameState();
-  };
-
-  //!updates the database with updated game state
+  //generic function to update the player's game state
   const saveGameState = () => {
     axios
       .post("http://localhost:3000/updatePlayerGameState", {
@@ -236,14 +263,11 @@ function App() {
       });
   };
 
-  //retrieves all games saved by users, stores them in state, these are passed to savedGamesList
+  //retrieves all saved user games, stores them in state, where they are displayed in savedGamesList
   useEffect(() => {
     axios.get("/retrieveUserGames").then((response) => {
-      // console.log("data received");
-      // console.log(response.data);
       const data = response.data;
       const userGamesArray = [];
-      //!maybe put a question mark after data
       data?.forEach((game) => {
         userGamesArray.push(game);
       });
@@ -251,12 +275,8 @@ function App() {
     });
   }, []);
 
-  //enters user data into db when they sign up, or logs them in if they have not
-  //updates all player game state info on login
+  //signs up, or logs in user (updates player game state info on login)
   const signupUser = (loginInfo, userIdNum) => {
-    // console.log("login");
-    // console.log(loginInfo);
-    // console.log(userIdNum);
     if (userIdNum) {
       axios
         .get("/login", {
@@ -266,11 +286,7 @@ function App() {
           },
         })
         .then((response) => {
-          // console.log("data received");
-          // console.log(response.data);
-          //user game state
-          const data = response.data;
-          console.log(data[0].current_room);
+          const data = response.data; // itemsCollected = [Leaf]
           if (data.length === 0) {
             //!can display something to the screen here, and clear input
             console.log("login failed");
@@ -282,6 +298,7 @@ function App() {
             updateCurrentRoom(data[0].current_room, loginRoomUpdate);
             const gameState = JSON.parse(data[0].game_state);
             roomEvaluateInfo = gameState;
+            console.log(roomEvaluateInfo); // itemscOLLECTED [ TWO LEAVES]
             const savedInventory = JSON.parse(data[0].items);
             setPlayerInventory(savedInventory);
           }
@@ -307,37 +324,6 @@ function App() {
       setUserId(randomNum);
     }
   };
-
-  //add items collected to the correct room of the game state object
-  useEffect(() => {
-    if (playerInventory.length !== 0) {
-      for (let i = 0; i < roomEvaluateInfo.length; i++) {
-        for (let j = 0; j < playerInventory.length; j++) {
-          // console.log("special area");
-          // console.log(playerInventory[j].room);
-          // console.log(roomEvaluateInfo[i].room);
-          if (playerInventory[j].room == roomEvaluateInfo[i].room) {
-            // console.log("same room");
-            roomEvaluateInfo[i].itemsCollected.push(playerInventory[j].item);
-          }
-        }
-      }
-    }
-    console.log(roomEvaluateInfo);
-    saveGameState();
-  }, [playerInventory]);
-
-  //set itemscollectedbyroom state from the updated game state
-  useEffect(() => {
-    const itemsCollectedByRoom = [];
-    for (let i = 0; i < roomEvaluateInfo.length; i++) {
-      itemsCollectedByRoom.push({
-        room: roomEvaluateInfo[i].room,
-        itemsCollected: roomEvaluateInfo[i].itemsCollected,
-      });
-    }
-    setRoomItemsCollected(itemsCollectedByRoom);
-  }, [playerInventory]);
 
   //intermediate function, passes userId from saved games list to state, so it can be sent to login component
   const loginPastUser = (userId) => {

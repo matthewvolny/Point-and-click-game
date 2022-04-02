@@ -8,8 +8,7 @@ const imagesArrayObject = {
   room9a: room9a,
   room9b: room9b,
 };
-// import $ from "jquery";
-//room details (unique object for each room)
+
 export default function Room9(props) {
   const { entryScript, reentryScript, images, room, visited } =
     props.roomEvaluateDetails;
@@ -25,6 +24,21 @@ export default function Room9(props) {
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
 
+  //! may be able to initiate the image map after component render (may be better that way)
+  useEffect(() => {
+    ImageMap("img[usemap]");
+  });
+
+  //!retrieves newImage from session storage on page refresh
+  // useEffect(() => {
+  //   setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));
+  // }, []);
+
+  //!stores newImage in session storage (when it updates)
+  // useEffect(() => {
+  //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
+  // }, [newImage]);
+
   //sets itemsCollected in this specific room to state
   useEffect(() => {
     let itemsFoundInRoom = "";
@@ -36,16 +50,6 @@ export default function Room9(props) {
     }
     setItemsCollectedInRoom(itemsFoundInRoom);
   }, [props.roomItemsCollected]);
-
-  //!retrieves newImage from session storage on page refresh
-  // useEffect(() => {
-  //   setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));
-  // }, []);
-
-  //!stores newImage in session storage (when it updates)
-  // useEffect(() => {
-  //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
-  // }, [newImage]);
 
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
@@ -103,31 +107,6 @@ export default function Room9(props) {
     });
   }, [itemsCollectedInRoom, room]);
 
-  //need to set up re-entry script display
-
-  // $(".background").css("border-bottom", "solid 1px red");
-  // $("img[usemap]").mapster();
-  // useEffect(() => {
-  //   //   $(".lamp").maphilight();
-  //   $("img[usemap]").mapster();
-  // });
-
-  useEffect(() => {
-    ImageMap("img[usemap]");
-    // const imageMapData = ImageMap("img[usemap]");
-    // console.log(imageMapData);
-  });
-
-  // const leafClicked = (event) => {
-  //   event.preventDefault();
-  //   // console.log("rug clicked");
-  //   props.updateItem("Leaf");
-  //   //!would need an event listener for each ".leaf" element, and delete based on the event.target
-  //   //!needs specifically to be a take action
-  //   const leaf = document.querySelector(".leaf");
-  //   leaf.remove();
-  // };
-
   //!remove clickable image-map areas are items are taken
   useEffect(() => {
     console.log(`${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`);
@@ -137,6 +116,7 @@ export default function Room9(props) {
     item?.remove();
   }, [itemsCollectedInRoom, room, props.roomItemsCollected]);
 
+  //calls update item in the parent component when an item is clicked
   const handleClick = (event) => {
     event.preventDefault();
     console.log(event.target.alt);
