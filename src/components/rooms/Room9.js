@@ -62,7 +62,7 @@ export default function Room9(props) {
     } else {
       setScript(reentryScript);
     }
-  }, [entryScript]);
+  }, [props.roomEvaluateDetails]);
 
   useEffect(() => {
     if (isMountedTwo.current) {
