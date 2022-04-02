@@ -25,7 +25,17 @@ export default function Room9(props) {
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
 
-  //!props.roomItemsCollected
+  //sets itemsCollected in this specific room to state
+  useEffect(() => {
+    let itemsFoundInRoom = "";
+    for (let i = 0; i < props.roomItemsCollected.length; i++) {
+      if (room == props.roomItemsCollected[i].room) {
+        console.log("room#");
+        itemsFoundInRoom = props.roomItemsCollected[i].itemsCollected;
+      }
+    }
+    setItemsCollectedInRoom(itemsFoundInRoom);
+  }, [props.roomItemsCollected]);
 
   //!retrieves newImage from session storage on page refresh
   // useEffect(() => {
@@ -53,22 +63,6 @@ export default function Room9(props) {
       setScript(reentryScript);
     }
   }, [entryScript]);
-
-  // //creates array of items collected from this specific room
-  // useEffect(() => {
-  //   if (isMounted.current) {
-  //     const itemsCollected = [];
-  //     props.playerInventory.forEach((item) => {
-  //       if (item.room === room) {
-  //         itemsCollected.push(item.item);
-  //       }
-  //     });
-  //     console.log(itemsCollected);
-  //     setItemsCollectedInRoom(itemsCollected);
-  //   } else {
-  //     isMounted.current = true;
-  //   }
-  // }, [props.playerInventory]);
 
   useEffect(() => {
     if (isMountedTwo.current) {
@@ -107,7 +101,7 @@ export default function Room9(props) {
         }
       }
     });
-  }, [itemsCollectedInRoom]);
+  }, [itemsCollectedInRoom, room]);
 
   //need to set up re-entry script display
 
@@ -134,14 +128,14 @@ export default function Room9(props) {
   //   leaf.remove();
   // };
 
-  //remove clickable image-map areas are items are taken
+  //!remove clickable image-map areas are items are taken
   useEffect(() => {
     console.log(`${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`);
     const item = document.querySelector(
       `.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`
     );
     item?.remove();
-  }, [itemsCollectedInRoom]);
+  }, [itemsCollectedInRoom, room, props.roomItemsCollected]);
 
   const handleClick = (event) => {
     event.preventDefault();

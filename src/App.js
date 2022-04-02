@@ -36,6 +36,7 @@ function App() {
     currentRoomInfo: roomMap[0].mapCoordinates,
   });
 
+  //here is where 'visited' is updated
   const [roomEvaluateDetails, setRoomEvaluateDetails] = useState(
     roomEvaluateInfo[0]
   );
@@ -182,13 +183,6 @@ function App() {
     }
   }, [item, canTake]);
 
-  //
-  //
-  //
-
-  //add room# to inventory items
-  const updateInventory = (inventory) => {};
-
   //update the database with the players current inventory
   useEffect(() => {
     if (isMounted.current) {
@@ -210,17 +204,20 @@ function App() {
   }, [playerInventory]);
 
   //record whether a room has been visited or not (to trigger re-entry script)
-  //!importantly, this also changes the master data object to "visited" for a specific room
   const updateLocationsVisited = (room) => {
     let roomInfo = roomEvaluateInfo.find((currentRoom) => {
       //is this line needed
       // currentRoom.visited = true;
       return currentRoom.room == room;
     });
+    console.log("visited sequence");
+    console.log(roomInfo);
+    console.log(roomInfo.visited);
     roomInfo.visited = true;
     setRoomEvaluateDetails(roomInfo);
     saveGameState();
   };
+
   //!updates the database with updated game state
   const saveGameState = () => {
     axios
@@ -308,13 +305,6 @@ function App() {
       setUserId(randomNum);
     }
   };
-
-  //
-  //
-  //
-  //!
-  //
-  //
 
   //add items collected to the correct room of the game state object
   useEffect(() => {
