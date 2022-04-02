@@ -37,7 +37,7 @@ function App() {
   const [roomEvaluateDetails, setRoomEvaluateDetails] = useState(
     roomEvaluateInfo[0]
   );
-  const [selectedItemInfo, setSelectedItemInfo] = useState();
+  // const [selectedItemInfo, setSelectedItemInfo] = useState();
   const [selectedItemInfoForAction, setSelectedItemInfoForAction] = useState({
     text: "",
     effect: "",
@@ -90,7 +90,7 @@ function App() {
     const selectedItemDetails = items.find((detailedItem) => {
       return detailedItem.name === item;
     });
-    setSelectedItemInfo(selectedItemDetails);
+    // setSelectedItemInfo(selectedItemDetails);
     setSelectedItemInfoForAction(selectedItemDetails[playerAction]);
   };
 
@@ -101,7 +101,7 @@ function App() {
     }
   });
 
-  //(5) moves the "takeable" item into inventory
+  //(5) moves the "takeable" item into inventory (and adds a room #)
   const { playerAction, item } = action;
   const { canTake } = selectedItemInfoForAction;
   useEffect(() => {
@@ -145,33 +145,29 @@ function App() {
   //!
   //!
   //!
-  //add items collected to the correct room of the game state object
-  //!actually not sure this function is doing anything
+  //(7)add items from player inventory to an array in the correct room of the game state object
   useEffect(() => {
-    if (isMountedTwo.current) {
-      if (playerInventory.length !== 0) {
-        console.log("troubleshooting-before");
-        console.log(roomEvaluateInfo); //!two leaves on login
-        console.log("end troubleshooting");
-        for (let i = 0; i < roomEvaluateInfo.length; i++) {
-          for (let j = 0; j < playerInventory.length; j++) {
-            // console.log("special area");
-            // console.log(playerInventory[j].room);
-            // console.log(roomEvaluateInfo[i].room);
-            if (playerInventory[j].room == roomEvaluateInfo[i].room) {
-              // console.log("same room");
-              roomEvaluateInfo[i].itemsCollected.push(playerInventory[j].item);
-            }
+    // if (isMountedTwo.current) {
+    let itemsCollectedArray = [];
+    if (playerInventory.length !== 0) {
+      for (let i = 0; i < roomEvaluateInfo.length; i++) {
+        for (let j = 0; j < playerInventory.length; j++) {
+          // console.log("special area");
+          // console.log(playerInventory[j].room);
+          // console.log(roomEvaluateInfo[i].room);
+          if (playerInventory[j].room == roomEvaluateInfo[i].room) {
+            // console.log("same room");
+            itemsCollectedArray.push(playerInventory[j].item);
+            roomEvaluateInfo[i].itemsCollected = itemsCollectedArray;
           }
         }
       }
-      console.log("troubleshooting-after");
-      console.log(roomEvaluateInfo); //!two leaves on login
-      console.log("end troubleshooting");
-      saveGameState();
-    } else {
-      isMountedTwo.current = true;
     }
+    console.log(roomEvaluateInfo);
+    saveGameState();
+    // } else {
+    //   isMountedTwo.current = true;
+    // }
   }, [playerInventory]);
 
   //set itemscollectedbyroom state from the updated game state
@@ -223,8 +219,10 @@ function App() {
 
   //(a)called from the map component, updates the room on link click, adds "currentRoom" info to state
   const updateCurrentRoom = (newRoom, loginRoomUpdate) => {
+    console.log("new room entered");
+    console.log(roomEvaluateInfo);
     setAction({ playerAction: "", item: "" });
-    setSelectedItemInfo();
+    // setSelectedItemInfo();
     setSelectedItemInfoForAction({
       text: "",
       effect: "",
@@ -301,6 +299,9 @@ function App() {
             console.log(roomEvaluateInfo); // itemscOLLECTED [ TWO LEAVES]
             const savedInventory = JSON.parse(data[0].items);
             setPlayerInventory(savedInventory);
+            //roomEvaluateInfo FOR THE SpECIFIC ROOM
+            console.log("check here...........!");
+            updateRoomEvaluateDetails(data[0].current_room);
           }
         })
         .catch((error) => {

@@ -39,17 +39,18 @@ export default function Room9(props) {
   //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
   // }, [newImage]);
 
+  //!may be needed
   //sets itemsCollected in this specific room to state
-  useEffect(() => {
-    let itemsFoundInRoom = "";
-    for (let i = 0; i < props.roomItemsCollected.length; i++) {
-      if (room == props.roomItemsCollected[i].room) {
-        console.log("room#");
-        itemsFoundInRoom = props.roomItemsCollected[i].itemsCollected;
-      }
-    }
-    setItemsCollectedInRoom(itemsFoundInRoom);
-  }, [props.roomItemsCollected]);
+  // useEffect(() => {
+  //   let itemsFoundInRoom = "";
+  //   for (let i = 0; i < props.roomItemsCollected.length; i++) {
+  //     if (room == props.roomItemsCollected[i].room) {
+  //       console.log("room#");
+  //       itemsFoundInRoom = props.roomItemsCollected[i].itemsCollected;
+  //     }
+  //   }
+  //   setItemsCollectedInRoom(itemsFoundInRoom);
+  // }, [props.roomItemsCollected]);
 
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
@@ -93,28 +94,28 @@ export default function Room9(props) {
   }, [text]);
 
   //changes the image based on the items collected in the room
-  useEffect(() => {
-    images?.forEach((image) => {
-      if (image.itemsCollected.length === itemsCollectedInRoom.length) {
-        for (let i = 0; i < image.itemsCollected.length; i++) {
-          if (itemsCollectedInRoom.indexOf(image.itemsCollected[i]) !== -1) {
-            console.log(image.file);
-            // setCurrentImage(imagesArrayObject[image.file]);
-            setNewImage(imagesArrayObject[image.file]);
-          }
-        }
-      }
-    });
-  }, [itemsCollectedInRoom, room]);
+  // useEffect(() => {
+  //   images?.forEach((image) => {
+  //     if (image.itemsCollected.length === itemsCollectedInRoom.length) {
+  //       for (let i = 0; i < image.itemsCollected.length; i++) {
+  //         if (itemsCollectedInRoom.indexOf(image.itemsCollected[i]) !== -1) {
+  //           console.log(image.file);
+  //           // setCurrentImage(imagesArrayObject[image.file]);
+  //           setNewImage(imagesArrayObject[image.file]);
+  //         }
+  //       }
+  //     }
+  //   });
+  // }, [itemsCollectedInRoom, room]);
 
   //!remove clickable image-map areas are items are taken
-  useEffect(() => {
-    console.log(`${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`);
-    const item = document.querySelector(
-      `.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`
-    );
-    item?.remove();
-  }, [itemsCollectedInRoom, room, props.roomItemsCollected]);
+  // useEffect(() => {
+  //   console.log(`${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`);
+  //   const item = document.querySelector(
+  //     `.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`
+  //   );
+  //   item?.remove();
+  // }, [itemsCollectedInRoom, room, props.roomItemsCollected]);
 
   //calls update item in the parent component when an item is clicked
   const handleClick = (event) => {

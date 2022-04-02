@@ -51,20 +51,20 @@ export default function Room11(props) {
   }, [entryScript]);
 
   //creates array of items collected from this specific room
-  useEffect(() => {
-    if (isMounted.current) {
-      const itemsCollected = [];
-      props.playerInventory.forEach((item) => {
-        if (item.room === room) {
-          itemsCollected.push(item.item);
-        }
-      });
-      console.log(itemsCollected);
-      setItemsCollectedInRoom(itemsCollected);
-    } else {
-      isMounted.current = true;
-    }
-  }, [props.playerInventory]);
+  // useEffect(() => {
+  //   if (isMounted.current) {
+  //     const itemsCollected = [];
+  //     props.playerInventory.forEach((item) => {
+  //       if (item.room === room) {
+  //         itemsCollected.push(item.item);
+  //       }
+  //     });
+  //     console.log(itemsCollected);
+  //     setItemsCollectedInRoom(itemsCollected);
+  //   } else {
+  //     isMounted.current = true;
+  //   }
+  // }, [props.playerInventory]);
 
   useEffect(() => {
     if (isMountedTwo.current) {

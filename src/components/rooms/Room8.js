@@ -23,17 +23,18 @@ export default function Room8(props) {
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
 
-  //sets itemsCollected in this specific room to state
-  useEffect(() => {
-    let itemsFoundInRoom = "";
-    for (let i = 0; i < props.roomItemsCollected.length; i++) {
-      if (room == props.roomItemsCollected[i].room) {
-        console.log("room#");
-        itemsFoundInRoom = props.roomItemsCollected[i].itemsCollected;
-      }
-    }
-    setItemsCollectedInRoom(itemsFoundInRoom);
-  }, [props.roomItemsCollected]);
+  //may need
+  //!sets itemsCollected in this specific room to state
+  // useEffect(() => {
+  //   let itemsFoundInRoom = "";
+  //   for (let i = 0; i < props.roomItemsCollected.length; i++) {
+  //     if (room == props.roomItemsCollected[i].room) {
+  //       console.log("room#");
+  //       itemsFoundInRoom = props.roomItemsCollected[i].itemsCollected;
+  //     }
+  //   }
+  //   setItemsCollectedInRoom(itemsFoundInRoom);
+  // }, [props.roomItemsCollected]);
 
   //!retrieves newImage from session storage on page refresh
   // useEffect(() => {
