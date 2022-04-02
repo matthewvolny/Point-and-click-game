@@ -134,7 +134,7 @@ function App() {
   };
 
   //called from the map component, updates the room on link click, adds info to state
-  const updateCurrentRoom = (newRoom) => {
+  const updateCurrentRoom = (newRoom, loginRoomUpdate) => {
     // console.log("updateCurrentRoom");
     // console.log(newRoom);
     setAction({ playerAction: "", item: "" });
@@ -145,18 +145,20 @@ function App() {
     });
     updateRoomEvaluateDetails(newRoom);
     updateRoomMapDetails(newRoom);
-    axios
-      .post("http://localhost:3000/updateRoom", {
-        newRoom: newRoom,
-        userId: userId,
-      })
-      .then((res) => {
-        console.log(`statusCode: ${res.status}`);
-        console.log(res);
-      })
-      .catch((error) => {
-        console.error(error);
-      });
+    if (!loginRoomUpdate) {
+      axios
+        .post("http://localhost:3000/updateRoom", {
+          newRoom: newRoom,
+          userId: userId,
+        })
+        .then((res) => {
+          console.log(`statusCode: ${res.status}`);
+          console.log(res);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    }
   };
 
   //!
@@ -210,9 +212,9 @@ function App() {
       // currentRoom.visited = true;
       return currentRoom.room == room;
     });
-    console.log("visited sequence");
-    console.log(roomInfo);
-    console.log(roomInfo.visited);
+    // console.log("visited sequence");
+    // console.log(roomInfo);
+    // console.log(roomInfo.visited);
     roomInfo.visited = true;
     setRoomEvaluateDetails(roomInfo);
     saveGameState();
@@ -237,8 +239,8 @@ function App() {
   //retrieves all games saved by users, stores them in state, these are passed to savedGamesList
   useEffect(() => {
     axios.get("/retrieveUserGames").then((response) => {
-      console.log("data received");
-      console.log(response.data);
+      // console.log("data received");
+      // console.log(response.data);
       const data = response.data;
       const userGamesArray = [];
       //!maybe put a question mark after data
@@ -252,9 +254,9 @@ function App() {
   //enters user data into db when they sign up, or logs them in if they have not
   //updates all player game state info on login
   const signupUser = (loginInfo, userIdNum) => {
-    console.log("login");
-    console.log(loginInfo);
-    console.log(userIdNum);
+    // console.log("login");
+    // console.log(loginInfo);
+    // console.log(userIdNum);
     if (userIdNum) {
       axios
         .get("/login", {
@@ -264,8 +266,8 @@ function App() {
           },
         })
         .then((response) => {
-          console.log("data received");
-          console.log(response.data);
+          // console.log("data received");
+          // console.log(response.data);
           //user game state
           const data = response.data;
           console.log(data[0].current_room);
@@ -276,7 +278,8 @@ function App() {
             //set all aspects of the game state from the db call on login
             setUserLoggedIn(true);
             setStartingRoom(data[0].current_room);
-            updateRoomMapDetails(data[0].current_room);
+            const loginRoomUpdate = true;
+            updateCurrentRoom(data[0].current_room, loginRoomUpdate);
             const gameState = JSON.parse(data[0].game_state);
             roomEvaluateInfo = gameState;
             const savedInventory = JSON.parse(data[0].items);
@@ -292,7 +295,6 @@ function App() {
         .post("http://localhost:3000/signup", {
           loginInfo: loginInfo,
           userId: randomNum,
-          // currentRoom: 8, //!default signup room
         })
         .then((res) => {
           console.log(`statusCode: ${res.status}`);
@@ -329,7 +331,6 @@ function App() {
   useEffect(() => {
     const itemsCollectedByRoom = [];
     for (let i = 0; i < roomEvaluateInfo.length; i++) {
-      console.log("itemscollectedbyroom");
       itemsCollectedByRoom.push({
         room: roomEvaluateInfo[i].room,
         itemsCollected: roomEvaluateInfo[i].itemsCollected,

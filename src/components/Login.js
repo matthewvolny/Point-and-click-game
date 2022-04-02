@@ -1,10 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState } from "react";
 
 export default function Login(props) {
   const [loginInfo, setLoginInfo] = useState({ name: "", password: "" });
-  const [alreadyLoggedIn, setAlreadyLoggedIn] = useState(false);
-  const isMounted = useRef(false);
 
+  //logs in as a new user or a returning user
   const handleSubmit = (event) => {
     event.preventDefault();
     if (props.userId) {
@@ -19,15 +18,6 @@ export default function Login(props) {
     const inputValue = event.target.value;
     setLoginInfo({ ...loginInfo, [inputName]: inputValue });
   };
-
-  // //!to change to login
-  // useEffect(() => {
-  //   if (isMounted.current) {
-  //     setAlreadyLoggedIn(true);
-  //   } else {
-  //     isMounted.current = true;
-  //   }
-  // }, [props.userId]);
 
   return (
     <div>
