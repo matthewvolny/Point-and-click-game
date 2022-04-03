@@ -6,35 +6,22 @@ import ImageMap from "image-map";
 const imagesArrayObject = {
   room8: room8,
 };
-// import $ from "jquery";
-//room details (unique object for each room)
+
 export default function Room8(props) {
-  const { entryScript, reentryScript, images, room, visited } =
+  const { entryScript, reentryScript, images, room, visited, itemsCollected } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
-  const isMountedTwo = useRef(false);
-  const isMountedThree = useRef(false);
   const [script, setScript] = useState();
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
   //array of items used to determine which image to show
-  const [itemsCollectedInRoom, setItemsCollectedInRoom] = useState([]);
   const [newImage, setNewImage] = useState();
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
 
-  //may need
-  //!sets itemsCollected in this specific room to state
-  // useEffect(() => {
-  //   let itemsFoundInRoom = "";
-  //   for (let i = 0; i < props.roomItemsCollected.length; i++) {
-  //     if (room == props.roomItemsCollected[i].room) {
-  //       console.log("room#");
-  //       itemsFoundInRoom = props.roomItemsCollected[i].itemsCollected;
-  //     }
-  //   }
-  //   setItemsCollectedInRoom(itemsFoundInRoom);
-  // }, [props.roomItemsCollected]);
+  useEffect(() => {
+    ImageMap("img[usemap]");
+  });
 
   //!retrieves newImage from session storage on page refresh
   // useEffect(() => {
@@ -53,6 +40,30 @@ export default function Room8(props) {
       : setCurrentImage(imagesArrayObject["room8"]);
   }, [newImage]);
 
+  //changes the image based on the items collected in the room
+  useEffect(() => {
+    images?.forEach((image) => {
+      if (image.itemsCollected.length === itemsCollected.length) {
+        for (let i = 0; i < image.itemsCollected.length; i++) {
+          if (itemsCollected.indexOf(image.itemsCollected[i]) !== -1) {
+            console.log(image.file);
+            // setCurrentImage(imagesArrayObject[image.file]);
+            setNewImage(imagesArrayObject[image.file]);
+          }
+        }
+      }
+    });
+  }, [itemsCollected, room]);
+
+  //remove clickable image-map areas are items are taken
+  useEffect(() => {
+    console.log(`${itemsCollected[itemsCollected.length - 1]}`);
+    const item = document.querySelector(
+      `.${itemsCollected[itemsCollected.length - 1]}`
+    );
+    item?.remove();
+  }, [newImage]);
+
   //conditionally shows entry or re-entry script
   useEffect(() => {
     if (!visited) {
@@ -64,7 +75,7 @@ export default function Room8(props) {
   }, [props.roomEvaluateDetails]);
 
   useEffect(() => {
-    if (isMountedTwo.current) {
+    if (isMounted.current) {
       switch (playerAction) {
         case "Look":
           return setScript(text);
@@ -83,59 +94,11 @@ export default function Room8(props) {
           return setScript("what you expected did not happen");
       }
     } else {
-      isMountedTwo.current = true;
+      isMounted.current = true;
     }
   }, [text]);
 
-  //changes the image based on the items collected in the room
-  useEffect(() => {
-    images?.forEach((image) => {
-      if (image.itemsCollected.length === itemsCollectedInRoom.length) {
-        for (let i = 0; i < image.itemsCollected.length; i++) {
-          if (itemsCollectedInRoom.indexOf(image.itemsCollected[i]) !== -1) {
-            console.log(image.file);
-            // setCurrentImage(imagesArrayObject[image.file]);
-            setNewImage(imagesArrayObject[image.file]);
-          }
-        }
-      }
-    });
-  }, [itemsCollectedInRoom, room]);
-
-  //need to set up re-entry script display
-
-  // $(".background").css("border-bottom", "solid 1px red");
-  // $("img[usemap]").mapster();
-  // useEffect(() => {
-  //   //   $(".lamp").maphilight();
-  //   $("img[usemap]").mapster();
-  // });
-
-  useEffect(() => {
-    ImageMap("img[usemap]");
-    // const imageMapData = ImageMap("img[usemap]");
-    // console.log(imageMapData);
-  });
-
-  // const leafClicked = (event) => {
-  //   event.preventDefault();
-  //   // console.log("rug clicked");
-  //   props.updateItem("Leaf");
-  //   //!would need an event listener for each ".leaf" element, and delete based on the event.target
-  //   //!needs specifically to be a take action
-  //   const leaf = document.querySelector(".leaf");
-  //   leaf.remove();
-  // };
-
-  //!remove clickable image-map areas are items are taken
-  useEffect(() => {
-    console.log(`${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`);
-    const item = document.querySelector(
-      `.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`
-    );
-    item?.remove();
-  }, [itemsCollectedInRoom, room, props.roomItemsCollected]);
-
+  //calls update item in the parent component when an item is clicked
   const handleClick = (event) => {
     event.preventDefault();
     console.log(event.target.alt);

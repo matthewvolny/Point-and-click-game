@@ -1,28 +1,27 @@
 import React, { useEffect, useState, useRef } from "react";
 import room10a from "../../images/room10a.jpg";
-
 import ImageMap from "image-map";
 
 //map the string value to the variable holding the file
 const imagesArrayObject = {
   room10a: room10a,
 };
-// import $ from "jquery";
-//room details (unique object for each room)
+
 export default function Room10(props) {
-  const { entryScript, reentryScript, images, room, visited } =
+  const { entryScript, reentryScript, images, room, visited, itemsCollected } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
-  const isMountedTwo = useRef(false);
-  const isMountedThree = useRef(false);
   const [script, setScript] = useState();
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
   //array of items used to determine which image to show
-  const [itemsCollectedInRoom, setItemsCollectedInRoom] = useState([]);
   const [newImage, setNewImage] = useState();
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
+
+  useEffect(() => {
+    ImageMap("img[usemap]");
+  });
 
   //!retrieves newImage from session storage on page refresh
   // useEffect(() => {
@@ -41,6 +40,30 @@ export default function Room10(props) {
       : setCurrentImage(imagesArrayObject["room10a"]);
   }, [newImage]);
 
+  //changes the image based on the items collected in the room
+  useEffect(() => {
+    images?.forEach((image) => {
+      if (image.itemsCollected.length === itemsCollected.length) {
+        for (let i = 0; i < image.itemsCollected.length; i++) {
+          if (itemsCollected.indexOf(image.itemsCollected[i]) !== -1) {
+            console.log(image.file);
+            // setCurrentImage(imagesArrayObject[image.file]);
+            setNewImage(imagesArrayObject[image.file]);
+          }
+        }
+      }
+    });
+  }, [itemsCollected, room]);
+
+  //remove clickable image-map areas are items are taken
+  useEffect(() => {
+    console.log(`${itemsCollected[itemsCollected.length - 1]}`);
+    const item = document.querySelector(
+      `.${itemsCollected[itemsCollected.length - 1]}`
+    );
+    item?.remove();
+  }, [newImage]);
+
   //conditionally shows entry or re-entry script
   useEffect(() => {
     if (!visited) {
@@ -49,26 +72,10 @@ export default function Room10(props) {
     } else {
       setScript(reentryScript);
     }
-  }, [entryScript]);
-
-  //creates array of items collected from this specific room
-  // useEffect(() => {
-  //   if (isMounted.current) {
-  //     const itemsCollected = [];
-  //     props.playerInventory.forEach((item) => {
-  //       if (item.room === room) {
-  //         itemsCollected.push(item.item);
-  //       }
-  //     });
-  //     console.log(itemsCollected);
-  //     setItemsCollectedInRoom(itemsCollected);
-  //   } else {
-  //     isMounted.current = true;
-  //   }
-  // }, [props.playerInventory]);
+  }, [props.roomEvaluateDetails]);
 
   useEffect(() => {
-    if (isMountedTwo.current) {
+    if (isMounted.current) {
       switch (playerAction) {
         case "Look":
           return setScript(text);
@@ -87,49 +94,11 @@ export default function Room10(props) {
           return setScript("what you expected did not happen");
       }
     } else {
-      isMountedTwo.current = true;
+      isMounted.current = true;
     }
   }, [text]);
 
-  //changes the image based on the items collected in the room
-  useEffect(() => {
-    images?.forEach((image) => {
-      if (image.itemsCollected.length === itemsCollectedInRoom.length) {
-        for (let i = 0; i < image.itemsCollected.length; i++) {
-          if (itemsCollectedInRoom.indexOf(image.itemsCollected[i]) !== -1) {
-            console.log(image.file);
-            // setCurrentImage(imagesArrayObject[image.file]);
-            setNewImage(imagesArrayObject[image.file]);
-          }
-        }
-      }
-    });
-  }, [itemsCollectedInRoom]);
-
-  //need to set up re-entry script display
-
-  // $(".background").css("border-bottom", "solid 1px red");
-  // $("img[usemap]").mapster();
-  // useEffect(() => {
-  //   //   $(".lamp").maphilight();
-  //   $("img[usemap]").mapster();
-  // });
-
-  useEffect(() => {
-    ImageMap("img[usemap]");
-    // const imageMapData = ImageMap("img[usemap]");
-    // console.log(imageMapData);
-  });
-
-  //remove clickable image-map areas are items are taken
-  useEffect(() => {
-    console.log(`.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`);
-    const item = document.querySelector(
-      `.${itemsCollectedInRoom[itemsCollectedInRoom.length - 1]}`
-    );
-    item?.remove();
-  }, [itemsCollectedInRoom]);
-
+  //calls update item in the parent component when an item is clicked
   const handleClick = (event) => {
     event.preventDefault();
     console.log(event.target.alt);

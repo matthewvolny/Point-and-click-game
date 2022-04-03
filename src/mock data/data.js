@@ -93,10 +93,19 @@ const roomMap = [
   {
     currentRoom: 11,
     mapCoordinates: [
-      { roomNum: "", route: "", position: "top" },
+      { roomNum: "", route: "", position: "" },
       { roomNum: "9", route: "/room9", position: "left" },
       { roomNum: "", route: "", position: "" },
-      { roomNum: "", route: "", position: "bottom" },
+      { roomNum: "", route: "", position: "" },
+    ],
+  },
+  {
+    currentRoom: 12,
+    mapCoordinates: [
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "11", route: "/room11", position: "left" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
     ],
   },
 ];
@@ -219,7 +228,7 @@ let roomEvaluateInfo = [
     visited: false,
     itemsCollected: [],
     entryScript: "It is a damp clearing, strewn with aquatic plants",
-    reentryScript: "Something tells me I have been here before",
+    reentryScript: "This place looks familiar",
     images: [
       { file: "room9a", itemsCollected: [] },
       { file: "room9b", itemsCollected: ["Leaf"] },
@@ -282,10 +291,51 @@ let roomEvaluateInfo = [
     room: 10,
     visited: false,
     itemsCollected: [],
-    entryScript: `A snake, "isn't his name Mark" is in a small clearing`,
+    entryScript: `You see what appears to be a snake surrounded by underbrush`,
     reentryScript: "Ah yes, there's Mark",
     images: [{ file: "room10a", itemsCollected: [] }],
-    items: [],
+    items: [
+      {
+        name: "Mark",
+        present: true,
+        Look: {
+          text: `"I know him, isn't that Caroline's friend Mark.  He appears to be crying.`,
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "You seem to be wasting your time",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: {
+          text: "You greet the snake, but he does not answer",
+          effect: "",
+        },
+      },
+      {
+        name: "Flower",
+        present: true,
+        Look: {
+          text: "it is one of the large, beautiful flowers commonly seen in the valley this time of year.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: {
+          text: "",
+          effect: "",
+        },
+        Take: {
+          text: "It's too pretty to take, and you have never seen this used in any medicine before.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: { text: "", effect: "" },
+      },
+    ],
   },
   {
     room: 11,
@@ -293,9 +343,103 @@ let roomEvaluateInfo = [
     itemsCollected: [],
     entryScript:
       "It is a slightly more rocky area, though still obviously low lying.",
-    reentryScript: "Something tells me I have been here before",
+    reentryScript: "this looks familiar",
     images: [{ file: "room11", itemsCollected: [] }],
-    items: [],
+    items: [
+      {
+        name: "Shallow Puddle",
+        present: true,
+        Look: {
+          text: "One of the many pocket sized puddles in the area",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: {
+          text: "Better leave this alone, it is un-purified after all.",
+          effect: "",
+        },
+        Take: {
+          text: "not possible, unfortunately.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: { text: "you seem to be wasting your time.", effect: "" },
+      },
+      {
+        name: "Tall Reed",
+        present: true,
+        Look: {
+          text: "These reeds are everywhere.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: {
+          text: "",
+          effect: "",
+        },
+        Take: {
+          text: "No sense in taking this, it is not used for medicine as far as you know.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: { text: "", effect: "" },
+      },
+    ],
+  },
+  {
+    room: 12,
+    visited: false,
+    itemsCollected: [],
+    entryScript: "A squirrel is gathering nuts in a tin pail.",
+    reentryScript: "There's Ellie!",
+    images: [
+      { file: "room12a", itemsCollected: [] },
+      { file: "room12b", itemsCollected: ["Acorn"] },
+    ],
+    items: [
+      {
+        name: "Ellie",
+        present: true,
+        Look: {
+          text: "A mutual friend, Ellie the squirrel, is busy at work gathering food for the winter.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "I am not sure what you are trying to pull, but it won't work.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: { text: "", effect: "" },
+      },
+      {
+        name: "Acorns",
+        present: true,
+        Look: {
+          text: "Hmm, acorns. These are sometimes used in medicine.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: {
+          text: "These are not your's so best ask first...",
+          effect: "",
+        },
+        Take: {
+          text: "Best ask Ellie first...",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: {
+          text: `"Hi Ellie, did you hear?  Lyle is terribly ill.  We would like to make some forest medicine to treat him.  Could you help us?"`,
+          effect: "",
+        },
+      },
+    ],
   },
 ];
 

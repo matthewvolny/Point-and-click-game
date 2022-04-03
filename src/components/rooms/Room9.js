@@ -13,13 +13,10 @@ export default function Room9(props) {
   const { entryScript, reentryScript, images, room, visited, itemsCollected } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
-  const isMountedTwo = useRef(false);
-  const isMountedThree = useRef(false);
   const [script, setScript] = useState();
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
   //array of items used to determine which image to show
-  const [itemsCollectedInRoom, setItemsCollectedInRoom] = useState([]);
   const [newImage, setNewImage] = useState();
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
@@ -37,19 +34,6 @@ export default function Room9(props) {
   // useEffect(() => {
   //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
   // }, [newImage]);
-
-  //!may be needed
-  //sets itemsCollected in this specific room to state
-  // useEffect(() => {
-  //   let itemsFoundInRoom = "";
-  //   for (let i = 0; i < props.roomItemsCollected.length; i++) {
-  //     if (room == props.roomItemsCollected[i].room) {
-  //       console.log("room#");
-  //       itemsFoundInRoom = props.roomItemsCollected[i].itemsCollected;
-  //     }
-  //   }
-  //   setItemsCollectedInRoom(itemsFoundInRoom);
-  // }, [props.roomItemsCollected]);
 
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
@@ -73,11 +57,7 @@ export default function Room9(props) {
     });
   }, [itemsCollected, room]);
 
-  // useEffect(()=> {
-  // setItemsCollectedInRoom(itemsCollected));
-  // }, [room])
-
-  //!remove clickable image-map areas are items are taken
+  //remove clickable image-map areas are items are taken
   useEffect(() => {
     console.log(`${itemsCollected[itemsCollected.length - 1]}`);
     const item = document.querySelector(
@@ -97,7 +77,7 @@ export default function Room9(props) {
   }, [props.roomEvaluateDetails]);
 
   useEffect(() => {
-    if (isMountedTwo.current) {
+    if (isMounted.current) {
       switch (playerAction) {
         case "Look":
           return setScript(text);
@@ -116,7 +96,7 @@ export default function Room9(props) {
           return setScript("what you expected did not happen");
       }
     } else {
-      isMountedTwo.current = true;
+      isMounted.current = true;
     }
   }, [text]);
 
