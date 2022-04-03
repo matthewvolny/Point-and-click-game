@@ -35,22 +35,19 @@ export default function Room12(props) {
   //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
   // }, [newImage]);
 
-  const setTimeout = () => {
-    // let timer = setTimeout(() => {
-    //   //set image and script in state
-    // }, 5000);
-    // return () => {
-    //   clearTimeout(timer);
-    // };
-  };
-
-  //triggered when sidebar items are used on characters on the page
+  //triggered when sidebar items are used on characters on the page, changes image and script
   useEffect(() => {
     if (props.sidebarItemTriggeredEvents) {
       const { script, image } = props.sidebarItemTriggeredEvents;
-      console.log(script);
-      console.log(image);
-      setTimeout(script, image);
+      setScript(script);
+      setCurrentImage(imagesArrayObject[image]);
+      let timer = setTimeout(() => {
+        setCurrentImage(imagesArrayObject["room12a"]);
+        setScript();
+      }, 5000);
+      return () => {
+        clearTimeout(timer);
+      };
     }
   }, [props.sidebarItemTriggeredEvents]);
 

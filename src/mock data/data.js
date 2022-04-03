@@ -403,7 +403,7 @@ let roomEvaluateInfo = [
       item: "Leaf",
       active: true,
       script:
-        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take an acorn, on me.",
+        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take some acorns, on me.",
     },
     items: [
       {

@@ -93,6 +93,7 @@ function App() {
   const [inventoryAction, setInventoryAction] = useState({});
   const [sidebarItemTriggeredEvents, setSidebarItemTriggeredEvents] =
     useState();
+  // const [inventoryItemToDelete, setInventoryItemToDelete] = useState();
 
   //(aa)updates state if inventory item from the sidebar is collected
   const inventoryItemClicked = (item) => {
@@ -106,7 +107,18 @@ function App() {
     }
   };
 
-  //(cc)checks for being able to use an item on a character
+  //delete used item from player inventory
+  const deleteInventoryItem = (itemToDelete) => {
+    const playerInventoryArray = playerInventory;
+    for (let i = 0; i < playerInventoryArray.length; i++) {
+      if (playerInventoryArray[i].item == itemToDelete) {
+        playerInventoryArray.splice(i, 1);
+      }
+    }
+    setPlayerInventory(playerInventoryArray);
+  };
+
+  //(cc)checks for being able to use an item on a character, if so, delete the item and execute character(room) specific functions
   const handleSidebarAction = (inventoryActionCopy) => {
     const { characterName, item, active, script } =
       roomEvaluateDetails.character;
@@ -116,19 +128,20 @@ function App() {
       item === inventoryActionCopy.item
     ) {
       console.log("match");
+      deleteInventoryItem(inventoryAction.item);
       switch (characterName) {
         case "Ellie":
           const currentRoom = roomEvaluateInfo.find((room) => {
             return room.room == roomMapDetails.currentRoom;
           });
           const currentRoomItem = currentRoom.items.find((item) => {
-            return item.name == characterName;
+            return item.name == "Acorns";
           });
           currentRoomItem.Take.canTake = true;
           saveGameState();
           return setSidebarItemTriggeredEvents({
             script: script,
-            image: "/room12b",
+            image: "room12b",
           });
         case "Mark":
           return console.log("nothing");
@@ -578,6 +591,7 @@ function App() {
               isPlaying={isPlaying}
               toggleSong={toggleSong}
               inventoryItemClicked={inventoryItemClicked}
+              // inventoryItemToDelete={inventoryItemToDelete}
             />
           </div>
           <div className="bottom-flex">
