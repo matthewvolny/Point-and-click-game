@@ -398,7 +398,13 @@ let roomEvaluateInfo = [
       { file: "room12a", itemsCollected: [] },
       { file: "room12b", itemsCollected: ["Acorn"] },
     ],
-    character: { characterName: "Ellie", item: "Leaf", active: true },
+    character: {
+      characterName: "Ellie",
+      item: "Leaf",
+      active: true,
+      script:
+        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take an acorn, on me.",
+    },
     items: [
       {
         name: "Ellie",
@@ -415,7 +421,10 @@ let roomEvaluateInfo = [
           canTake: false,
         },
         Hit: { text: "", effect: "" },
-        Speak: { text: "", effect: "" },
+        Speak: {
+          text: `"Hi Ellie, did you hear?  Lyle is terribly ill.  We would like to make some forest medicine to treat him.  Could you help us?"`,
+          effect: "",
+        },
       },
       {
         name: "Acorns",
@@ -436,7 +445,7 @@ let roomEvaluateInfo = [
         },
         Hit: { text: "", effect: "" },
         Speak: {
-          text: `"Hi Ellie, did you hear?  Lyle is terribly ill.  We would like to make some forest medicine to treat him.  Could you help us?"`,
+          text: "",
           effect: "",
         },
       },

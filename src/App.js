@@ -91,6 +91,8 @@ function App() {
   // }, [roomMapDetails]);
 
   const [inventoryAction, setInventoryAction] = useState({});
+  const [sidebarItemTriggeredEvents, setSidebarItemTriggeredEvents] =
+    useState();
 
   //(aa)updates state if inventory item from the sidebar is collected
   const inventoryItemClicked = (item) => {
@@ -104,16 +106,41 @@ function App() {
     }
   };
 
-  //matches
+  //(cc)checks for being able to use an item on a character
   const handleSidebarAction = (inventoryActionCopy) => {
-    console.log("match items");
-    const { characterName, item, active } = roomEvaluateDetails.character;
+    const { characterName, item, active, script } =
+      roomEvaluateDetails.character;
     if (
       active === true &&
       characterName === inventoryActionCopy.target &&
       item === inventoryActionCopy.item
     ) {
       console.log("match");
+      switch (characterName) {
+        case "Ellie":
+          const currentRoom = roomEvaluateInfo.find((room) => {
+            return room.room == roomMapDetails.currentRoom;
+          });
+          const currentRoomItem = currentRoom.items.find((item) => {
+            return item.name == characterName;
+          });
+          currentRoomItem.Take.canTake = true;
+          saveGameState();
+          return setSidebarItemTriggeredEvents({
+            script: script,
+            image: "/room12b",
+          });
+        case "Mark":
+          return console.log("nothing");
+        case "Julianne Napkin":
+          return console.log("nothing");
+        case "Lyle":
+          return console.log("nothing");
+        default:
+          //!this line does not seem to be working
+          return console.log("nothing");
+      }
+      setInventoryAction({});
     }
   };
 
@@ -138,13 +165,6 @@ function App() {
       handleSidebarAction(inventoryActionCopy);
     }
   };
-
-  //(cc)triggers outcome if item from sidebar and target is selected
-  // useEffect(() => {
-  //   if (Object.keys(inventoryAction).length === 3) {
-  //     console.log("3 items in object");
-  //   }
-  // }, [inventoryAction]);
 
   //(4)adds the selected item details (general item info, and specifics info) to state
   const updateSelectedItemInfo = () => {
@@ -480,6 +500,7 @@ function App() {
                     updateCurrentRoom={updateCurrentRoom}
                     updateLocationsVisited={updateLocationsVisited}
                     roomItemsCollected={roomItemsCollected}
+                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
                   />
                 }
               />
@@ -495,6 +516,7 @@ function App() {
                     updateCurrentRoom={updateCurrentRoom}
                     updateLocationsVisited={updateLocationsVisited}
                     roomItemsCollected={roomItemsCollected}
+                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
                   />
                 }
               />
@@ -510,6 +532,7 @@ function App() {
                     updateCurrentRoom={updateCurrentRoom}
                     updateLocationsVisited={updateLocationsVisited}
                     roomItemsCollected={roomItemsCollected}
+                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
                   />
                 }
               />
@@ -525,6 +548,7 @@ function App() {
                     updateCurrentRoom={updateCurrentRoom}
                     updateLocationsVisited={updateLocationsVisited}
                     roomItemsCollected={roomItemsCollected}
+                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
                   />
                 }
               />
@@ -540,6 +564,7 @@ function App() {
                     updateCurrentRoom={updateCurrentRoom}
                     updateLocationsVisited={updateLocationsVisited}
                     roomItemsCollected={roomItemsCollected}
+                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
                   />
                 }
               />

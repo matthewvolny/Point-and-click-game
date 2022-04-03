@@ -1,10 +1,12 @@
 import React, { useEffect, useState, useRef } from "react";
 import room12a from "../../images/room12a.jpg";
+import room12b from "../../images/room12b.jpg";
 import ImageMap from "image-map";
 
 //map the string value to the variable holding the file
 const imagesArrayObject = {
   room12a: room12a,
+  room12b: room12b,
 };
 
 export default function Room12(props) {
@@ -32,6 +34,25 @@ export default function Room12(props) {
   // useEffect(() => {
   //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
   // }, [newImage]);
+
+  const setTimeout = () => {
+    // let timer = setTimeout(() => {
+    //   //set image and script in state
+    // }, 5000);
+    // return () => {
+    //   clearTimeout(timer);
+    // };
+  };
+
+  //triggered when sidebar items are used on characters on the page
+  useEffect(() => {
+    if (props.sidebarItemTriggeredEvents) {
+      const { script, image } = props.sidebarItemTriggeredEvents;
+      console.log(script);
+      console.log(image);
+      setTimeout(script, image);
+    }
+  }, [props.sidebarItemTriggeredEvents]);
 
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
