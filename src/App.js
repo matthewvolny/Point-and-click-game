@@ -20,6 +20,7 @@ import Room12 from "./components/rooms/Room12";
 import axios from "axios";
 import { roomMap, roomEvaluateInfo } from "./mock data/data";
 import { MemoryRouter } from "react-router";
+import song1 from "./static/rootabaga_pigeons.mp3";
 import "./App.css";
 
 //!not needed?
@@ -47,6 +48,20 @@ function App() {
   const [roomItemsCollected, setRoomItemsCollected] = useState();
   const isMounted = useRef(false);
   const isMountedTwo = useRef(false);
+
+  //audio player with toggle on and off controls
+  const [audio] = useState(new Audio(song1));
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  const toggleSong = () => setIsPlaying(!isPlaying);
+
+  useEffect(() => {
+    if (isPlaying) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
+  }, [isPlaying]);
 
   //!retrieves stored room details from local storage on page refresh
   // useEffect(() => {
@@ -488,6 +503,8 @@ function App() {
               // selectedItemInfoForAction={selectedItemInfoForAction}
               // updateInventory={updateInventory}
               playerInventory={playerInventory}
+              isPlaying={isPlaying}
+              toggleSong={toggleSong}
             />
           </div>
           <div className="bottom-flex">

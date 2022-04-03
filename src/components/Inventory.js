@@ -54,6 +54,16 @@ export default function Inventory(props) {
     <div>
       <div>Inventory</div>
       <div>{inventoryList}</div>
+      <div>
+        {/* Show state of song on website */}
+        <p>{props.isPlaying ? "Playing" : "Paused"}</p>
+
+        {/* Button to call our main function */}
+        <button onClick={() => props.toggleSong()}>Play | Pause</button>
+      </div>
+      <div>
+        <a href="http://localhost:3000/">Quit game</a>
+      </div>
     </div>
   );
 }

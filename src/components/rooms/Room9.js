@@ -24,7 +24,6 @@ export default function Room9(props) {
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
 
-  //! may be able to initiate the image map after component render (may be better that way)
   useEffect(() => {
     ImageMap("img[usemap]");
   });
