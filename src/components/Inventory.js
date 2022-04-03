@@ -43,6 +43,7 @@ export default function Inventory(props) {
   const inventoryList = inventory?.map((item) => {
     return (
       <div key={Math.floor(Math.random() * 10000)}>
+        {/* add onclICK FOR THE USING ITEMS IN INVENTORY */}
         <span>{item.item}</span>
         <span> - </span>
         <span>{item.number}</span>

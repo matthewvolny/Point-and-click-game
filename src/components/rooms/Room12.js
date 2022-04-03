@@ -108,16 +108,11 @@ export default function Room8(props) {
     // console.log(imageMapData);
   });
 
-  const rugClicked = (event) => {
+  //calls update item in the parent component when an item is clicked
+  const handleClick = (event) => {
     event.preventDefault();
-    // console.log("rug clicked");
-    props.updateItem("Rug");
-  };
-
-  const lampClicked = (event) => {
-    event.preventDefault();
-    // console.log("lamp clicked");
-    props.updateItem("Lamp");
+    console.log(event.target.alt);
+    props.updateItem(event.target.alt);
   };
 
   return (
@@ -131,24 +126,24 @@ export default function Room8(props) {
         />
         <map name="image-map">
           <area
-            className="rug"
-            onClick={rugClicked}
+            onClick={handleClick}
+            className="Ellie Squirrel"
             target=""
-            alt="rug"
-            title="rug"
+            alt="Ellie Squirrel"
+            title="Ellie Squirrel"
             href=""
-            coords="1023,1584,879,1594,658,1677,607,1726,680,1810,905,1873,1141,1893,1633,1893,1930,1851,2101,1787,2138,1724,2040,1648,1599,1562,1219,1562"
-            shape="poly"
+            coords="747,1139,269"
+            shape="circle"
           />
           <area
-            className="lamp"
-            onClick={lampClicked}
+            onClick={handleClick}
+            className="Acorns"
             target=""
-            alt="small lamp"
-            title="small lamp"
+            alt="Acorns"
+            title="Acorns"
             href=""
-            coords="391,792,364,868,352,917,411,932,443,934,443,971,399,991,450,995,502,988,479,929,496,932,531,919,531,875,506,792,445,780"
-            shape="poly"
+            coords="1238,1460,212"
+            shape="circle"
           />
         </map>
       </div>
