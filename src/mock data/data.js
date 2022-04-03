@@ -95,7 +95,7 @@ const roomMap = [
     mapCoordinates: [
       { roomNum: "", route: "", position: "" },
       { roomNum: "9", route: "/room9", position: "left" },
-      { roomNum: "", route: "", position: "" },
+      { roomNum: "12", route: "/room12", position: "right" },
       { roomNum: "", route: "", position: "" },
     ],
   },
@@ -398,6 +398,7 @@ let roomEvaluateInfo = [
       { file: "room12a", itemsCollected: [] },
       { file: "room12b", itemsCollected: ["Acorn"] },
     ],
+    character: { characterName: "Ellie", item: "Leaf", active: true },
     items: [
       {
         name: "Ellie",

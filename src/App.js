@@ -25,6 +25,7 @@ import "./App.css";
 
 //!not needed?
 import ImageMapper from "react-img-mapper";
+import { current } from "@reduxjs/toolkit";
 
 function App() {
   const [userId, setUserId] = useState();
@@ -89,6 +90,37 @@ function App() {
   //   );
   // }, [roomMapDetails]);
 
+  const [inventoryAction, setInventoryAction] = useState({});
+
+  //(aa)updates state if inventory item from the sidebar is collected
+  const inventoryItemClicked = (item) => {
+    if (action.playerAction === "Use") {
+      setInventoryAction({
+        action: action.playerAction,
+        item: item,
+        // target: "",
+      });
+      setAction({ playerAction: "", item: "" });
+    }
+  };
+
+  //matches
+  const handleSidebarAction = (inventoryActionCopy) => {
+    console.log("match items");
+    const { characterName, item, active } = roomEvaluateDetails.character;
+    if (
+      active === true &&
+      characterName === inventoryActionCopy.target &&
+      item === inventoryActionCopy.item
+    ) {
+      console.log("match");
+    }
+  };
+
+  //
+
+  //
+
   //(1)updates state with selected player action
   const updatePlayerAction = (action) => {
     setAction({ playerAction: action, item: "" });
@@ -97,7 +129,22 @@ function App() {
   //(2)updates state with selected item
   const updateItem = (item) => {
     setAction({ ...action, item: item });
+    //(bb)updates state if inventory item from the sidebar is collected
+    if (Object.keys(inventoryAction).length === 2) {
+      console.log("here");
+      const inventoryActionCopy = inventoryAction;
+      inventoryActionCopy.target = item;
+      setInventoryAction(inventoryActionCopy); //may not be needed
+      handleSidebarAction(inventoryActionCopy);
+    }
   };
+
+  //(cc)triggers outcome if item from sidebar and target is selected
+  // useEffect(() => {
+  //   if (Object.keys(inventoryAction).length === 3) {
+  //     console.log("3 items in object");
+  //   }
+  // }, [inventoryAction]);
 
   //(4)adds the selected item details (general item info, and specifics info) to state
   const updateSelectedItemInfo = () => {
@@ -505,6 +552,7 @@ function App() {
               playerInventory={playerInventory}
               isPlaying={isPlaying}
               toggleSong={toggleSong}
+              inventoryItemClicked={inventoryItemClicked}
             />
           </div>
           <div className="bottom-flex">

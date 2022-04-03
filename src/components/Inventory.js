@@ -44,7 +44,9 @@ export default function Inventory(props) {
     return (
       <div key={Math.floor(Math.random() * 10000)}>
         {/* add onclICK FOR THE USING ITEMS IN INVENTORY */}
-        <span>{item.item}</span>
+        <span onClick={() => props.inventoryItemClicked(item.item)}>
+          {item.item}
+        </span>
         <span> - </span>
         <span>{item.number}</span>
       </div>
