@@ -19,6 +19,7 @@ import Room11 from "./components/rooms/Room11";
 import Room12 from "./components/rooms/Room12";
 import axios from "axios";
 import { roomMap, roomEvaluateInfo } from "./mock data/data";
+import { MemoryRouter } from "react-router";
 import "./App.css";
 
 //!not needed?
@@ -330,11 +331,12 @@ function App() {
   const loginPastUser = (userId) => {
     setUserId(userId);
   };
+  // const history = createMemoryHistory(location);
 
   return (
     <div className="container">
       {userLoggedIn ? (
-        <BrowserRouter>
+        <MemoryRouter /*history={history}*/>
           <div className="top-flex">
             <Routes>
               <Route
@@ -495,7 +497,7 @@ function App() {
             />
             <Actions updatePlayerAction={updatePlayerAction} />
           </div>
-        </BrowserRouter>
+        </MemoryRouter>
       ) : (
         <>
           <div className="title">Leaving Richards Valley</div>
