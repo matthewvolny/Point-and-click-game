@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useRef } from "react";
+import "./inventory.css";
 
 export default function Inventory(props) {
   const [inventory, setInventory] = useState([]);
@@ -19,16 +20,16 @@ export default function Inventory(props) {
   });
 
   return (
-    <div>
-      <div>Inventory</div>
+    <div className="inventory-flex">
+      <div className="inventory-heading">Inventory</div>
       <div>{inventoryList}</div>
       <div>
         <p>{props.isPlaying ? "Playing" : "Paused"}</p>
         <button onClick={() => props.toggleSong()}>Play | Pause</button>
       </div>
-      <div>
-        <a href="http://localhost:3000/">Quit game</a>
-      </div>
+      <a className="quit-game-button" href="http://localhost:3000/">
+        Quit game
+      </a>
     </div>
   );
 }

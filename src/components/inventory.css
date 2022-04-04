@@ -1,0 +1,31 @@
+.inventory-flex {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid red;
+  margin-top: 0;
+  flex-grow: 1;
+  padding: 1em;
+}
+
+.inventory-heading {
+  font-size: 1.3em;
+}
+
+.quit-game-button {
+  text-decoration: none;
+  text-align: center;
+  /* font-size: 1.2rem; */
+  border-radius: 1em;
+  color: white;
+  padding: 0.4em 0.8em;
+  /* width: 80%; */
+  border: 2px solid rgb(109, 109, 208);
+  background-color: rgb(109, 109, 208);
+}
+
+.quit-game-button:hover {
+  background-color: white;
+  color: rgb(109, 109, 208);
+}
