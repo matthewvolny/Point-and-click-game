@@ -9,4 +9,22 @@
 
 .player-actions div {
   margin-top: 0;
+  text-align: center;
+  /* font-size: 1.2rem; */
+  border-radius: 1em;
+  color: rgb(109, 109, 208);
+  padding: 0.4em 0.8em;
+  /* width: 80%; */
+  border: 2px solid rgb(109, 109, 208);
+  background-color: white;
+}
+
+.player-actions div:hover {
+  background-color: rgb(109, 109, 208);
+  color: white;
+}
+
+#clicked {
+  background-color: rgb(109, 109, 208);
+  color: white;
 }

@@ -166,12 +166,13 @@ function App() {
     setAction({ playerAction: action, item: "" });
   };
 
+  // const [toggleClicked, setToggleClicked] = useState(true);
+
   //(2)updates state with selected item
   const updateItem = (item) => {
     setAction({ ...action, item: item });
     //(bb)updates state if inventory item from the sidebar is collected
     if (Object.keys(inventoryAction).length === 2) {
-      console.log("here");
       const inventoryActionCopy = inventoryAction;
       inventoryActionCopy.target = item;
       setInventoryAction(inventoryActionCopy); //may not be needed
@@ -194,6 +195,8 @@ function App() {
   useEffect(() => {
     if (action.playerAction !== "" && action.item !== "") {
       updateSelectedItemInfo();
+      // setToggleClicked(true);
+      // console.log("clicked");
     }
   });
 
@@ -593,7 +596,10 @@ function App() {
               roomMapDetails={roomMapDetails}
               updateCurrentRoom={updateCurrentRoom}
             />
-            <Actions updatePlayerAction={updatePlayerAction} />
+            <Actions
+              updatePlayerAction={updatePlayerAction}
+              // toggleClicked={toggleClicked}
+            />
           </div>
         </MemoryRouter>
       ) : (

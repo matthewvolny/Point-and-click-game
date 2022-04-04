@@ -1,29 +1,51 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import "./actions.css";
 
 export default function Actions(props) {
+  const [actionClicked, setActionClicked] = useState();
+
+  const look = document.querySelector(".look");
+  const use = document.querySelector(".use");
+  const take = document.querySelector(".take");
+  const hit = document.querySelector(".hit");
+  const speak = document.querySelector(".speak");
+
+  const actionDOMObject = {
+    look: look,
+    use: use,
+    take: take,
+    hit: hit,
+    speak: speak,
+  };
+
   const handleClick = (e) => {
     props.updatePlayerAction(e.target.textContent);
+    if (!actionClicked) {
+      e.target.setAttribute("id", "clicked");
+      setActionClicked(e.target.className);
+    } else {
+      console.log(actionDOMObject[actionClicked]);
+      actionDOMObject[actionClicked].removeAttribute("id");
+      e.target.setAttribute("id", "clicked");
+      setActionClicked(e.target.className);
+    }
   };
 
   return (
     <div className="player-actions">
-      <div value="look" onClick={handleClick}>
+      <div className="look" value="look" onClick={handleClick}>
         Look
       </div>
-      <div value="open" onClick={handleClick}>
-        Open
-      </div>
-      <div value="use" onClick={handleClick}>
+      <div className="use" value="use" onClick={handleClick}>
         Use
       </div>
-      <div value="take" onClick={handleClick}>
+      <div className="take" value="take" onClick={handleClick}>
         Take
       </div>
-      <div value="hit" onClick={handleClick}>
+      <div className="hit" value="hit" onClick={handleClick}>
         Hit
       </div>
-      <div value="hit" onClick={handleClick}>
+      <div className="speak" value="hit" onClick={handleClick}>
         Speak
       </div>
     </div>
