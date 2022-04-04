@@ -1,5 +1,12 @@
 import React from "react";
-import playerImage from "../images/playerImageSample.jpg";
+import image1 from "../images/carolineIcon.jpg";
+import image2 from "../images/ellieIcon.jpg";
+import image3 from "../images/lyleIcon.jpg";
+import image4 from "../images/nevilleIcon.jpg";
+import image5 from "../images/omarIcon.jpg";
+import image6 from "../images/richardIcon.jpg";
+
+const imagesArray = [image1, image2, image3, image4, image5, image6];
 
 export default function SavedGamesList(props) {
   const handleClick = (event) => {
@@ -14,7 +21,11 @@ export default function SavedGamesList(props) {
         id={game.user_id}
         className={game.user_id}
       >
-        <img alt="playerIcon" src={playerImage} style={{ width: "60px" }} />
+        <img
+          alt="playerIcon"
+          src={imagesArray[Math.floor(Math.random() * 6)]}
+          style={{ width: "60px" }}
+        />
         <div>{game.user_name}</div>
         <div>{game.created_at}</div>
       </div>
