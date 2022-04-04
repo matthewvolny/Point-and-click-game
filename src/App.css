@@ -64,7 +64,7 @@ body {
   /* background-color: black; */
   /* color: white; */
   /* border-radius: 50%; */
-  border-radius: 0.5em;
+  border-radius: 0.2em;
   /* very subtle box shadow? */
   /* box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1); */
   font-size: 1.2rem;
@@ -75,7 +75,7 @@ body {
 
 @media only screen and (min-width: 800px) {
   .user-game {
-    width: 30%;
+    width: 45%;
   }
 }
 
@@ -98,22 +98,40 @@ body {
 }
 
 .login-flex {
-  margin-top: 0;
+  margin: 0;
   width: 49%;
   text-align: center;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: center;
   align-items: center;
   border: 1px solid purple;
 }
 
-.heading {
-  margin-top: 1em;
-  font-size: 1.7rem;
+.login-flex * + * {
+  margin-top: 1.5em;
 }
 
-.login-form {
+.heading {
+  margin-top: 1rem;
+  font-size: 1.7rem;
+  width: 80%;
+}
+
+.login-heading {
+  margin-top: 2.5rem;
+  margin-bottom: 0.1rem;
+  font-size: 1.7rem;
+  width: 80%;
+}
+
+@media only screen and (min-width: 800px) {
+  .login-heading {
+    margin-top: 3.5rem;
+  }
+}
+
+/* .login-form {
   height: 80%;
   border: 1px solid orange;
   width: 100%;
@@ -121,7 +139,7 @@ body {
   flex-direction: column;
   justify-content: center;
   align-items: center;
-}
+} */
 
 /* .login-form * + * {
   margin-top: 1.2em;
@@ -153,6 +171,13 @@ body {
   width: 80%;
   border: 2px solid rgb(109, 109, 208);
   background-color: rgb(109, 109, 208);
+}
+
+.footer {
+  color: rgb(133, 133, 217);
+  width: 80%;
+  margin-top: auto;
+  margin-bottom: 2.5rem;
 }
 
 .top-flex {

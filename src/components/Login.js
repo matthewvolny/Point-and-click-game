@@ -22,9 +22,9 @@ export default function Login(props) {
   return (
     <div className="login-flex">
       {props.userId ? (
-        <div className="heading">Login to continue your game</div>
+        <div className="login-heading">Login to continue your game</div>
       ) : (
-        <div className="heading">Enter your login info</div>
+        <div className="login-heading">Enter your login info</div>
       )}
       <form className="login-form" onSubmit={handleSubmit}>
         <input
@@ -44,6 +44,7 @@ export default function Login(props) {
         />
         <button className="submit-button">Submit</button>
       </form>
+      <div className="footer">With art by Michael DeForge</div>
     </div>
   );
 }
