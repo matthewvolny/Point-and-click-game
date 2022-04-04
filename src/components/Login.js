@@ -20,30 +20,28 @@ export default function Login(props) {
   };
 
   return (
-    <div>
+    <div className="login-flex">
       {props.userId ? (
-        <div>Login to continue your game</div>
+        <div className="heading">Login to continue your game</div>
       ) : (
-        <div>Enter your login info</div>
+        <div className="heading">Enter your login info</div>
       )}
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="name">Name</label>
+      <form className="login-form" onSubmit={handleSubmit}>
         <input
-          id="name"
+          placeholder="name"
           type="text"
           name="name"
           value={loginInfo.name}
           onChange={handleChange}
         />
-        <label htmlFor="password">Password</label>
         <input
-          id="password"
+          placeholder="password"
           type="password"
           name="password"
           value={loginInfo.password}
           onChange={handleChange}
         />
-        <button>Submit</button>
+        <button className="submit-button">Submit</button>
       </form>
     </div>
   );

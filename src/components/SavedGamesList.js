@@ -32,22 +32,10 @@ export default function SavedGamesList(props) {
     );
   });
 
-  // axios
-  //   .get("/retrieveGameState", {
-  //     params: {
-  //       loginId: loginId,
-  //     },
-  //   })
-  //   .then((response) => {
-  //     console.log("data received");
-  //     console.log(response.data);
-  //     const data = response.data;
-  //   });
-
   return (
-    <div>
-      <div>Current Games</div>
-      <div>{userGamesList}</div>
+    <div className="current-games-flex">
+      <div className="heading">Current Games</div>
+      <div className="games-list">{userGamesList}</div>
     </div>
   );
 }

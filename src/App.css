@@ -1,6 +1,6 @@
 :root {
   box-sizing: border-box;
-  font-size: 1.2em;
+  font-size: 1.2rem;
 }
 
 body {
@@ -14,11 +14,91 @@ body {
 .container {
   height: 75vh;
   border: 1px solid red;
+  border-radius: 1em;
+  box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
   margin: 0 auto;
   padding: 2em;
   display: flex;
   flex-direction: column;
 }
+
+.title {
+  font-size: 3rem;
+  text-align: center;
+}
+
+.title-page-flex {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  margin-top: 1.5em;
+  border: 1px solid rgb(193, 193, 23);
+}
+
+.current-games-flex {
+  width: 49%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  border: 1px solid black;
+}
+
+.games-list {
+  height: 80%;
+  border: 1px solid orange;
+}
+
+.login-flex {
+  margin-top: 0;
+  width: 49%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid purple;
+}
+
+.heading {
+  margin-top: 1em;
+  font-size: 1.7rem;
+}
+
+.login-form {
+  height: 80%;
+  border: 1px solid orange;
+}
+
+.login-form * + * {
+  margin-top: 1.2em;
+}
+
+.login-form input {
+  font-size: 1.2rem;
+  width: 74%;
+  padding: 0.4em;
+  border-radius: 1em;
+  /* border: 2px solid rgb(109, 109, 208); */
+}
+
+::placeholder {
+  /* color: blue;
+  font-size: 1.5em; */
+}
+
+.submit-button {
+  display: inline-block;
+  font-size: 1.2rem;
+  border-radius: 1em;
+  color: white;
+  padding: 0.4em;
+  width: 80%;
+  border: 2px solid rgb(109, 109, 208);
+  background-color: rgb(109, 109, 208);
+}
+
 .top-flex {
   display: flex;
   justify-content: space-between;

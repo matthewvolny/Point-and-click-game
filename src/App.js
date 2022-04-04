@@ -278,12 +278,6 @@ function App() {
     setRoomItemsCollected(itemsCollectedByRoom);
   }, [playerInventory]);
 
-  //!
-  //!
-  //!
-  //!
-  //!
-
   //(c) on map link click, updates the map for the current room
   const updateRoomMapDetails = (newRoom) => {
     const selectedRoom = roomMap.find((room) => {
@@ -605,12 +599,17 @@ function App() {
       ) : (
         <>
           <div className="title">Leaving Richards Valley</div>
-          <SavedGamesList userGames={userGames} loginPastUser={loginPastUser} />
-          <Login
-            signupUser={signupUser}
-            userId={userId}
-            startingRoom={startingRoom}
-          />
+          <div className="title-page-flex">
+            <SavedGamesList
+              userGames={userGames}
+              loginPastUser={loginPastUser}
+            />
+            <Login
+              signupUser={signupUser}
+              userId={userId}
+              startingRoom={startingRoom}
+            />
+          </div>
         </>
       )}
     </div>
