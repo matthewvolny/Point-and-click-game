@@ -1,11 +1,11 @@
 import React from "react";
 import moment from "moment";
-import image1 from "../images/carolineIcon.jpg";
-import image2 from "../images/ellieIcon.jpg";
-import image3 from "../images/lyleIcon.jpg";
-import image4 from "../images/nevilleIcon.jpg";
-import image5 from "../images/omarIcon.jpg";
-import image6 from "../images/richardIcon.jpg";
+import image1 from "../images/carolineIcon_cropped.jpg";
+import image2 from "../images/ellieIcon_cropped.jpg";
+import image3 from "../images/lyleIcon_cropped.jpg";
+import image4 from "../images/nevilleIcon_cropped.jpg";
+import image5 from "../images/omarIcon_cropped.jpg";
+import image6 from "../images/richardIcon_cropped.jpg";
 moment().format();
 
 const imagesArray = [image1, image2, image3, image4, image5, image6];
@@ -24,15 +24,19 @@ export default function SavedGamesList(props) {
         key={Math.floor(Math.random() * 10000)}
         onClick={handleClick}
         id={game.user_id}
-        className="user-game"
+        className="user-game-flex"
       >
-        <div>{game.user_name}</div>
-        <img
-          alt="playerIcon"
-          src={imagesArray[Math.floor(Math.random() * 6)]}
-        />
-        <div className="date">
-          {moment(game.created_at).format("MM/DD/YYYY")}
+        <div className="icon">
+          <img
+            alt="playerIcon"
+            src={imagesArray[Math.floor(Math.random() * 6)]}
+          />
+        </div>
+        <div className="name-and-date">
+          <div className="name">{game.user_name}</div>
+          <div className="date">
+            {moment(game.created_at).format("MM/DD/YYYY")}
+          </div>
         </div>
       </div>
     );
@@ -40,7 +44,7 @@ export default function SavedGamesList(props) {
 
   return (
     <div className="current-games-flex">
-      <div className="heading">Current Games</div>
+      <div className="current-games-heading">Current Games</div>
       <div className="games-list">{userGamesList}</div>
     </div>
   );
