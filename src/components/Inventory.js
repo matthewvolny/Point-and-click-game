@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import "./inventory.css";
+import playButton from "../images/play.png";
+import pauseButton from "../images/pause.png";
 
 export default function Inventory(props) {
   const [inventory, setInventory] = useState([]);
@@ -10,11 +12,11 @@ export default function Inventory(props) {
 
   const inventoryList = inventory?.map((item) => {
     return (
-      <div key={Math.floor(Math.random() * 10000)}>
-        <span onClick={() => props.inventoryItemClicked(item.item)}>
+      <div key={Math.floor(Math.random() * 10000)} className="inventory-item">
+        <div onClick={() => props.inventoryItemClicked(item.item)}>
           {item.item}
-        </span>
-        <span>{item.number}</span>
+        </div>
+        {/* <span>{item.number}</span> */}
       </div>
     );
   });
@@ -22,10 +24,21 @@ export default function Inventory(props) {
   return (
     <div className="inventory-flex">
       <div className="inventory-heading">Inventory</div>
-      <div>{inventoryList}</div>
-      <div>
-        <p>{props.isPlaying ? "Playing" : "Paused"}</p>
-        <button onClick={() => props.toggleSong()}>Play | Pause</button>
+      <div className="inventory-list">{inventoryList}</div>
+      <div className="player">
+        {props.isPlaying ? (
+          <img
+            onClick={() => props.toggleSong()}
+            alt="pause button"
+            src={pauseButton}
+          ></img>
+        ) : (
+          <img
+            onClick={() => props.toggleSong()}
+            alt="play button"
+            src={playButton}
+          ></img>
+        )}
       </div>
       <a className="quit-game-button" href="http://localhost:3000/">
         Quit game
