@@ -22,6 +22,8 @@ body {
   flex-direction: column;
 }
 
+/* login styling */
+
 .title {
   font-size: 2.2rem;
   text-align: center;
@@ -223,6 +225,8 @@ body {
   margin-top: auto;
   margin-bottom: 2.5rem;
 }
+
+/* game styling */
 
 .top-flex {
   display: flex;
