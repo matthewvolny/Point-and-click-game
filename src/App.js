@@ -107,7 +107,7 @@ function App() {
     }
   };
 
-  //delete used item from player inventory
+  //(dd)delete used item from player inventory
   const deleteInventoryItem = (itemToDelete) => {
     const playerInventoryArray = playerInventory;
     for (let i = 0; i < playerInventoryArray.length; i++) {

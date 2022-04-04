@@ -13,6 +13,7 @@ export default function Room12(props) {
   const { entryScript, reentryScript, images, room, visited, itemsCollected } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
+  const isMountedTwo = useRef(false);
   const [script, setScript] = useState();
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
@@ -35,12 +36,18 @@ export default function Room12(props) {
   //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
   // }, [newImage]);
 
-  //triggered when sidebar items are used on characters on the page, changes image and script
+  const [mapReturn, setMapReturn] = useState(false);
+
+  //triggered when sidebar items are used on characters, changes image and script
   useEffect(() => {
     if (props.sidebarItemTriggeredEvents) {
+      const ellie = document.querySelector(".Ellie");
       const { script, image } = props.sidebarItemTriggeredEvents;
       setScript(script);
       setCurrentImage(imagesArrayObject[image]);
+      //remove image map zone, then puts it back to remove green circle on image change
+      ellie.remove();
+      setMapReturn(true);
       let timer = setTimeout(() => {
         setCurrentImage(imagesArrayObject["room12a"]);
         setScript();
@@ -50,6 +57,20 @@ export default function Room12(props) {
       };
     }
   }, [props.sidebarItemTriggeredEvents]);
+
+  //area of the map to return following click(resets image-map green circle)
+  const returnedMapArea = (
+    <area
+      onClick={handleClick}
+      className="Ellie"
+      target=""
+      alt="Ellie"
+      title="Ellie"
+      href=""
+      coords="747,1139,269"
+      shape="circle"
+    />
+  );
 
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
@@ -73,7 +94,7 @@ export default function Room12(props) {
     });
   }, [itemsCollected, room]);
 
-  //remove clickable image-map areas are items are taken
+  //remove clickable image-map areas as item is taken
   useEffect(() => {
     console.log(`${itemsCollected[itemsCollected.length - 1]}`);
     const item = document.querySelector(
@@ -143,6 +164,7 @@ export default function Room12(props) {
             coords="747,1139,269"
             shape="circle"
           />
+          {mapReturn && returnedMapArea}
           <area
             onClick={handleClick}
             className="Acorns"
