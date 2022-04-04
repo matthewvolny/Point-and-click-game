@@ -31,7 +31,8 @@ body {
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
-  margin-top: 1.5em;
+  margin-top: 2.2em;
+  overflow: hidden;
   border: 1px solid rgb(193, 193, 23);
 }
 
@@ -42,12 +43,58 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: space-around;
+  /* overflow: hidden; */
   border: 1px solid black;
 }
 
 .games-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: center;
+  overflow: scroll;
   height: 80%;
-  border: 1px solid orange;
+  width: 100%;
+  border: 1px solid rgb(217, 108, 0);
+}
+
+.user-game {
+  border: 1px solid lightgreen;
+  /* might be cool to try colored circles */
+  /* background-color: black; */
+  /* color: white; */
+  /* border-radius: 50%; */
+  border-radius: 0.5em;
+  /* very subtle box shadow? */
+  /* box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1); */
+  font-size: 1.2rem;
+  padding: 0.6em, 0.9em;
+  width: 100%;
+  margin: 0.5rem;
+}
+
+@media only screen and (min-width: 800px) {
+  .user-game {
+    width: 30%;
+  }
+}
+
+* + .user-game {
+  margin-top: 0;
+}
+
+.user-game > img {
+  width: 80px;
+}
+
+.user-game > img,
+.date {
+  margin-top: 0.3em;
+}
+
+.date {
+  font-size: 1rem;
+  color: gray;
 }
 
 .login-flex {
@@ -69,11 +116,20 @@ body {
 .login-form {
   height: 80%;
   border: 1px solid orange;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
-.login-form * + * {
+/* .login-form * + * {
   margin-top: 1.2em;
-}
+} */
+
+/* .input-one {
+  margin-top: 0.5rem;
+} */
 
 .login-form input {
   font-size: 1.2rem;

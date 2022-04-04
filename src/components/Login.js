@@ -28,6 +28,7 @@ export default function Login(props) {
       )}
       <form className="login-form" onSubmit={handleSubmit}>
         <input
+          className="input-one"
           placeholder="name"
           type="text"
           name="name"
