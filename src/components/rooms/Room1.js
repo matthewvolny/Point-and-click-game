@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-// import Context from "../../context/context";
+import Context from "../../context/context";
 
 import { useNavigate } from "react-router-dom";
 import room1 from "../../images/room1.jpg";
@@ -14,7 +14,7 @@ import pauseButton from "../../images/pause_.png";
 import "./room.css";
 
 export default function Room1(props) {
-  // const { isPlaying } = useContext(Context);
+  const { isPlaying } = useContext(Context);
   const { entryScript, room } = props.roomEvaluateDetails;
   const [script, setScript] = useState(entryScript);
   const [imageDisplayed, setImageDisplayed] = useState(room1);
@@ -72,7 +72,7 @@ export default function Room1(props) {
   return (
     <div className="top-left-flex-container">
       <div className="player">
-        {props.isPlaying ? (
+        {isPlaying ? (
           <img
             onClick={() => props.toggleSong()}
             alt="pause button"
@@ -89,6 +89,9 @@ export default function Room1(props) {
       <div className="image-container">
         <img className="background-img" src={imageDisplayed} alt="background" />
       </div>
+      {/* <div className="text-box">
+        <p>{script}</p>
+      </div> */}
       <div className="text-box">{script}</div>
     </div>
   );

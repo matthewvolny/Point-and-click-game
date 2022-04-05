@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
-// import Context from "./context/context";
+import Context from "./context/context";
 import Login from "./components/Login";
 import SavedGamesList from "./components/SavedGamesList";
 import Map from "./components/Map";
@@ -426,237 +426,237 @@ function App() {
   // const history = createMemoryHistory(location);
 
   return (
-    // <Context.Provider value={{ isPlaying }}>
-    <div className="container">
-      {userLoggedIn ? (
-        <MemoryRouter /*history={history}*/>
-          <div className="top-flex">
-            <Routes>
-              <Route
-                path="/"
-                element={
-                  startingRoom ? (
-                    <Navigate to={`/room${startingRoom}`} />
-                  ) : (
-                    <Room1
+    <Context.Provider value={{ isPlaying }}>
+      <div className="container">
+        {userLoggedIn ? (
+          <MemoryRouter /*history={history}*/>
+            <div className="top-flex">
+              <Routes>
+                <Route
+                  path="/"
+                  element={
+                    startingRoom ? (
+                      <Navigate to={`/room${startingRoom}`} />
+                    ) : (
+                      <Room1
+                        roomEvaluateDetails={roomEvaluateDetails}
+                        updateCurrentRoom={updateCurrentRoom}
+                        // isPlaying={isPlaying}
+                        toggleSong={toggleSong}
+                      />
+                    )
+                  }
+                />
+                <Route
+                  path="/room2"
+                  element={
+                    <Room2
                       roomEvaluateDetails={roomEvaluateDetails}
                       updateCurrentRoom={updateCurrentRoom}
-                      isPlaying={isPlaying}
+                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
-                  )
-                }
+                  }
+                />
+                <Route
+                  path="/room3"
+                  element={
+                    <Room3
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      updateCurrentRoom={updateCurrentRoom}
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room4"
+                  element={
+                    <Room4
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      updateCurrentRoom={updateCurrentRoom}
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room5"
+                  element={
+                    <Room5
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      updateCurrentRoom={updateCurrentRoom}
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room6"
+                  element={
+                    <Room6
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      updateCurrentRoom={updateCurrentRoom}
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room7"
+                  element={
+                    <Room7
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      updateCurrentRoom={updateCurrentRoom}
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room8"
+                  element={
+                    <Room8
+                      updateItem={updateItem}
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      action={action}
+                      selectedItemInfoForAction={selectedItemInfoForAction}
+                      playerInventory={playerInventory}
+                      updateCurrentRoom={updateCurrentRoom}
+                      updateLocationsVisited={updateLocationsVisited}
+                      roomItemsCollected={roomItemsCollected}
+                      sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room9"
+                  element={
+                    <Room9
+                      updateItem={updateItem}
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      action={action}
+                      selectedItemInfoForAction={selectedItemInfoForAction}
+                      playerInventory={playerInventory}
+                      updateCurrentRoom={updateCurrentRoom}
+                      updateLocationsVisited={updateLocationsVisited}
+                      roomItemsCollected={roomItemsCollected}
+                      sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room10"
+                  element={
+                    <Room10
+                      updateItem={updateItem}
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      action={action}
+                      selectedItemInfoForAction={selectedItemInfoForAction}
+                      playerInventory={playerInventory}
+                      updateCurrentRoom={updateCurrentRoom}
+                      updateLocationsVisited={updateLocationsVisited}
+                      roomItemsCollected={roomItemsCollected}
+                      sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room11"
+                  element={
+                    <Room11
+                      updateItem={updateItem}
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      action={action}
+                      selectedItemInfoForAction={selectedItemInfoForAction}
+                      playerInventory={playerInventory}
+                      updateCurrentRoom={updateCurrentRoom}
+                      updateLocationsVisited={updateLocationsVisited}
+                      roomItemsCollected={roomItemsCollected}
+                      sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room12"
+                  element={
+                    <Room12
+                      updateItem={updateItem}
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      action={action}
+                      selectedItemInfoForAction={selectedItemInfoForAction}
+                      playerInventory={playerInventory}
+                      updateCurrentRoom={updateCurrentRoom}
+                      updateLocationsVisited={updateLocationsVisited}
+                      roomItemsCollected={roomItemsCollected}
+                      sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room13"
+                  element={
+                    <Room13
+                      updateItem={updateItem}
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      action={action}
+                      selectedItemInfoForAction={selectedItemInfoForAction}
+                      playerInventory={playerInventory}
+                      updateCurrentRoom={updateCurrentRoom}
+                      updateLocationsVisited={updateLocationsVisited}
+                      roomItemsCollected={roomItemsCollected}
+                      sidebarItemTriggeredEvents={sidebarItemTriggeredEvents} //!NOT NEEDED IN ROOMS WITHOUT CHARACTERS (I THINK)
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+              </Routes>
+              <Inventory
+                playerInventory={playerInventory}
+                inventoryItemClicked={inventoryItemClicked}
               />
-              <Route
-                path="/room2"
-                element={
-                  <Room2
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    updateCurrentRoom={updateCurrentRoom}
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
+            </div>
+            <div className="bottom-flex">
+              <Map
+                roomMapDetails={roomMapDetails}
+                updateCurrentRoom={updateCurrentRoom}
               />
-              <Route
-                path="/room3"
-                element={
-                  <Room3
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    updateCurrentRoom={updateCurrentRoom}
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
+              <Actions
+                updatePlayerAction={updatePlayerAction}
+                roomEvaluateDetails={roomEvaluateDetails.room}
+                // toggleClicked={toggleClicked}
               />
-              <Route
-                path="/room4"
-                element={
-                  <Room4
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    updateCurrentRoom={updateCurrentRoom}
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
+            </div>
+          </MemoryRouter>
+        ) : (
+          <>
+            <div className="title">Leaving Richard's Valley</div>
+            <div className="title-page-flex">
+              <SavedGamesList
+                userGames={userGames}
+                loginPastUser={loginPastUser}
               />
-              <Route
-                path="/room5"
-                element={
-                  <Room5
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    updateCurrentRoom={updateCurrentRoom}
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
+              <Login
+                signupUser={signupUser}
+                userId={userId}
+                startingRoom={startingRoom}
               />
-              <Route
-                path="/room6"
-                element={
-                  <Room6
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    updateCurrentRoom={updateCurrentRoom}
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
-              />
-              <Route
-                path="/room7"
-                element={
-                  <Room7
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    updateCurrentRoom={updateCurrentRoom}
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
-              />
-              <Route
-                path="/room8"
-                element={
-                  <Room8
-                    updateItem={updateItem}
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    action={action}
-                    selectedItemInfoForAction={selectedItemInfoForAction}
-                    playerInventory={playerInventory}
-                    updateCurrentRoom={updateCurrentRoom}
-                    updateLocationsVisited={updateLocationsVisited}
-                    roomItemsCollected={roomItemsCollected}
-                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
-              />
-              <Route
-                path="/room9"
-                element={
-                  <Room9
-                    updateItem={updateItem}
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    action={action}
-                    selectedItemInfoForAction={selectedItemInfoForAction}
-                    playerInventory={playerInventory}
-                    updateCurrentRoom={updateCurrentRoom}
-                    updateLocationsVisited={updateLocationsVisited}
-                    roomItemsCollected={roomItemsCollected}
-                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
-              />
-              <Route
-                path="/room10"
-                element={
-                  <Room10
-                    updateItem={updateItem}
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    action={action}
-                    selectedItemInfoForAction={selectedItemInfoForAction}
-                    playerInventory={playerInventory}
-                    updateCurrentRoom={updateCurrentRoom}
-                    updateLocationsVisited={updateLocationsVisited}
-                    roomItemsCollected={roomItemsCollected}
-                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
-              />
-              <Route
-                path="/room11"
-                element={
-                  <Room11
-                    updateItem={updateItem}
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    action={action}
-                    selectedItemInfoForAction={selectedItemInfoForAction}
-                    playerInventory={playerInventory}
-                    updateCurrentRoom={updateCurrentRoom}
-                    updateLocationsVisited={updateLocationsVisited}
-                    roomItemsCollected={roomItemsCollected}
-                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
-              />
-              <Route
-                path="/room12"
-                element={
-                  <Room12
-                    updateItem={updateItem}
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    action={action}
-                    selectedItemInfoForAction={selectedItemInfoForAction}
-                    playerInventory={playerInventory}
-                    updateCurrentRoom={updateCurrentRoom}
-                    updateLocationsVisited={updateLocationsVisited}
-                    roomItemsCollected={roomItemsCollected}
-                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
-              />
-              <Route
-                path="/room13"
-                element={
-                  <Room13
-                    updateItem={updateItem}
-                    roomEvaluateDetails={roomEvaluateDetails}
-                    action={action}
-                    selectedItemInfoForAction={selectedItemInfoForAction}
-                    playerInventory={playerInventory}
-                    updateCurrentRoom={updateCurrentRoom}
-                    updateLocationsVisited={updateLocationsVisited}
-                    roomItemsCollected={roomItemsCollected}
-                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents} //!NOT NEEDED IN ROOMS WITHOUT CHARACTERS (I THINK)
-                    isPlaying={isPlaying}
-                    toggleSong={toggleSong}
-                  />
-                }
-              />
-            </Routes>
-            <Inventory
-              playerInventory={playerInventory}
-              inventoryItemClicked={inventoryItemClicked}
-            />
-          </div>
-          <div className="bottom-flex">
-            <Map
-              roomMapDetails={roomMapDetails}
-              updateCurrentRoom={updateCurrentRoom}
-            />
-            <Actions
-              updatePlayerAction={updatePlayerAction}
-              roomEvaluateDetails={roomEvaluateDetails.room}
-              // toggleClicked={toggleClicked}
-            />
-          </div>
-        </MemoryRouter>
-      ) : (
-        <>
-          <div className="title">Leaving Richard's Valley</div>
-          <div className="title-page-flex">
-            <SavedGamesList
-              userGames={userGames}
-              loginPastUser={loginPastUser}
-            />
-            <Login
-              signupUser={signupUser}
-              userId={userId}
-              startingRoom={startingRoom}
-            />
-          </div>
-        </>
-      )}
-    </div>
-    // </Context.Provider>
+            </div>
+          </>
+        )}
+      </div>
+    </Context.Provider>
   );
 }
 

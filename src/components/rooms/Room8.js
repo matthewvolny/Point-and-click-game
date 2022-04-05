@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import room8 from "../../images/room8.jpg";
 import ImageMap from "image-map";
 import playButton from "../../images/play_.png";
 import pauseButton from "../../images/pause_.png";
+import Context from "../../context/context";
 import "./room.css";
 
 //map the string value to the variable holding the file
@@ -21,7 +22,7 @@ export default function Room8(props) {
   const [newImage, setNewImage] = useState();
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
-
+  const { isPlaying } = useContext(Context);
   useEffect(() => {
     ImageMap("img[usemap]");
   });
@@ -35,6 +36,10 @@ export default function Room8(props) {
   // useEffect(() => {
   //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
   // }, [newImage]);
+
+  const [imageMapLoaded, setImageMapLoaded] = useState(false);
+
+  useEffect(() => {}, []);
 
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
@@ -111,7 +116,7 @@ export default function Room8(props) {
   return (
     <div className="top-left-flex-container">
       <div className="player">
-        {props.isPlaying ? (
+        {isPlaying ? (
           <img
             onClick={() => props.toggleSong()}
             alt="pause button"
@@ -157,6 +162,9 @@ export default function Room8(props) {
           />
         </map>
       </div>
+      {/* <div className="text-box">
+        <p style={{ style: "--n:53" }}>{script}</p>
+      </div> */}
       <div className="text-box">{script}</div>
       <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
       {/* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  */}

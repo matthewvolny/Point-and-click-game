@@ -1,10 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
 import room12a from "../../images/room12a.jpg";
 import room12b from "../../images/room12b.jpg";
 import room12c from "../../images/room12c.jpg";
 import ImageMap from "image-map";
 import playButton from "../../images/play_.png";
 import pauseButton from "../../images/pause_.png";
+import Context from "../../context/context";
 import "./room.css";
 
 //map the string value to the variable holding the file
@@ -26,7 +27,7 @@ export default function Room12(props) {
   const [newImage, setNewImage] = useState();
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
-
+  const { isPlaying } = useContext(Context);
   useEffect(() => {
     ImageMap("img[usemap]");
   });
@@ -152,7 +153,7 @@ export default function Room12(props) {
   return (
     <div className="top-left-flex-container">
       <div className="player">
-        {props.isPlaying ? (
+        {isPlaying ? (
           <img
             onClick={() => props.toggleSong()}
             alt="pause button"

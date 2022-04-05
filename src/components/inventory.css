@@ -27,6 +27,8 @@
 
 .inventory-list {
   font-size: 1.35em;
+  font-family: "Coming Soon", cursive;
+  font-weight: bold;
   color: rgb(76, 76, 76);
   margin-top: 0;
   background-color: rgb(255, 188, 161);
