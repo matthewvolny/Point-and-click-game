@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
-import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
+import { Route, Routes, Navigate } from "react-router-dom";
+// import Context from "./context/context";
 import Login from "./components/Login";
 import SavedGamesList from "./components/SavedGamesList";
 import Map from "./components/Map";
@@ -425,6 +426,7 @@ function App() {
   // const history = createMemoryHistory(location);
 
   return (
+    // <Context.Provider value={{ isPlaying }}>
     <div className="container">
       {userLoggedIn ? (
         <MemoryRouter /*history={history}*/>
@@ -639,7 +641,7 @@ function App() {
         </MemoryRouter>
       ) : (
         <>
-          <div className="title">Leaving Richards Valley</div>
+          <div className="title">Leaving Richard's Valley</div>
           <div className="title-page-flex">
             <SavedGamesList
               userGames={userGames}
@@ -654,6 +656,7 @@ function App() {
         </>
       )}
     </div>
+    // </Context.Provider>
   );
 }
 

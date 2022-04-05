@@ -1,4 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef, useContext } from "react";
+// import Context from "../../context/context";
+
 import { useNavigate } from "react-router-dom";
 import room1 from "../../images/room1.jpg";
 import room2 from "../../images/room2.jpg";
@@ -9,10 +11,10 @@ import room6 from "../../images/room6.jpg";
 import room7 from "../../images/room7.jpg";
 import playButton from "../../images/play_.png";
 import pauseButton from "../../images/pause_.png";
-
 import "./room.css";
 
 export default function Room1(props) {
+  // const { isPlaying } = useContext(Context);
   const { entryScript, room } = props.roomEvaluateDetails;
   const [script, setScript] = useState(entryScript);
   const [imageDisplayed, setImageDisplayed] = useState(room1);
