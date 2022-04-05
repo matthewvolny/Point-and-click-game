@@ -17,6 +17,7 @@ import Room9 from "./components/rooms/Room9";
 import Room10 from "./components/rooms/Room10";
 import Room11 from "./components/rooms/Room11";
 import Room12 from "./components/rooms/Room12";
+import Room13 from "./components/rooms/Room13";
 import axios from "axios";
 import { roomMap, roomEvaluateInfo } from "./mock data/data";
 import { MemoryRouter } from "react-router";
@@ -602,17 +603,28 @@ function App() {
                   />
                 }
               />
+              <Route
+                path="/room13"
+                element={
+                  <Room13
+                    updateItem={updateItem}
+                    roomEvaluateDetails={roomEvaluateDetails}
+                    action={action}
+                    selectedItemInfoForAction={selectedItemInfoForAction}
+                    playerInventory={playerInventory}
+                    updateCurrentRoom={updateCurrentRoom}
+                    updateLocationsVisited={updateLocationsVisited}
+                    roomItemsCollected={roomItemsCollected}
+                    sidebarItemTriggeredEvents={sidebarItemTriggeredEvents} //!NOT NEEDED IN ROOMS WITHOUT CHARACTERS (I THINK)
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
+                  />
+                }
+              />
             </Routes>
             <Inventory
-              // action={action}
-              // selectedItemInfo={selectedItemInfo}
-              // selectedItemInfoForAction={selectedItemInfoForAction}
-              // updateInventory={updateInventory}
               playerInventory={playerInventory}
-              // isPlaying={isPlaying}
-              // toggleSong={toggleSong}
               inventoryItemClicked={inventoryItemClicked}
-              // inventoryItemToDelete={inventoryItemToDelete}
             />
           </div>
           <div className="bottom-flex">

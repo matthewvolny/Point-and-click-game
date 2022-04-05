@@ -96,7 +96,7 @@ const roomMap = [
       { roomNum: "", route: "", position: "" },
       { roomNum: "9", route: "/room9", position: "left" },
       { roomNum: "12", route: "/room12", position: "right" },
-      { roomNum: "", route: "", position: "" },
+      { roomNum: "13", route: "/room13", position: "bottom" },
     ],
   },
   {
@@ -104,6 +104,15 @@ const roomMap = [
     mapCoordinates: [
       { roomNum: "", route: "", position: "" },
       { roomNum: "11", route: "/room11", position: "left" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+    ],
+  },
+  {
+    currentRoom: 13,
+    mapCoordinates: [
+      { roomNum: "11", route: "/room11", position: "top" },
+      { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
     ],
@@ -396,7 +405,8 @@ let roomEvaluateInfo = [
     reentryScript: "There's Ellie!",
     images: [
       { file: "room12a", itemsCollected: [] },
-      { file: "room12b", itemsCollected: ["Acorn"] },
+      { file: "room12b", itemsCollected: [] },
+      { file: "room12c", itemsCollected: ["Acorns"] },
     ],
     character: {
       characterName: "Ellie",
@@ -442,6 +452,69 @@ let roomEvaluateInfo = [
           text: "Best ask Ellie first...",
           effect: "",
           canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: {
+          text: "",
+          effect: "",
+        },
+      },
+    ],
+  },
+  {
+    room: 13,
+    visited: false,
+    itemsCollected: [],
+    entryScript: "It is a rocky field, uphill from the pond.",
+    reentryScript: `"it is quite barren over here.`,
+    images: [
+      { file: "room13a", itemsCollected: [] },
+      { file: "room13b", itemsCollected: ["Pebble"] },
+    ],
+    character: {
+      characterName: "Ellie",
+      item: "Leaf",
+      active: true,
+      script:
+        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take some acorns, on me.",
+    },
+    items: [
+      {
+        name: "Boulder",
+        present: true,
+        Look: {
+          text: "It is a large boulder.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "You see no use for this, otherwise it would be impossible to move.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: {
+          text: `"keep it together, your talking to a rock.`,
+          effect: "",
+        },
+      },
+      {
+        name: "Pebble",
+        present: true,
+        Look: {
+          text: "A small round stone.  This would look nice on your windowsill you think to yourself.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: {
+          text: "",
+          effect: "",
+        },
+        Take: {
+          text: "You have taken the pebble",
+          effect: "",
+          canTake: true,
         },
         Hit: { text: "", effect: "" },
         Speak: {
