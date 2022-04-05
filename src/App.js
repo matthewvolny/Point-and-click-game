@@ -202,6 +202,7 @@ function App() {
   });
 
   //(5) moves the "takeable" item into inventory (and adds a room #)
+  //!it would be good to sort these inventory items before putting them in playerInventory(important for step(7))
   const { playerAction, item } = action;
   const { canTake } = selectedItemInfoForAction;
   useEffect(() => {
@@ -242,27 +243,24 @@ function App() {
     }
   }, [playerInventory]);
 
-  //!
-  //!
-  //!
   //(7)add items from player inventory to an array in the correct room of the game state object
   useEffect(() => {
     // if (isMountedTwo.current) {
+    let index = 1;
     let itemsCollectedArray = [];
     if (playerInventory.length !== 0) {
       for (let i = 0; i < roomEvaluateInfo.length; i++) {
         for (let j = 0; j < playerInventory.length; j++) {
-          // console.log("special area");
-          // console.log(playerInventory[j].room);
-          // console.log(roomEvaluateInfo[i].room);
-          if (playerInventory[j].room == roomEvaluateInfo[i].room) {
-            // console.log("same room");
+          if (roomEvaluateInfo[i].room == playerInventory[j].room) {
+            console.log("same room");
             itemsCollectedArray.push(playerInventory[j].item);
-            roomEvaluateInfo[i].itemsCollected = itemsCollectedArray;
           }
         }
+        roomEvaluateInfo[i].itemsCollected = itemsCollectedArray;
+        itemsCollectedArray = [];
       }
     }
+
     console.log(roomEvaluateInfo);
     saveGameState();
     // } else {
