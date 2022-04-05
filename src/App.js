@@ -440,6 +440,8 @@ function App() {
                     <Room1
                       roomEvaluateDetails={roomEvaluateDetails}
                       updateCurrentRoom={updateCurrentRoom}
+                      isPlaying={isPlaying}
+                      toggleSong={toggleSong}
                     />
                   )
                 }
@@ -450,6 +452,8 @@ function App() {
                   <Room2
                     roomEvaluateDetails={roomEvaluateDetails}
                     updateCurrentRoom={updateCurrentRoom}
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
                   />
                 }
               />
@@ -459,6 +463,8 @@ function App() {
                   <Room3
                     roomEvaluateDetails={roomEvaluateDetails}
                     updateCurrentRoom={updateCurrentRoom}
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
                   />
                 }
               />
@@ -468,6 +474,8 @@ function App() {
                   <Room4
                     roomEvaluateDetails={roomEvaluateDetails}
                     updateCurrentRoom={updateCurrentRoom}
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
                   />
                 }
               />
@@ -477,6 +485,8 @@ function App() {
                   <Room5
                     roomEvaluateDetails={roomEvaluateDetails}
                     updateCurrentRoom={updateCurrentRoom}
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
                   />
                 }
               />
@@ -486,6 +496,8 @@ function App() {
                   <Room6
                     roomEvaluateDetails={roomEvaluateDetails}
                     updateCurrentRoom={updateCurrentRoom}
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
                   />
                 }
               />
@@ -495,6 +507,8 @@ function App() {
                   <Room7
                     roomEvaluateDetails={roomEvaluateDetails}
                     updateCurrentRoom={updateCurrentRoom}
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
                   />
                 }
               />
@@ -511,6 +525,8 @@ function App() {
                     updateLocationsVisited={updateLocationsVisited}
                     roomItemsCollected={roomItemsCollected}
                     sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
                   />
                 }
               />
@@ -527,6 +543,8 @@ function App() {
                     updateLocationsVisited={updateLocationsVisited}
                     roomItemsCollected={roomItemsCollected}
                     sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
                   />
                 }
               />
@@ -543,6 +561,8 @@ function App() {
                     updateLocationsVisited={updateLocationsVisited}
                     roomItemsCollected={roomItemsCollected}
                     sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
                   />
                 }
               />
@@ -559,6 +579,8 @@ function App() {
                     updateLocationsVisited={updateLocationsVisited}
                     roomItemsCollected={roomItemsCollected}
                     sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
                   />
                 }
               />
@@ -575,6 +597,8 @@ function App() {
                     updateLocationsVisited={updateLocationsVisited}
                     roomItemsCollected={roomItemsCollected}
                     sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
+                    isPlaying={isPlaying}
+                    toggleSong={toggleSong}
                   />
                 }
               />
@@ -585,8 +609,8 @@ function App() {
               // selectedItemInfoForAction={selectedItemInfoForAction}
               // updateInventory={updateInventory}
               playerInventory={playerInventory}
-              isPlaying={isPlaying}
-              toggleSong={toggleSong}
+              // isPlaying={isPlaying}
+              // toggleSong={toggleSong}
               inventoryItemClicked={inventoryItemClicked}
               // inventoryItemToDelete={inventoryItemToDelete}
             />

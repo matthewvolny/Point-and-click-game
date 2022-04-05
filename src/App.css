@@ -232,13 +232,13 @@ body {
 .top-flex {
   display: flex;
   justify-content: space-between;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   height: 70%;
 }
 
 .bottom-flex {
   display: flex;
   justify-content: space-between;
-  border: 1px solid green;
+  /* border: 1px solid green; */
   height: 30%;
 }

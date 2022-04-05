@@ -1,6 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
 import room11 from "../../images/room11.jpg";
 import ImageMap from "image-map";
+import playButton from "../../images/play_.png";
+import pauseButton from "../../images/pause_.png";
+import "./room.css";
 
 //map the string value to the variable holding the file
 const imagesArrayObject = {
@@ -107,9 +110,23 @@ export default function Room11(props) {
 
   return (
     <div className="top-left-flex-container">
+      <div className="player">
+        {props.isPlaying ? (
+          <img
+            onClick={() => props.toggleSong()}
+            alt="pause button"
+            src={pauseButton}
+          ></img>
+        ) : (
+          <img
+            onClick={() => props.toggleSong()}
+            alt="play button"
+            src={playButton}
+          ></img>
+        )}
+      </div>
       <div className="image-container">
         <img src={currentImage} useMap="#image-map" alt="room9a" />
-
         <map name="image-map">
           <area
             onClick={handleClick}

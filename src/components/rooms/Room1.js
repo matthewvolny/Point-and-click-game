@@ -7,8 +7,10 @@ import room4 from "../../images/room4.jpg";
 import room5 from "../../images/room5.jpg";
 import room6 from "../../images/room6.jpg";
 import room7 from "../../images/room7.jpg";
+import playButton from "../../images/play_.png";
+import pauseButton from "../../images/pause_.png";
 
-import "./room1.css";
+import "./room.css";
 
 export default function Room1(props) {
   const { entryScript, room } = props.roomEvaluateDetails;
@@ -67,6 +69,21 @@ export default function Room1(props) {
 
   return (
     <div className="top-left-flex-container">
+      <div className="player">
+        {props.isPlaying ? (
+          <img
+            onClick={() => props.toggleSong()}
+            alt="pause button"
+            src={pauseButton}
+          ></img>
+        ) : (
+          <img
+            onClick={() => props.toggleSong()}
+            alt="play button"
+            src={playButton}
+          ></img>
+        )}
+      </div>
       <div className="image-container">
         <img className="background-img" src={imageDisplayed} alt="background" />
       </div>
