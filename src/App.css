@@ -246,6 +246,8 @@ body {
   justify-content: space-between;
   /* border: 1px solid green; */
   height: 30%;
+  background-color: rgb(246, 246, 246);
+  margin-top: 1.3em;
 }
 
 @media only screen and (max-width: 698px) {
