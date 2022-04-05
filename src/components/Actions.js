@@ -18,6 +18,7 @@ export default function Actions(props) {
     speak: speak,
   };
 
+  //handles player actions, highlights and un-highlights action buttons
   const handleClick = (e) => {
     props.updatePlayerAction(e.target.textContent);
     if (!actionClicked) {
@@ -30,6 +31,13 @@ export default function Actions(props) {
       setActionClicked(e.target.className);
     }
   };
+
+  //unclicks player action buttons when changing rooms
+  useEffect(() => {
+    if (actionClicked) {
+      actionDOMObject[actionClicked].removeAttribute("id");
+    }
+  }, [props.roomEvaluateDetails]);
 
   return (
     <div className="player-actions">

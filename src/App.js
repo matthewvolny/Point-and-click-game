@@ -598,6 +598,7 @@ function App() {
             />
             <Actions
               updatePlayerAction={updatePlayerAction}
+              roomEvaluateDetails={roomEvaluateDetails.room}
               // toggleClicked={toggleClicked}
             />
           </div>
