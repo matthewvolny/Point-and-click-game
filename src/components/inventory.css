@@ -8,29 +8,24 @@
   padding: 1em;
   letter-spacing: 0.05em;
   line-height: 1.4em;
-  border: 1px solid red;
-  /* margin-top: -50px;
-  margin-left: -200px;
-  z-index: -10;
-  background-color: aquamarine;*/
+  /* border: 1px solid red; */
 }
-
-/* .white-spacer {
-  background-color: white;
-  height: 50px;
-  width: 125%;
-  margin-bottom: -25px;
-} */
 
 .inventory-heading {
   font-size: 1.4em;
+  color: white;
+  text-align: center;
   margin-top: 0;
+  background-color: turquoise;
+  width: 100%;
+  /* height: 10%; */
 }
 
 .inventory-list {
   font-size: 1.3em;
   color: rgb(76, 76, 76);
   border-top: solid 4px turquoise;
+  background-color: rgb(221, 255, 244);
   display: flex;
   justify-content: center;
   align-items: flex-start;

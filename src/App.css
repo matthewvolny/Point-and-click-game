@@ -5,6 +5,7 @@
 
 body {
   margin: 2em;
+  background-color: #fefefe;
 }
 
 * + * {
@@ -12,7 +13,7 @@ body {
 }
 
 .container {
-  height: 75vh;
+  height: 79vh;
   /* border: 1px solid red; */
   border-radius: 1em;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
@@ -20,6 +21,10 @@ body {
   padding: 2em;
   display: flex;
   flex-direction: column;
+  background-color: white;
+  min-width: 496px;
+  max-width: 796px;
+  min-height: 575px;
 }
 
 /* login styling */
@@ -241,4 +246,14 @@ body {
   justify-content: space-between;
   /* border: 1px solid green; */
   height: 30%;
+}
+
+@media only screen and (max-width: 698px) {
+  .bottom-flex {
+    height: 25%;
+  }
+
+  .top-flex {
+    flex-grow: 1;
+  }
 }

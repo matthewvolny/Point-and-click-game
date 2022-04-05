@@ -2,17 +2,17 @@
   margin-top: 0;
   display: flex;
   flex-direction: column;
-  width: 72%;
-  border: solid 1px gold;
+  width: 73%;
   padding: 0;
   margin: 0;
   height: 100%;
-  max-width: 435px;
+  max-width: 525px;
   position: relative;
+  overflow: hidden;
+  /* border-radius: 0.4em; */
 }
 
 .player {
-  /* margin-left: auto; */
   left: 20px;
   top: 20px;
   position: absolute;
@@ -20,25 +20,24 @@
 
 .player > img {
   width: 40px;
-  /* float: right; */
 }
 
 .image-container {
   margin-top: 0;
   width: 100%;
-  border: 1px solid blue;
 }
 
 .image-container img {
+  display: block;
+  /* object-fit: cover; */
   width: 100%;
-  border: 1px solid tan;
+  border: 5px solid purple;
 }
 
 .text-box {
   margin-top: 0;
-  border: 1px solid purple;
+  /* border-top: 2px solid purple; */
   background-color: rgb(241, 234, 252);
-  height: 20%;
   flex-grow: 1;
   font-size: 1.1rem;
   letter-spacing: 0.1em;
