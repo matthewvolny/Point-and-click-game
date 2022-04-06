@@ -25,7 +25,7 @@ body {
   background-color: white;
   min-width: 586px;
   max-width: 796px;
-  min-height: 740px;
+  min-height: 780px;
 }
 
 /* login styling */
@@ -34,16 +34,20 @@ body {
   font-size: 2.2rem;
   text-align: center;
   font-family: "Press Start 2P", cursive;
-  color: rgb(152, 237, 210);
+  color: rgb(199, 249, 233);
   letter-spacing: 0.1em;
-  line-height: 1.3em;
+  line-height: 1.65em;
+  margin-top: 0.5em;
+  padding: 0.5em;
+  background-color: rgb(149, 149, 149);
+  /* border-radius: 1em 1em 0 0; */
 }
 
 .title-page-flex {
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
-  margin-top: 2.2em;
+  /* margin-top: 3em; */
   overflow: hidden;
   /* border: 1px solid rgb(193, 193, 23); */
 }
@@ -64,7 +68,10 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
+  /* font-family: "Coming Soon", cursive; */
+  /* font-weight: bold; */
+  letter-spacing: 0.06em;
   width: 100%;
   flex-grow: 1;
   background-color: rgb(237, 206, 237);
@@ -163,13 +170,15 @@ body {
 }
 
 .login-flex * + * {
-  margin-top: 1.5em;
+  margin-top: 1.62em;
 }
 
 .login-heading {
   margin-top: 2.5rem;
   margin-bottom: 0.1rem;
-  font-size: 1.7rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.06em;
+  line-height: 1.35em;
   width: 80%;
 }
 
@@ -198,11 +207,12 @@ body {
 } */
 
 .login-form input {
-  font-size: 1.2rem;
-  width: 74%;
-  padding: 0.4em;
+  font-size: 1.1rem;
+  width: 65%;
+  padding: 0.4em 0.6em;
   border-radius: 1em;
-  /* border: 2px solid rgb(109, 109, 208); */
+  border: 2px solid rgb(118, 118, 118);
+  letter-spacing: 0.09em;
 }
 
 ::placeholder {
@@ -216,9 +226,10 @@ body {
   border-radius: 1em;
   color: white;
   padding: 0.4em;
-  width: 80%;
+  width: 75%;
   border: 2px solid rgb(109, 109, 208);
   background-color: rgb(109, 109, 208);
+  letter-spacing: 0.06em;
 }
 
 .submit-button:hover {
@@ -231,8 +242,30 @@ body {
   width: 80%;
   margin-top: auto;
   margin-bottom: 2.5rem;
+  letter-spacing: 0.06em;
 }
 
+@media only screen and (min-width: 930px) {
+  .login-flex * + * {
+    margin-top: 2em;
+  }
+  /*
+  .login-heading {
+    margin-top: 2.5rem;
+    margin-bottom: 0.1rem;
+    font-size: 1.5rem;
+    letter-spacing: 0.1em;
+    line-height: 1.35em;
+    width: 80%;
+  }
+  .login-form input {
+    font-size: 1.1rem;
+    width: 65%;
+    padding: 0.4em 0.6em;
+    border-radius: 1em;
+    border: 2px solid rgb(118, 118, 118);
+  } */
+}
 /* game styling */
 .top-flex {
   display: flex;
