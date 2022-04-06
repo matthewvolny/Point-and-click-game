@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import room8 from "../../images/room8.jpg";
+import room8 from "../../images/room8-100.jpg";
 import ImageMap from "image-map";
 import playButton from "../../images/play_.png";
 import pauseButton from "../../images/pause_.png";
@@ -36,10 +36,6 @@ export default function Room8(props) {
   // useEffect(() => {
   //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
   // }, [newImage]);
-
-  const [imageMapLoaded, setImageMapLoaded] = useState(false);
-
-  useEffect(() => {}, []);
 
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
