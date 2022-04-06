@@ -215,22 +215,6 @@ body {
     margin-top: 0.65rem;
   }
 }
-/*
-  .login-heading {
-    margin-top: 2.5rem;
-    margin-bottom: 0.1rem;
-    font-size: 1.5rem;
-    letter-spacing: 0.1em;
-    line-height: 1.35em;
-    width: 80%;
-  }
-  .login-form input {
-    font-size: 1.1rem;
-    width: 65%;
-    padding: 0.4em 0.6em;
-    border-radius: 1em;
-    border: 2px solid rgb(118, 118, 118);
-  } */
 
 /* game styling */
 .top-flex {
@@ -243,18 +227,7 @@ body {
 .bottom-flex {
   display: flex;
   justify-content: space-between;
-  /* border: 1px solid green; */
   height: 25%;
   background-color: rgb(246, 246, 246);
   margin-top: 1.3em;
 }
-
-/* @media only screen and (max-width: 698px) {
-  .bottom-flex {
-    height: 25%;
-  }
-
-  .top-flex {
-    flex-grow: 1;
-  }
-} */
