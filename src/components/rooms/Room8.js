@@ -23,7 +23,7 @@ export default function Room8(props) {
   const [newImage, setNewImage] = useState();
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
-  const { isPlaying } = useContext(Context);
+  const { isPlaying, action } = useContext(Context);
   useEffect(() => {
     ImageMap("img[usemap]");
   });

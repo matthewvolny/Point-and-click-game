@@ -427,7 +427,7 @@ function App() {
   // const history = createMemoryHistory(location);
 
   return (
-    <Context.Provider value={{ isPlaying }}>
+    <Context.Provider value={{ isPlaying, action, playerInventory }}>
       <div className="container">
         {userLoggedIn ? (
           <MemoryRouter /*history={history}*/>
@@ -442,7 +442,6 @@ function App() {
                       <Room1
                         roomEvaluateDetails={roomEvaluateDetails}
                         updateCurrentRoom={updateCurrentRoom}
-                        // isPlaying={isPlaying}
                         toggleSong={toggleSong}
                       />
                     )
@@ -454,7 +453,6 @@ function App() {
                     <Room2
                       roomEvaluateDetails={roomEvaluateDetails}
                       updateCurrentRoom={updateCurrentRoom}
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -465,7 +463,6 @@ function App() {
                     <Room3
                       roomEvaluateDetails={roomEvaluateDetails}
                       updateCurrentRoom={updateCurrentRoom}
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -476,7 +473,6 @@ function App() {
                     <Room4
                       roomEvaluateDetails={roomEvaluateDetails}
                       updateCurrentRoom={updateCurrentRoom}
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -487,7 +483,6 @@ function App() {
                     <Room5
                       roomEvaluateDetails={roomEvaluateDetails}
                       updateCurrentRoom={updateCurrentRoom}
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -498,7 +493,6 @@ function App() {
                     <Room6
                       roomEvaluateDetails={roomEvaluateDetails}
                       updateCurrentRoom={updateCurrentRoom}
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -509,7 +503,6 @@ function App() {
                     <Room7
                       roomEvaluateDetails={roomEvaluateDetails}
                       updateCurrentRoom={updateCurrentRoom}
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -522,12 +515,10 @@ function App() {
                       roomEvaluateDetails={roomEvaluateDetails}
                       action={action}
                       selectedItemInfoForAction={selectedItemInfoForAction}
-                      playerInventory={playerInventory}
                       updateCurrentRoom={updateCurrentRoom}
                       updateLocationsVisited={updateLocationsVisited}
                       roomItemsCollected={roomItemsCollected}
                       sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -540,12 +531,10 @@ function App() {
                       roomEvaluateDetails={roomEvaluateDetails}
                       action={action}
                       selectedItemInfoForAction={selectedItemInfoForAction}
-                      playerInventory={playerInventory}
                       updateCurrentRoom={updateCurrentRoom}
                       updateLocationsVisited={updateLocationsVisited}
                       roomItemsCollected={roomItemsCollected}
                       sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -558,12 +547,10 @@ function App() {
                       roomEvaluateDetails={roomEvaluateDetails}
                       action={action}
                       selectedItemInfoForAction={selectedItemInfoForAction}
-                      playerInventory={playerInventory}
                       updateCurrentRoom={updateCurrentRoom}
                       updateLocationsVisited={updateLocationsVisited}
                       roomItemsCollected={roomItemsCollected}
                       sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -576,12 +563,10 @@ function App() {
                       roomEvaluateDetails={roomEvaluateDetails}
                       action={action}
                       selectedItemInfoForAction={selectedItemInfoForAction}
-                      playerInventory={playerInventory}
                       updateCurrentRoom={updateCurrentRoom}
                       updateLocationsVisited={updateLocationsVisited}
                       roomItemsCollected={roomItemsCollected}
                       sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -594,12 +579,10 @@ function App() {
                       roomEvaluateDetails={roomEvaluateDetails}
                       action={action}
                       selectedItemInfoForAction={selectedItemInfoForAction}
-                      playerInventory={playerInventory}
                       updateCurrentRoom={updateCurrentRoom}
                       updateLocationsVisited={updateLocationsVisited}
                       roomItemsCollected={roomItemsCollected}
                       sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -612,12 +595,10 @@ function App() {
                       roomEvaluateDetails={roomEvaluateDetails}
                       action={action}
                       selectedItemInfoForAction={selectedItemInfoForAction}
-                      playerInventory={playerInventory}
                       updateCurrentRoom={updateCurrentRoom}
                       updateLocationsVisited={updateLocationsVisited}
                       roomItemsCollected={roomItemsCollected}
                       sidebarItemTriggeredEvents={sidebarItemTriggeredEvents} //!NOT NEEDED IN ROOMS WITHOUT CHARACTERS (I THINK)
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
@@ -630,12 +611,10 @@ function App() {
                       roomEvaluateDetails={roomEvaluateDetails}
                       action={action}
                       selectedItemInfoForAction={selectedItemInfoForAction}
-                      playerInventory={playerInventory}
                       updateCurrentRoom={updateCurrentRoom}
                       updateLocationsVisited={updateLocationsVisited}
                       roomItemsCollected={roomItemsCollected}
                       sidebarItemTriggeredEvents={sidebarItemTriggeredEvents} //!NOT NEEDED IN ROOMS WITHOUT CHARACTERS (I THINK)
-                      // isPlaying={isPlaying}
                       toggleSong={toggleSong}
                     />
                   }
