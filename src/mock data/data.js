@@ -114,6 +114,15 @@ const roomMap = [
       { roomNum: "11", route: "/room11", position: "top" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
+      { roomNum: "14", route: "/room14", position: "bottom" },
+    ],
+  },
+  {
+    currentRoom: 14,
+    mapCoordinates: [
+      { roomNum: "13", route: "/room13", position: "top" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
     ],
   },
@@ -470,6 +479,68 @@ let roomEvaluateInfo = [
     images: [
       { file: "room13a", itemsCollected: [] },
       { file: "room13b", itemsCollected: ["Pebble"] },
+    ],
+    character: {
+      characterName: "Ellie",
+      item: "Leaf",
+      active: true,
+      script:
+        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take some acorns, on me.",
+    },
+    items: [
+      {
+        name: "Boulder",
+        present: true,
+        Look: {
+          text: "It is a large boulder.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "You see no use for this, otherwise it would be impossible to move.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: {
+          text: `"keep it together, your talking to a rock.`,
+          effect: "",
+        },
+      },
+      {
+        name: "Pebble",
+        present: true,
+        Look: {
+          text: "A small round stone.  This would look nice on your windowsill you think to yourself.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: {
+          text: "",
+          effect: "",
+        },
+        Take: {
+          text: "You have taken the pebble",
+          effect: "",
+          canTake: true,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: {
+          text: "",
+          effect: "",
+        },
+      },
+    ],
+  },
+  {
+    room: 14,
+    visited: false,
+    itemsCollected: [],
+    entryScript: "A mostly barren hilltop, with stacked stones.",
+    reentryScript: `"this place gives me the creeps."`,
+    images: [
+      { file: "room14", itemsCollected: [] },
     ],
     character: {
       characterName: "Ellie",

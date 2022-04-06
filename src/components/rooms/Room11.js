@@ -152,8 +152,6 @@ export default function Room11(props) {
         </map>
       </div>
       <div className="text-box">{script}</div>
-      <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
-      {/* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  */}
     </div>
   );
 }

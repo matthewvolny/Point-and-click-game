@@ -17,7 +17,7 @@ export default function Room13(props) {
   const { entryScript, reentryScript, images, room, visited, itemsCollected } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
-  const isMountedTwo = useRef(false);
+  // const isMountedTwo = useRef(false);
   const [script, setScript] = useState();
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
@@ -196,8 +196,6 @@ export default function Room13(props) {
         </map>
       </div>
       <div className="text-box">{script}</div>
-      <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
-      {/* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  */}
     </div>
   );
 }

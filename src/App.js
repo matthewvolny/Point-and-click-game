@@ -19,6 +19,7 @@ import Room10 from "./components/rooms/Room10";
 import Room11 from "./components/rooms/Room11";
 import Room12 from "./components/rooms/Room12";
 import Room13 from "./components/rooms/Room13";
+import Room14 from "./components/rooms/Room14";
 import axios from "axios";
 import { roomMap, roomEvaluateInfo } from "./mock data/data";
 import { MemoryRouter } from "react-router";
@@ -607,6 +608,24 @@ function App() {
                   path="/room13"
                   element={
                     <Room13
+                      updateItem={updateItem}
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      action={action}
+                      selectedItemInfoForAction={selectedItemInfoForAction}
+                      playerInventory={playerInventory}
+                      updateCurrentRoom={updateCurrentRoom}
+                      updateLocationsVisited={updateLocationsVisited}
+                      roomItemsCollected={roomItemsCollected}
+                      sidebarItemTriggeredEvents={sidebarItemTriggeredEvents} //!NOT NEEDED IN ROOMS WITHOUT CHARACTERS (I THINK)
+                      // isPlaying={isPlaying}
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room14"
+                  element={
+                    <Room14
                       updateItem={updateItem}
                       roomEvaluateDetails={roomEvaluateDetails}
                       action={action}

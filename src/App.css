@@ -13,7 +13,7 @@ body {
 }
 
 .container {
-  height: 79vh;
+  height: 80vh;
   /* border: 1px solid red; */
   border-radius: 1em;
   box-shadow: 10px 10px 15px rgba(0, 0, 0, 0.1);
@@ -21,10 +21,11 @@ body {
   padding: 2em;
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
   background-color: white;
-  min-width: 496px;
+  min-width: 586px;
   max-width: 796px;
-  min-height: 575px;
+  min-height: 740px;
 }
 
 /* login styling */
@@ -233,24 +234,23 @@ body {
 }
 
 /* game styling */
-
 .top-flex {
   display: flex;
   justify-content: space-between;
-  /* border: 1px solid green; */
   height: 70%;
+  margin-top: 0.2em; /*pushes down top and bottom flex boxes, makes up for flex-start*/
 }
 
 .bottom-flex {
   display: flex;
   justify-content: space-between;
   /* border: 1px solid green; */
-  height: 30%;
+  height: 25%;
   background-color: rgb(246, 246, 246);
   margin-top: 1.3em;
 }
 
-@media only screen and (max-width: 698px) {
+/* @media only screen and (max-width: 698px) {
   .bottom-flex {
     height: 25%;
   }
@@ -258,4 +258,4 @@ body {
   .top-flex {
     flex-grow: 1;
   }
-}
+} */

@@ -1,9 +1,10 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import room8 from "../../images/room8-100.jpg";
+import room8 from "../../images/room8.jpg";
 import ImageMap from "image-map";
 import playButton from "../../images/play_.png";
 import pauseButton from "../../images/pause_.png";
 import Context from "../../context/context";
+// import rightArrow from "../../images/right-arrow-pink.png";
 import "./room.css";
 
 //map the string value to the variable holding the file
@@ -158,12 +159,13 @@ export default function Room8(props) {
           />
         </map>
       </div>
+      {/* <div>
+        <img alt="right arrow" src={rightArrow} />
+      </div> */}
       {/* <div className="text-box">
         <p style={{ style: "--n:53" }}>{script}</p>
       </div> */}
       <div className="text-box">{script}</div>
-      <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
-      {/* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  */}
     </div>
   );
 }

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import room9a from "../../images/room9a-300.jpg";
-import room9b from "../../images/room9b-300.jpg";
+import room9a from "../../images/room9a.jpg";
+import room9b from "../../images/room9b.jpg";
 import ImageMap from "image-map";
 import playButton from "../../images/play_.png";
 import pauseButton from "../../images/pause_.png";
@@ -161,8 +161,6 @@ export default function Room9(props) {
         </map>
       </div>
       <div className="text-box">{script}</div>
-      <script src="https://unpkg.com/image-map/dist/image-map.js"></script>
-      {/* <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>  */}
     </div>
   );
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import room10a from "../../images/room10a.jpg";
+import room14 from "../../images/room14.jpg";
 import ImageMap from "image-map";
 import playButton from "../../images/play_.png";
 import pauseButton from "../../images/pause_.png";
@@ -8,13 +8,14 @@ import "./room.css";
 
 //map the string value to the variable holding the file
 const imagesArrayObject = {
-  room10a: room10a,
+  room14: room14,
 };
 
-export default function Room10(props) {
+export default function Room14(props) {
   const { entryScript, reentryScript, images, room, visited, itemsCollected } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
+  // const isMountedTwo = useRef(false);
   const [script, setScript] = useState();
   const { playerAction } = props.action;
   const { text } = props.selectedItemInfoForAction;
@@ -37,11 +38,47 @@ export default function Room10(props) {
   //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
   // }, [newImage]);
 
+  // const [mapReturn, setMapReturn] = useState(false);
+
+  //triggered when sidebar items are used on characters, changes image and script
+  // useEffect(() => {
+  //   if (props.sidebarItemTriggeredEvents) {
+  //     const ellie = document.querySelector(".Ellie");
+  //     const { script, image } = props.sidebarItemTriggeredEvents;
+  //     setScript(script);
+  //     setCurrentImage(imagesArrayObject[image]);
+  //     //remove image map zone, then puts it back to remove green circle on image change
+  //     ellie.remove();
+  //     setMapReturn(true);
+  //     let timer = setTimeout(() => {
+  //       setCurrentImage(imagesArrayObject["room13a"]);
+  //       setScript();
+  //     }, 5000);
+  //     return () => {
+  //       clearTimeout(timer);
+  //     };
+  //   }
+  // }, [props.sidebarItemTriggeredEvents]);
+
+  //area of the map to return following click(resets image-map green circle)
+  // const returnedMapArea = (
+  //   <area
+  //     onClick={handleClick}
+  //     className="Ellie"
+  //     target=""
+  //     alt="Ellie"
+  //     title="Ellie"
+  //     href=""
+  //     coords="747,1139,269"
+  //     shape="circle"
+  //   />
+  // );
+
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
     newImage
       ? setCurrentImage(newImage)
-      : setCurrentImage(imagesArrayObject["room10a"]);
+      : setCurrentImage(imagesArrayObject["room14"]);
   }, [newImage]);
 
   //changes the image based on the items collected in the room
@@ -59,7 +96,7 @@ export default function Room10(props) {
     });
   }, [itemsCollected, room]);
 
-  //remove clickable image-map areas are items are taken
+  //remove clickable image-map areas as item is taken
   useEffect(() => {
     console.log(`${itemsCollected[itemsCollected.length - 1]}`);
     const item = document.querySelector(
@@ -127,27 +164,31 @@ export default function Room10(props) {
         )}
       </div>
       <div className="image-container">
-        <img src={currentImage} useMap="#image-map" alt="room10a" />
-
+        <img
+          className="background"
+          src={currentImage}
+          alt="entryway"
+          useMap="#image-map"
+        />
         <map name="image-map">
           <area
             onClick={handleClick}
+            className="Rock statue"
             target=""
-            className="Mark"
-            alt="Mark"
-            title="Mark"
+            alt="Rock statue"
+            title="Rock statue"
             href=""
-            coords="1175,1295,348"
+            coords="1353,904,269"
             shape="circle"
           />
           <area
             onClick={handleClick}
+            className="Tall rock statue"
             target=""
-            className="Flower"
-            alt="Flower"
-            title="Flower"
+            alt="Tall rock statue"
+            title="Tall rock statue"
             href=""
-            coords="2240,1180,151"
+            coords="405,882,314"
             shape="circle"
           />
         </map>
