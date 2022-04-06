@@ -43,7 +43,8 @@
 }
 
 .inventory-item:hover {
-  font-weight: bold;
+  color: rgb(65, 125, 228);
+  transform: scale(1.1);
   cursor: pointer;
 }
 

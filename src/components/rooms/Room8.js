@@ -115,35 +115,62 @@ export default function Room8(props) {
   //     console.log("hello");
   //     const textBox = document.querySelector(".text-box");
   //     const scriptText = script;
+
+  //     //spaces on which to line break
+  //     let lastSpaces = [];
+  //     let spaceIndex = 0;
   //     let counter = 0;
+  //     console.log(scriptText);
   //     for (let i = 0; i < scriptText.length; i++) {
-  //       // 30 characters
-  //       let testRegex = /^[a-z0-9._]+$/i;
-  //       //i
-  //       if (counter <= 28) {
-  //         if (testRegex.test(scriptText[i])) {
-  //           setTimeout(() => {
-  //             textBox.innerText += scriptText[i];
-  //           }, i * 100);
-  //           counter++;
-  //         } else {
-  //           setTimeout(() => {
-  //             textBox.innerText += "\xa0";
-  //           }, i * 100);
-  //           counter++;
+  //       counter++;
+  //       if (counter <= 28 || scriptText[29] === " ") {
+  //         // console.log(scriptText[i]);
+  //         if (scriptText[i] === " ") {
+  //           spaceIndex = i;
   //         }
   //       } else {
-  //         console.log("over 30 characters");
-  //         // if (scriptText[i + 1] !== "\xa0")
-  //         setTimeout(() => {
-  //           textBox.innerText += "\n";
-  //           textBox.innerText += scriptText[i];
-  //         }, i * 100);
-  //         counter = 0;
+  //         if (spaceIndex !== 0) {
+  //           lastSpaces.push(spaceIndex);
+  //           spaceIndex = 0;
+  //           counter = 0;
+  //         }
+  //       }
+  //     }
+
+  //     console.log(lastSpaces);
+
+  //     //printing characters one by one breaking at "lastSpaces"
+  //     for (let i = 0; i < scriptText.length; i++) {
+  //       for (let j = 0; j < lastSpaces.length; j++) {
+  //         let testRegex = /^[a-z0-9._]+$/i;
+  //         //no match found for empty space
+  //         if (i !== lastSpaces[j]) {
+  //           if (testRegex.test(scriptText[i])) {
+  //             console.log("1");
+  //             setTimeout(() => {
+  //               textBox.innerText += scriptText[i];
+  //             }, i * 80);
+  //             break;
+  //           } else {
+  //             console.log("2");
+  //             setTimeout(() => {
+  //               textBox.innerText += "\xa0";
+  //             }, i * 80);
+  //             break;
+  //           }
+  //         } else {
+  //           console.log("line break");
+  //           console.log("3");
+  //           console.log(i);
+  //           setTimeout(() => {
+  //             textBox.innerText += "\n";
+  //             textBox.innerText += scriptText[i];
+  //           }, i * 80);
+  //         }
   //       }
   //     }
   //   }
-  // }, [script]);
+  // }, [script, entryScript, reentryScript]);
 
   return (
     <div className="top-left-flex-container">
