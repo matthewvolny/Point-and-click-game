@@ -32,6 +32,7 @@ export default function Login(props) {
           placeholder="name"
           type="text"
           name="name"
+          required
           value={loginInfo.name}
           onChange={handleChange}
         />
@@ -39,6 +40,7 @@ export default function Login(props) {
           placeholder="password"
           type="password"
           name="password"
+          required
           value={loginInfo.password}
           onChange={handleChange}
         />

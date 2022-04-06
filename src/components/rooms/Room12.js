@@ -44,6 +44,13 @@ export default function Room12(props) {
 
   const [mapReturn, setMapReturn] = useState(false);
 
+  //calls update item in the parent component when an item is clicked
+  const handleClick = (event) => {
+    event.preventDefault();
+    console.log(event.target.alt);
+    props.updateItem(event.target.alt);
+  };
+
   //triggered when sidebar items are used on characters, changes image and script
   useEffect(() => {
     if (props.sidebarItemTriggeredEvents) {
@@ -142,13 +149,6 @@ export default function Room12(props) {
       isMounted.current = true;
     }
   }, [text]);
-
-  //calls update item in the parent component when an item is clicked
-  const handleClick = (event) => {
-    event.preventDefault();
-    console.log(event.target.alt);
-    props.updateItem(event.target.alt);
-  };
 
   return (
     <div className="top-left-flex-container">
