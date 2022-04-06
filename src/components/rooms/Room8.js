@@ -110,6 +110,41 @@ export default function Room8(props) {
     props.updateItem(event.target.alt);
   };
 
+  // useEffect(() => {
+  //   if (script) {
+  //     console.log("hello");
+  //     const textBox = document.querySelector(".text-box");
+  //     const scriptText = script;
+  //     let counter = 0;
+  //     for (let i = 0; i < scriptText.length; i++) {
+  //       // 30 characters
+  //       let testRegex = /^[a-z0-9._]+$/i;
+  //       //i
+  //       if (counter <= 28) {
+  //         if (testRegex.test(scriptText[i])) {
+  //           setTimeout(() => {
+  //             textBox.innerText += scriptText[i];
+  //           }, i * 100);
+  //           counter++;
+  //         } else {
+  //           setTimeout(() => {
+  //             textBox.innerText += "\xa0";
+  //           }, i * 100);
+  //           counter++;
+  //         }
+  //       } else {
+  //         console.log("over 30 characters");
+  //         // if (scriptText[i + 1] !== "\xa0")
+  //         setTimeout(() => {
+  //           textBox.innerText += "\n";
+  //           textBox.innerText += scriptText[i];
+  //         }, i * 100);
+  //         counter = 0;
+  //       }
+  //     }
+  //   }
+  // }, [script]);
+
   return (
     <div className="top-left-flex-container">
       <div className="player">

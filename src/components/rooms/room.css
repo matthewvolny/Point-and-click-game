@@ -69,9 +69,10 @@
   flex-grow: 1;
   min-height: 95px;
   font-size: 1.1rem;
-  letter-spacing: 0.1em;
-  line-height: 1.4em;
+  letter-spacing: 0.15em;
+  line-height: 1.6em;
   padding: 1em 1.3em;
+  text-align: center;
   overflow: scroll;
   /* display: inline-block; */
 }
