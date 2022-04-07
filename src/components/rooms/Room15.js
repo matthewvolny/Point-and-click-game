@@ -30,16 +30,6 @@ export default function Room14(props) {
     ImageMap("img[usemap]");
   });
 
-  //!retrieves newImage from session storage on page refresh
-  // useEffect(() => {
-  //   setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));
-  // }, []);
-
-  //!stores newImage in session storage (when it updates)
-  // useEffect(() => {
-  //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
-  // }, [newImage]);
-
   const [mapReturn, setMapReturn] = useState(false);
 
   //calls update item in the parent component when an item is clicked
@@ -62,7 +52,7 @@ export default function Room14(props) {
       let timer = setTimeout(() => {
         setCurrentImage(imagesArrayObject["room15a"]);
         setScript();
-      }, 5000);
+      }, 6000);
       return () => {
         clearTimeout(timer);
       };

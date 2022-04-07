@@ -28,52 +28,6 @@ export default function Room6(props) {
     ImageMap("img[usemap]");
   });
 
-  //!retrieves newImage from session storage on page refresh
-  // useEffect(() => {
-  //   setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));
-  // }, []);
-
-  //!stores newImage in session storage (when it updates)
-  // useEffect(() => {
-  //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
-  // }, [newImage]);
-
-  // const [mapReturn, setMapReturn] = useState(false);
-
-  //triggered when sidebar items are used on characters, changes image and script
-  // useEffect(() => {
-  //   if (props.sidebarItemTriggeredEvents) {
-  //     const ellie = document.querySelector(".Ellie");
-  //     const { script, image } = props.sidebarItemTriggeredEvents;
-  //     setScript(script);
-  //     setCurrentImage(imagesArrayObject[image]);
-  //     //remove image map zone, then puts it back to remove green circle on image change
-  //     ellie.remove();
-  //     setMapReturn(true);
-  //     let timer = setTimeout(() => {
-  //       setCurrentImage(imagesArrayObject["room13a"]);
-  //       setScript();
-  //     }, 5000);
-  //     return () => {
-  //       clearTimeout(timer);
-  //     };
-  //   }
-  // }, [props.sidebarItemTriggeredEvents]);
-
-  //area of the map to return following click(resets image-map green circle)
-  // const returnedMapArea = (
-  //   <area
-  //     onClick={handleClick}
-  //     className="Ellie"
-  //     target=""
-  //     alt="Ellie"
-  //     title="Ellie"
-  //     href=""
-  //     coords="747,1139,269"
-  //     shape="circle"
-  //   />
-  // );
-
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
     newImage

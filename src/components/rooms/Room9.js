@@ -27,16 +27,6 @@ export default function Room10(props) {
     ImageMap("img[usemap]");
   });
 
-  //!retrieves newImage from session storage on page refresh
-  // useEffect(() => {
-  //   setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));
-  // }, []);
-
-  //!stores newImage in session storage (when it updates)
-  // useEffect(() => {
-  //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
-  // }, [newImage]);
-
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
     newImage

@@ -28,16 +28,6 @@ export default function Room8(props) {
     ImageMap("img[usemap]");
   });
 
-  //!retrieves newImage from session storage on page refresh
-  // useEffect(() => {
-  //   setNewImage(JSON.parse(window.sessionStorage.getItem("newImage")));
-  // }, []);
-
-  //!stores newImage in session storage (when it updates)
-  // useEffect(() => {
-  //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
-  // }, [newImage]);
-
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
     newImage
@@ -107,68 +97,6 @@ export default function Room8(props) {
     console.log(event.target.alt);
     props.updateItem(event.target.alt);
   };
-
-  // useEffect(() => {
-  //   if (script) {
-  //     console.log("hello");
-  //     const textBox = document.querySelector(".text-box");
-  //     const scriptText = script;
-
-  //     //spaces on which to line break
-  //     let lastSpaces = [];
-  //     let spaceIndex = 0;
-  //     let counter = 0;
-  //     console.log(scriptText);
-  //     for (let i = 0; i < scriptText.length; i++) {
-  //       counter++;
-  //       if (counter <= 28 || scriptText[29] === " ") {
-  //         // console.log(scriptText[i]);
-  //         if (scriptText[i] === " ") {
-  //           spaceIndex = i;
-  //         }
-  //       } else {
-  //         if (spaceIndex !== 0) {
-  //           lastSpaces.push(spaceIndex);
-  //           spaceIndex = 0;
-  //           counter = 0;
-  //         }
-  //       }
-  //     }
-
-  //     console.log(lastSpaces);
-
-  //     //printing characters one by one breaking at "lastSpaces"
-  //     for (let i = 0; i < scriptText.length; i++) {
-  //       for (let j = 0; j < lastSpaces.length; j++) {
-  //         let testRegex = /^[a-z0-9._]+$/i;
-  //         //no match found for empty space
-  //         if (i !== lastSpaces[j]) {
-  //           if (testRegex.test(scriptText[i])) {
-  //             console.log("1");
-  //             setTimeout(() => {
-  //               textBox.innerText += scriptText[i];
-  //             }, i * 80);
-  //             break;
-  //           } else {
-  //             console.log("2");
-  //             setTimeout(() => {
-  //               textBox.innerText += "\xa0";
-  //             }, i * 80);
-  //             break;
-  //           }
-  //         } else {
-  //           console.log("line break");
-  //           console.log("3");
-  //           console.log(i);
-  //           setTimeout(() => {
-  //             textBox.innerText += "\n";
-  //             textBox.innerText += scriptText[i];
-  //           }, i * 80);
-  //         }
-  //       }
-  //     }
-  //   }
-  // }, [script, entryScript, reentryScript]);
 
   return (
     <div className="top-left-flex-container">

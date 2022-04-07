@@ -58,32 +58,6 @@ function App() {
     }
   }, [isPlaying]);
 
-  //!retrieves stored room details from local storage on page refresh
-  // useEffect(() => {
-  //   setRoomEvaluateDetails(
-  //     JSON.parse(window.sessionStorage.getItem("roomEvaluateDetails"))
-  //   );
-  //   setRoomMapDetails(
-  //     JSON.parse(window.sessionStorage.getItem("roomMapDetails"))
-  //   );
-  // }, []);
-
-  //!stores room details in local storage (when it updates)
-  // useEffect(() => {
-  //   window.sessionStorage.setItem(
-  //     "roomEvaluateDetails",
-  //     JSON.stringify(roomEvaluateDetails)
-  //   );
-  // }, [roomEvaluateDetails]);
-
-  //!stores room map details in local storage (when it updates)
-  // useEffect(() => {
-  //   window.sessionStorage.setItem(
-  //     "roomMapDetails",
-  //     JSON.stringify(roomMapDetails)
-  //   );
-  // }, [roomMapDetails]);
-
   const [inventoryAction, setInventoryAction] = useState({});
   const [sidebarItemTriggeredEvents, setSidebarItemTriggeredEvents] =
     useState();
@@ -154,16 +128,10 @@ function App() {
     }
   };
 
-  //
-
-  //
-
   //(1)updates state with selected player action
   const updatePlayerAction = (action) => {
     setAction({ playerAction: action, item: "" });
   };
-
-  // const [toggleClicked, setToggleClicked] = useState(true);
 
   //(2)updates state with selected item
   const updateItem = (item) => {
@@ -419,7 +387,7 @@ function App() {
     <Context.Provider value={{ isPlaying, action, playerInventory }}>
       <div className="container">
         {userLoggedIn ? (
-          <MemoryRouter /*history={history}*/>
+          <MemoryRouter>
             <div className="top-flex">
               <Routes>
                 <Route
@@ -436,46 +404,6 @@ function App() {
                     )
                   }
                 />
-                {/* <Route
-                  path="/room2"
-                  element={
-                    <Room2
-                      roomEvaluateDetails={roomEvaluateDetails}
-                      updateCurrentRoom={updateCurrentRoom}
-                      toggleSong={toggleSong}
-                    />
-                  }
-                />
-                <Route
-                  path="/room3"
-                  element={
-                    <Room3
-                      roomEvaluateDetails={roomEvaluateDetails}
-                      updateCurrentRoom={updateCurrentRoom}
-                      toggleSong={toggleSong}
-                    />
-                  }
-                />
-                <Route
-                  path="/room4"
-                  element={
-                    <Room4
-                      roomEvaluateDetails={roomEvaluateDetails}
-                      updateCurrentRoom={updateCurrentRoom}
-                      toggleSong={toggleSong}
-                    />
-                  }
-                />
-                <Route
-                  path="/room5"
-                  element={
-                    <Room5
-                      roomEvaluateDetails={roomEvaluateDetails}
-                      updateCurrentRoom={updateCurrentRoom}
-                      toggleSong={toggleSong}
-                    />
-                  }
-                />*/}
                 <Route
                   path="/room6"
                   element={
