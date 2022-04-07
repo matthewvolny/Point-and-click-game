@@ -83,8 +83,6 @@ export default function Room11(props) {
       switch (playerAction) {
         case "Look":
           return setScript(text);
-        case "Open":
-          return setScript(text);
         case "Use":
           return setScript(text);
         case "Take":
@@ -131,22 +129,22 @@ export default function Room11(props) {
         <map name="image-map">
           <area
             onClick={handleClick}
-            className="Shallow Puddle"
+            className="Purple Reeds"
             target=""
-            alt="Shallow Puddle"
-            title="Shallow Puddle"
+            alt="Purple Reeds"
+            title="Purple Reeds"
             href=""
-            coords="1300,1418,151"
+            coords="513,327,187"
             shape="circle"
           />
           <area
             onClick={handleClick}
-            className="Tall Reed"
+            className="Stacked Rocks"
             target=""
-            alt="Tall Reed"
-            title="Tall Reed"
+            alt="Stacked Rocks"
+            title="Stacked Rocks"
             href=""
-            coords="1053,925,249"
+            coords="1121,611,194"
             shape="circle"
           />
         </map>

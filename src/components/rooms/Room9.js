@@ -83,8 +83,6 @@ export default function Room10(props) {
       switch (playerAction) {
         case "Look":
           return setScript(text);
-        case "Open":
-          return setScript(text);
         case "Use":
           return setScript(text);
         case "Take":
@@ -132,22 +130,22 @@ export default function Room10(props) {
         <map name="image-map">
           <area
             onClick={handleClick}
-            target=""
             className="Mark"
+            target=""
             alt="Mark"
             title="Mark"
             href=""
-            coords="1175,1295,348"
+            coords="642,532,127"
             shape="circle"
           />
           <area
             onClick={handleClick}
+            className="Stone"
             target=""
-            className="Flower"
-            alt="Flower"
-            title="Flower"
+            alt="Stone"
+            title="Stone"
             href=""
-            coords="2240,1180,151"
+            coords="466,111,49"
             shape="circle"
           />
         </map>

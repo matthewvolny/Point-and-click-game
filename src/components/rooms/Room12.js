@@ -131,8 +131,6 @@ export default function Room12(props) {
       switch (playerAction) {
         case "Look":
           return setScript(text);
-        case "Open":
-          return setScript(text);
         case "Use":
           return setScript(text);
         case "Take":
@@ -182,7 +180,7 @@ export default function Room12(props) {
             alt="Ellie"
             title="Ellie"
             href=""
-            coords="747,1139,269"
+            coords="410,501,153"
             shape="circle"
           />
           {mapReturn && returnedMapArea}
@@ -193,7 +191,7 @@ export default function Room12(props) {
             alt="Acorns"
             title="Acorns"
             href=""
-            coords="1238,1460,212"
+            coords="688,694,137"
             shape="circle"
           />
         </map>

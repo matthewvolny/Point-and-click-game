@@ -239,7 +239,7 @@ let roomEvaluateInfo = [
         name: "Small Reeds",
         present: true,
         Look: {
-          text: "A clump of small reeds.  These are quite common here.",
+          text: "A clump of small reeds.",
           effect: "",
         },
         Use: { text: "", effect: "" },
@@ -273,21 +273,21 @@ let roomEvaluateInfo = [
     room: 8,
     visited: false,
     itemsCollected: [],
-    entryScript: "It is a damp clearing, strewn with aquatic plants",
-    reentryScript: "This place looks familiar",
+    entryScript: "It is a damp and overgrown stream bed",
+    reentryScript:
+      "You can feel the moisture in the air, there is water nearby.",
     images: [
-      { file: "room9a", itemsCollected: [] },
-      { file: "room9b", itemsCollected: ["Leaf"] },
+      { file: "room8a", itemsCollected: [] },
+      { file: "room8b", itemsCollected: ["Leaf"] },
     ],
     items: [
       {
         name: "Leaf",
         present: true,
-        Look: { text: "A small leaf of shimmering green and gold", effect: "" },
+        Look: { text: "A leaf of shimmering green and gold.", effect: "" },
         Open: { text: "", effect: "" },
-        Use: { text: "", effect: "" },
         Take: {
-          text: "you have taken the leaf",
+          text: "You have taken the leaf",
           effect: "",
           canTake: true,
         },
@@ -298,16 +298,16 @@ let roomEvaluateInfo = [
         name: "Shallow Pool",
         present: true,
         Look: {
-          text: "a shallow pool of water, this is a low lying area after all",
+          text: "A shallow pool of water.",
           effect: "",
         },
         Open: { text: "", effect: "" },
         Use: {
-          text: "you splash some water on your face, it sure is a hot day",
+          text: "Best look elsewhere for clean drinking water.",
           effect: "",
         },
         Take: {
-          text: "you cannot take it",
+          text: "Better not touch it, un-purified water after all.",
           effect: "",
           canTake: false,
         },
@@ -318,13 +318,12 @@ let roomEvaluateInfo = [
         name: "Tall Reeds",
         present: true,
         Look: {
-          text: "A cluster of reeds, these are abundant in the area",
+          text: "Tall green reeds. These are abundant here.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: { text: "", effect: "" },
         Take: {
-          text: "These are growing in un-purified water, best to leave them be",
+          text: "Better leave these alone.",
           effect: "",
           canTake: false,
         },
@@ -337,44 +336,42 @@ let roomEvaluateInfo = [
     room: 9,
     visited: false,
     itemsCollected: [],
-    entryScript: `You see what appears to be a snake surrounded by underbrush`,
+    entryScript: `Lush greenery surrounds what appears to be a small snake.`,
     reentryScript: "Ah yes, there's Mark",
-    images: [{ file: "room10a", itemsCollected: [] }],
+    images: [{ file: "room9", itemsCollected: [] }],
     items: [
       {
         name: "Mark",
         present: true,
         Look: {
-          text: `"I know him, isn't that Caroline's friend Mark.  He appears to be crying.`,
+          text: `"Hey, isn't that Caroline's friend Mark.  Is he crying...?`,
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: { text: "", effect: "" },
         Take: {
-          text: "You seem to be wasting your time",
+          text: "Now that would not be very nice of you.",
           effect: "",
           canTake: false,
         },
         Hit: { text: "", effect: "" },
         Speak: {
-          text: "You greet the snake, but he does not answer",
+          text: `"Hi Mark!"... Mark does not answer.`,
           effect: "",
         },
       },
       {
-        name: "Flower",
+        name: "Stone",
         present: true,
         Look: {
-          text: "it is one of the large, beautiful flowers commonly seen in the valley this time of year.",
+          text: "A stone partially submerged in water.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: {
           text: "",
           effect: "",
         },
         Take: {
-          text: "It's too pretty to take, and you have never seen this used in any medicine before.",
+          text: "It is too dirty to be worth taking.",
           effect: "",
           canTake: false,
         },
@@ -388,44 +385,42 @@ let roomEvaluateInfo = [
     visited: false,
     itemsCollected: [],
     entryScript:
-      "It is a slightly more rocky area, though still obviously low lying.",
-    reentryScript: "this looks familiar",
-    images: [{ file: "room11", itemsCollected: [] }],
+      "A slightly higher, and more rocky area further from the stream.",
+    reentryScript: "I remember this spot.",
+    images: [{ file: "room10", itemsCollected: [] }],
     items: [
       {
         name: "Shallow Puddle",
         present: true,
         Look: {
-          text: "One of the many pocket sized puddles in the area",
+          text: "A small puddle. These are somewhat less common over here.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: {
-          text: "Better leave this alone, it is un-purified after all.",
+          text: "Best not touch it, even if you are thirsty.",
           effect: "",
         },
         Take: {
-          text: "not possible, unfortunately.",
+          text: "Not possible, unfortunately.",
           effect: "",
           canTake: false,
         },
         Hit: { text: "", effect: "" },
-        Speak: { text: "you seem to be wasting your time.", effect: "" },
+        Speak: { text: "You seem to be wasting your time.", effect: "" },
       },
       {
-        name: "Tall Reed",
+        name: "Tall Reeds",
         present: true,
         Look: {
-          text: "These reeds are everywhere.",
+          text: "Tall, slightly yellowish reeds. ",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: {
           text: "",
           effect: "",
         },
         Take: {
-          text: "No sense in taking this, it is not used for medicine as far as you know.",
+          text: "No sense in taking these, what would you do with them?",
           effect: "",
           canTake: false,
         },
@@ -438,8 +433,60 @@ let roomEvaluateInfo = [
     room: 11,
     visited: false,
     itemsCollected: [],
-    entryScript: "A squirrel is gathering nuts in a tin pail.",
-    reentryScript: "There's Ellie!",
+    entryScript: "A crowded area with many large stones.",
+    reentryScript: "Whew..!  It's hard to get through here.",
+    images: [{ file: "room11", itemsCollected: [] }],
+    items: [
+      {
+        name: "Purple Reeds",
+        present: true,
+        Look: {
+          text: "Reeds of brilliant purple.",
+          effect: "",
+        },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "Brightly colored plants are sometimes poisonous, better not take the chance.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: {
+          text: "",
+          effect: "",
+        },
+      },
+      {
+        name: "Stacked Rocks",
+        present: true,
+        Look: {
+          text: "A stack of large stones.  Why would someone have made this?",
+          effect: "",
+        },
+        Use: {
+          text: "",
+          effect: "",
+        },
+        Take: {
+          text: "These are much too large to take.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "Ouch...! that hurt.", effect: "" },
+        Speak: {
+          text: "",
+          effect: "",
+        },
+      },
+    ],
+  },
+  {
+    room: 12,
+    visited: false,
+    itemsCollected: [],
+    entryScript:
+      "A rock wall lies just beyond a small clearing. A squirrel is busy at work.",
+    reentryScript: `"There you are!"`,
     images: [
       { file: "room12a", itemsCollected: [] },
       { file: "room12b", itemsCollected: [] },
@@ -450,26 +497,25 @@ let roomEvaluateInfo = [
       item: "Leaf",
       active: true,
       script:
-        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take some acorns, on me.",
+        "Thanks! You know my sister Julianne Napkin knows a great deal about forest medicine, perhaps she might be able to help. And take some acorns on me.",
     },
     items: [
       {
         name: "Ellie",
         present: true,
         Look: {
-          text: "A mutual friend, Ellie the squirrel, is busy at work gathering food for the winter.",
+          text: "A mutual friend, Ellie is collecting acorns into a tin can.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: { text: "", effect: "" },
         Take: {
-          text: "I am not sure what you are trying to pull, but it won't work.",
+          text: `"I am not sure what you are trying to pull, but it won't work!"`,
           effect: "",
           canTake: false,
         },
         Hit: { text: "", effect: "" },
         Speak: {
-          text: `"Hi Ellie, did you hear?  Lyle is terribly ill.  We would like to make some forest medicine to treat him.  Could you help us?"`,
+          text: `"Hi Ellie, have you heard..!?  Lyle is terribly ill. Could you please help us?"`,
           effect: "",
         },
       },
@@ -477,12 +523,11 @@ let roomEvaluateInfo = [
         name: "Acorns",
         present: true,
         Look: {
-          text: "Hmm, acorns. These are sometimes used in medicine.",
+          text: `"An assortment of acorns. "These are sometimes used in medicine..."`,
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: {
-          text: "These are not your's so best ask first...",
+          text: "Better ask.",
           effect: "",
         },
         Take: {
@@ -499,40 +544,32 @@ let roomEvaluateInfo = [
     ],
   },
   {
-    room: 12,
+    room: 13,
     visited: false,
     itemsCollected: [],
-    entryScript: "It is a rocky field, uphill from the pond.",
-    reentryScript: `"it is quite barren over here.`,
+    entryScript: "It is a rocky area with few plants.",
+    reentryScript: `"It is quite barren over here.`,
     images: [
       { file: "room13a", itemsCollected: [] },
       { file: "room13b", itemsCollected: ["Pebble"] },
     ],
-    character: {
-      characterName: "Ellie",
-      item: "Leaf",
-      active: true,
-      script:
-        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take some acorns, on me.",
-    },
     items: [
       {
         name: "Boulder",
         present: true,
         Look: {
-          text: "It is a large boulder.",
+          text: "A large boulder.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: { text: "", effect: "" },
         Take: {
-          text: "You see no use for this, otherwise it would be impossible to move.",
+          text: "It is impossible to move.",
           effect: "",
           canTake: false,
         },
         Hit: { text: "", effect: "" },
         Speak: {
-          text: `"keep it together, your talking to a rock.`,
+          text: `"Keep it together, your talking to a rock.`,
           effect: "",
         },
       },
@@ -540,10 +577,9 @@ let roomEvaluateInfo = [
         name: "Pebble",
         present: true,
         Look: {
-          text: "A small round stone.  This would look nice on your windowsill you think to yourself.",
+          text: "A small polished stone.  This would look nice on your windowsill you think to yourself.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: {
           text: "",
           effect: "",
@@ -562,7 +598,7 @@ let roomEvaluateInfo = [
     ],
   },
   {
-    room: 13,
+    room: 14,
     visited: false,
     itemsCollected: [],
     entryScript: "A mostly barren hilltop, with stacked stones.",

@@ -122,8 +122,6 @@ export default function Room13(props) {
       switch (playerAction) {
         case "Look":
           return setScript(text);
-        case "Open":
-          return setScript(text);
         case "Use":
           return setScript(text);
         case "Take":
@@ -180,7 +178,7 @@ export default function Room13(props) {
             alt="Boulder"
             title="Boulder"
             href=""
-            coords="895,1586,176"
+            coords="444,785,100"
             shape="circle"
           />
           <area
@@ -190,7 +188,7 @@ export default function Room13(props) {
             alt="Pebble"
             title="Pebble"
             href=""
-            coords="1815,679,60"
+            coords="956,302,43"
             shape="circle"
           />
         </map>

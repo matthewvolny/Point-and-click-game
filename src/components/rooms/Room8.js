@@ -151,7 +151,7 @@ export default function Room9(props) {
           />
           <area
             onClick={handleClick}
-            className="Tall Reed"
+            className="Tall Reeds"
             target=""
             alt="Tall Reeds"
             title="Tall Reeds"
