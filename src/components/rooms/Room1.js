@@ -1,14 +1,12 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
 import Context from "../../context/context";
-
 import { useNavigate } from "react-router-dom";
-import room1 from "../../images/room1.jpg";
-import room2 from "../../images/room2.jpg";
-import room3 from "../../images/room3.jpg";
-import room4 from "../../images/room4.jpg";
-import room5 from "../../images/room5.jpg";
-import room6 from "../../images/room6.jpg";
-import room7 from "../../images/room7.jpg";
+import room1 from "../../images/room1-500.jpg";
+import room2 from "../../images/room2-500.jpg";
+import room3 from "../../images/room3-500.jpg";
+import room4 from "../../images/room4-500.jpg";
+import room5 from "../../images/room5-500.jpg";
+import room6 from "../../images/room6-500.jpg";
 import playButton from "../../images/play_.png";
 import pauseButton from "../../images/pause_.png";
 import "./room.css";
@@ -16,8 +14,8 @@ import "./room.css";
 export default function Room1(props) {
   const { isPlaying } = useContext(Context);
   const { entryScript, room } = props.roomEvaluateDetails;
-  const [script, setScript] = useState(entryScript);
-  const [imageDisplayed, setImageDisplayed] = useState(room1);
+  const [script, setScript] = useState(entryScript); //room1 script
+  const [imageDisplayed, setImageDisplayed] = useState(room1); //start at room1
   const [finishedInterval, setFinishedInterval] = useState(false);
   const isMounted = useRef(false);
 
@@ -29,36 +27,35 @@ export default function Room1(props) {
   images[2] = room4;
   images[3] = room5;
   images[4] = room6;
-  images[5] = room7;
 
-  let currentImage = document.querySelector(".background-img");
   let i = 0;
 
   const changeImages = () => {
     setImageDisplayed(images[i]);
-    // props.updateCurrentRoom(room + 1);
     i++;
     if (i > images.length - 1) {
       setFinishedInterval(true);
     }
   };
 
+  //room updated (alway 1 ahead in app.js)
   useEffect(() => {
     props.updateCurrentRoom(room + 1);
-    //navigate to the next room
   }, [imageDisplayed]);
 
   useEffect(() => {
     if (isMounted.current) {
       setScript(entryScript);
-      if (room === 7) {
-        navigate(`/room${room + 1}`);
+      if (room === 6) {
+        props.updateCurrentRoom(room);
+        navigate(`/room${room}`);
       }
     } else {
       isMounted.current = true;
     }
   }, [imageDisplayed]);
 
+  //(2) change images every 3 seconds if not finished interval
   useEffect(() => {
     let intervalForImages;
     if (!finishedInterval) {
@@ -89,9 +86,6 @@ export default function Room1(props) {
       <div className="image-container">
         <img className="background-img" src={imageDisplayed} alt="background" />
       </div>
-      {/* <div className="text-box">
-        <p>{script}</p>
-      </div> */}
       <div className="text-box">{script}</div>
     </div>
   );

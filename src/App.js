@@ -1,5 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Route, Routes, Navigate } from "react-router-dom";
+import { roomMap, roomEvaluateInfo } from "./mock data/data";
+import { MemoryRouter } from "react-router";
 import Context from "./context/context";
 import Login from "./components/Login";
 import SavedGamesList from "./components/SavedGamesList";
@@ -7,10 +9,6 @@ import Map from "./components/Map";
 import Actions from "./components/Actions";
 import Inventory from "./components/Inventory";
 import Room1 from "./components/rooms/Room1";
-import Room2 from "./components/rooms/Room2";
-import Room3 from "./components/rooms/Room3";
-import Room4 from "./components/rooms/Room4";
-import Room5 from "./components/rooms/Room5";
 import Room6 from "./components/rooms/Room6";
 import Room7 from "./components/rooms/Room7";
 import Room8 from "./components/rooms/Room8";
@@ -20,15 +18,10 @@ import Room11 from "./components/rooms/Room11";
 import Room12 from "./components/rooms/Room12";
 import Room13 from "./components/rooms/Room13";
 import Room14 from "./components/rooms/Room14";
-import axios from "axios";
-import { roomMap, roomEvaluateInfo } from "./mock data/data";
-import { MemoryRouter } from "react-router";
+import Room15 from "./components/rooms/Room15";
 import song1 from "./static/rootabaga_pigeons.mp3";
+import axios from "axios";
 import "./App.css";
-
-//!not needed?
-import ImageMapper from "react-img-mapper";
-import { current } from "@reduxjs/toolkit";
 
 function App() {
   const [userId, setUserId] = useState();
@@ -43,7 +36,6 @@ function App() {
   const [roomEvaluateDetails, setRoomEvaluateDetails] = useState(
     roomEvaluateInfo[0]
   );
-  // const [selectedItemInfo, setSelectedItemInfo] = useState();
   const [selectedItemInfoForAction, setSelectedItemInfoForAction] = useState({
     text: "",
     effect: "",
@@ -51,7 +43,6 @@ function App() {
   const [playerInventory, setPlayerInventory] = useState([]);
   const [roomItemsCollected, setRoomItemsCollected] = useState();
   const isMounted = useRef(false);
-  const isMountedTwo = useRef(false);
 
   //audio player with toggle on and off controls
   const [audio] = useState(new Audio(song1));
@@ -247,7 +238,6 @@ function App() {
 
   //(7)add items from player inventory to an array in the correct room of the game state object
   useEffect(() => {
-    // if (isMountedTwo.current) {
     let index = 1;
     let itemsCollectedArray = [];
     if (playerInventory.length !== 0) {
@@ -262,12 +252,8 @@ function App() {
         itemsCollectedArray = [];
       }
     }
-
     console.log(roomEvaluateInfo);
     saveGameState();
-    // } else {
-    //   isMountedTwo.current = true;
-    // }
   }, [playerInventory]);
 
   //set itemscollectedbyroom state from the updated game state
@@ -486,13 +472,19 @@ function App() {
                       toggleSong={toggleSong}
                     />
                   }
-                />
+                />*/}
                 <Route
                   path="/room6"
                   element={
                     <Room6
+                      updateItem={updateItem}
                       roomEvaluateDetails={roomEvaluateDetails}
+                      action={action}
+                      selectedItemInfoForAction={selectedItemInfoForAction}
                       updateCurrentRoom={updateCurrentRoom}
+                      updateLocationsVisited={updateLocationsVisited}
+                      roomItemsCollected={roomItemsCollected}
+                      sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
                       toggleSong={toggleSong}
                     />
                   }
@@ -501,12 +493,18 @@ function App() {
                   path="/room7"
                   element={
                     <Room7
+                      updateItem={updateItem}
                       roomEvaluateDetails={roomEvaluateDetails}
+                      action={action}
+                      selectedItemInfoForAction={selectedItemInfoForAction}
                       updateCurrentRoom={updateCurrentRoom}
+                      updateLocationsVisited={updateLocationsVisited}
+                      roomItemsCollected={roomItemsCollected}
+                      sidebarItemTriggeredEvents={sidebarItemTriggeredEvents}
                       toggleSong={toggleSong}
                     />
                   }
-                /> */}
+                />
                 <Route
                   path="/room8"
                   element={
@@ -607,6 +605,22 @@ function App() {
                   path="/room14"
                   element={
                     <Room14
+                      updateItem={updateItem}
+                      roomEvaluateDetails={roomEvaluateDetails}
+                      action={action}
+                      selectedItemInfoForAction={selectedItemInfoForAction}
+                      updateCurrentRoom={updateCurrentRoom}
+                      updateLocationsVisited={updateLocationsVisited}
+                      roomItemsCollected={roomItemsCollected}
+                      sidebarItemTriggeredEvents={sidebarItemTriggeredEvents} //!NOT NEEDED IN ROOMS WITHOUT CHARACTERS (I THINK)
+                      toggleSong={toggleSong}
+                    />
+                  }
+                />
+                <Route
+                  path="/room15"
+                  element={
+                    <Room15
                       updateItem={updateItem}
                       roomEvaluateDetails={roomEvaluateDetails}
                       action={action}

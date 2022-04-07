@@ -48,7 +48,7 @@ const roomMap = [
   {
     currentRoom: 6,
     mapCoordinates: [
-      { roomNum: "", route: "", position: "" },
+      { roomNum: 7, route: "/room7", position: "top" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
@@ -57,27 +57,27 @@ const roomMap = [
   {
     currentRoom: 7,
     mapCoordinates: [
+      { roomNum: 8, route: "/room8", position: "top" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
-      { roomNum: "", route: "", position: "" },
-      { roomNum: "", route: "", position: "" },
+      { roomNum: 6, route: "/room6", position: "bottom" },
     ],
   },
   {
     currentRoom: 8,
     mapCoordinates: [
       { roomNum: 9, route: "/room9", position: "top" },
+      { roomNum: 10, route: "/room10", position: "right" },
       { roomNum: "", route: "", position: "" },
-      { roomNum: "", route: "", position: "" },
-      { roomNum: "", route: "", position: "" },
+      { roomNum: 7, route: "/room7", position: "bottom" },
     ],
   },
   {
     currentRoom: 9,
     mapCoordinates: [
-      { roomNum: 10, route: "/room10", position: "top" },
       { roomNum: "", route: "", position: "" },
-      { roomNum: 11, route: "/room11", position: "right" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
       { roomNum: 8, route: "/room8", position: "bottom" },
     ],
   },
@@ -85,25 +85,25 @@ const roomMap = [
     currentRoom: 10,
     mapCoordinates: [
       { roomNum: "", route: "", position: "" },
+      { roomNum: 8, route: "/room8", position: "left" },
+      { roomNum: 11, route: "/room11", position: "right" },
       { roomNum: "", route: "", position: "" },
-      { roomNum: "", route: "", position: "" },
-      { roomNum: 9, route: "/room9", position: "bottom" },
     ],
   },
   {
     currentRoom: 11,
     mapCoordinates: [
       { roomNum: "", route: "", position: "" },
-      { roomNum: "9", route: "/room9", position: "left" },
-      { roomNum: "12", route: "/room12", position: "right" },
-      { roomNum: "13", route: "/room13", position: "bottom" },
+      { roomNum: 10, route: "/room10", position: "left" },
+      { roomNum: 12, route: "/room12", position: "right" },
+      { roomNum: 13, route: "/room13", position: "bottom" },
     ],
   },
   {
     currentRoom: 12,
     mapCoordinates: [
       { roomNum: "", route: "", position: "" },
-      { roomNum: "11", route: "/room11", position: "left" },
+      { roomNum: 11, route: "/room11", position: "left" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
     ],
@@ -111,16 +111,25 @@ const roomMap = [
   {
     currentRoom: 13,
     mapCoordinates: [
-      { roomNum: "11", route: "/room11", position: "top" },
+      { roomNum: 11, route: "/room11", position: "top" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
-      { roomNum: "14", route: "/room14", position: "bottom" },
+      { roomNum: 14, route: "/room14", position: "bottom" },
     ],
   },
   {
     currentRoom: 14,
     mapCoordinates: [
-      { roomNum: "13", route: "/room13", position: "top" },
+      { roomNum: 13, route: "/room13", position: "top" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: "", route: "", position: "" },
+      { roomNum: 15, route: "/room15", position: "bottom" },
+    ],
+  },
+  {
+    currentRoom: 15,
+    mapCoordinates: [
+      { roomNum: 14, route: "/room14", position: "top" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
       { roomNum: "", route: "", position: "" },
@@ -144,7 +153,7 @@ let roomEvaluateInfo = [
     visited: false,
     itemsCollected: [],
     entryScript:
-      "Yes, life here is great, but only because we residents of the valley know how to protect ourselves from the dangers of the outside world.",
+      "Yes, life here is great. But only because we residents of the valley know how to protect ourselves from the dangers of the outside world.",
     reentryScript: "",
     items: [],
   },
@@ -153,7 +162,7 @@ let roomEvaluateInfo = [
     visited: false,
     itemsCollected: [],
     entryScript:
-      "Take our water for example.  As it is well known that those in the city are constantly exposed to dangerous toxins, we make sure to filter all of our water through special stones.",
+      "Take our water for example. As it is well known that those in the city are constantly exposed to dangerous toxins, we make sure to filter all of our water through special stones.",
     reentryScript: "",
     items: [],
   },
@@ -162,7 +171,7 @@ let roomEvaluateInfo = [
     visited: false,
     itemsCollected: [],
     entryScript:
-      "Lyle...?!! Are you not feeling well? Have you drunk enough water today.",
+      "Lyle...?!! Are you not feeling well? Have you drank enough water today.",
     reentryScript: "",
     items: [],
   },
@@ -179,42 +188,63 @@ let roomEvaluateInfo = [
     room: 6,
     visited: false,
     itemsCollected: [],
-    entryScript: `"Let's see if we can't find Ellie.  Her sister sometimes helps Richard make medicine for sick animals."`,
-    reentryScript: "",
-    items: [],
+    entryScript: `"Let's see if we can't find Ellie.  Her sister sometimes helps Richard make medicine."`,
+    reentryScript: "Lyle is in bad shape, best find help soon.",
+    images: [{ file: "room6", itemsCollected: [] }],
+    items: [
+      {
+        name: "Lyle",
+        present: true,
+        Look: {
+          text: "He looks visibly ill.",
+          effect: "",
+        },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "He is too heavy to carry.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: { text: "Lyle is unable to speak.", effect: "" },
+      },
+      {
+        name: "Flower",
+        present: true,
+        Look: {
+          text: "One of the many wildflowers currently in bloom.  This one is red.",
+          effect: "",
+        },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "Better leave this here, until we learn more about which plants can be used to make medicine.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: { text: "", effect: "" },
+      },
+    ],
   },
   {
     room: 7,
     visited: false,
     itemsCollected: [],
-    entryScript: "",
-    reentryScript: "",
-    items: [],
-  },
-  {
-    room: 8,
-    visited: false,
-    itemsCollected: [],
-    entryScript: `You enter a leaf and debris strewn area. "Boy I hope we can find something to cure Lyle, he looks pretty bad..."`,
-    reentryScript: "Something tells me I have been here before",
-    images: [
-      { file: "room8", itemsCollected: [] },
-      // { file: "room1b", itemsCollected: ["Rug"] },
-      // { file: "room1c", itemsCollected: ["Lamp"] },
-      // { file: "room1d", itemsCollected: ["Lamp", "Rug"] },
-    ],
+    entryScript:
+      "The area is lush with aquatic plants, there may be a stream nearby.",
+    reentryScript: "This place looks familiar.",
+    images: [{ file: "room8", itemsCollected: [] }],
     items: [
       {
-        name: "Plant",
+        name: "Small Reeds",
         present: true,
         Look: {
-          text: "it is a tall slender plant,  I have never seen these used to make medicine before",
+          text: "A clump of small reeds.  These are quite common here.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: { text: "", effect: "" },
         Take: {
-          text: "best leave this here",
+          text: "Best avoid any plants growing near the water.",
           effect: "",
           canTake: false,
         },
@@ -225,13 +255,12 @@ let roomEvaluateInfo = [
         name: "Rock",
         present: true,
         Look: {
-          text: "it is a type of stone commonly found in Richard's Valley",
+          text: "A smooth, circular stone.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: { text: "", effect: "" },
         Take: {
-          text: "this would just weight me down",
+          text: `"This would just weight me down."`,
           effect: "",
           canTake: false,
         },
@@ -241,7 +270,7 @@ let roomEvaluateInfo = [
     ],
   },
   {
-    room: 9,
+    room: 8,
     visited: false,
     itemsCollected: [],
     entryScript: "It is a damp clearing, strewn with aquatic plants",
@@ -286,7 +315,7 @@ let roomEvaluateInfo = [
         Speak: { text: "", effect: "" },
       },
       {
-        name: "Large Reed",
+        name: "Tall Reeds",
         present: true,
         Look: {
           text: "A cluster of reeds, these are abundant in the area",
@@ -305,7 +334,7 @@ let roomEvaluateInfo = [
     ],
   },
   {
-    room: 10,
+    room: 9,
     visited: false,
     itemsCollected: [],
     entryScript: `You see what appears to be a snake surrounded by underbrush`,
@@ -355,7 +384,7 @@ let roomEvaluateInfo = [
     ],
   },
   {
-    room: 11,
+    room: 10,
     visited: false,
     itemsCollected: [],
     entryScript:
@@ -406,7 +435,7 @@ let roomEvaluateInfo = [
     ],
   },
   {
-    room: 12,
+    room: 11,
     visited: false,
     itemsCollected: [],
     entryScript: "A squirrel is gathering nuts in a tin pail.",
@@ -470,7 +499,7 @@ let roomEvaluateInfo = [
     ],
   },
   {
-    room: 13,
+    room: 12,
     visited: false,
     itemsCollected: [],
     entryScript: "It is a rocky field, uphill from the pond.",
@@ -533,7 +562,127 @@ let roomEvaluateInfo = [
     ],
   },
   {
+    room: 13,
+    visited: false,
+    itemsCollected: [],
+    entryScript: "A mostly barren hilltop, with stacked stones.",
+    reentryScript: `"this place gives me the creeps."`,
+    images: [{ file: "room14", itemsCollected: [] }],
+    character: {
+      characterName: "Ellie",
+      item: "Leaf",
+      active: true,
+      script:
+        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take some acorns, on me.",
+    },
+    items: [
+      {
+        name: "Boulder",
+        present: true,
+        Look: {
+          text: "It is a large boulder.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "You see no use for this, otherwise it would be impossible to move.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: {
+          text: `"keep it together, your talking to a rock.`,
+          effect: "",
+        },
+      },
+      {
+        name: "Pebble",
+        present: true,
+        Look: {
+          text: "A small round stone.  This would look nice on your windowsill you think to yourself.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: {
+          text: "",
+          effect: "",
+        },
+        Take: {
+          text: "You have taken the pebble",
+          effect: "",
+          canTake: true,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: {
+          text: "",
+          effect: "",
+        },
+      },
+    ],
+  },
+  {
     room: 14,
+    visited: false,
+    itemsCollected: [],
+    entryScript: "A mostly barren hilltop, with stacked stones.",
+    reentryScript: `"this place gives me the creeps."`,
+    images: [{ file: "room14", itemsCollected: [] }],
+    character: {
+      characterName: "Ellie",
+      item: "Leaf",
+      active: true,
+      script:
+        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take some acorns, on me.",
+    },
+    items: [
+      {
+        name: "Boulder",
+        present: true,
+        Look: {
+          text: "It is a large boulder.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: { text: "", effect: "" },
+        Take: {
+          text: "You see no use for this, otherwise it would be impossible to move.",
+          effect: "",
+          canTake: false,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: {
+          text: `"keep it together, your talking to a rock.`,
+          effect: "",
+        },
+      },
+      {
+        name: "Pebble",
+        present: true,
+        Look: {
+          text: "A small round stone.  This would look nice on your windowsill you think to yourself.",
+          effect: "",
+        },
+        Open: { text: "", effect: "" },
+        Use: {
+          text: "",
+          effect: "",
+        },
+        Take: {
+          text: "You have taken the pebble",
+          effect: "",
+          canTake: true,
+        },
+        Hit: { text: "", effect: "" },
+        Speak: {
+          text: "",
+          effect: "",
+        },
+      },
+    ],
+  },
+  {
+    room: 15,
     visited: false,
     itemsCollected: [],
     entryScript: "A mostly barren hilltop, with stacked stones.",

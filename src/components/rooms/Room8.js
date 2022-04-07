@@ -1,18 +1,19 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import room8 from "../../images/room8.jpg";
+import room8a from "../../images/room8a-500.jpg";
+import room8b from "../../images/room8b-500.jpg";
 import ImageMap from "image-map";
 import playButton from "../../images/play_.png";
 import pauseButton from "../../images/pause_.png";
 import Context from "../../context/context";
-// import rightArrow from "../../images/right-arrow-pink.png";
 import "./room.css";
 
 //map the string value to the variable holding the file
 const imagesArrayObject = {
-  room8: room8,
+  room8a: room8a,
+  room8b: room8b,
 };
 
-export default function Room8(props) {
+export default function Room9(props) {
   const { entryScript, reentryScript, images, room, visited, itemsCollected } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
@@ -23,7 +24,7 @@ export default function Room8(props) {
   const [newImage, setNewImage] = useState();
   //search for match of items array for the room, then set the "currentImage" with room string
   const [currentImage, setCurrentImage] = useState();
-  const { isPlaying, action } = useContext(Context);
+  const { isPlaying } = useContext(Context);
   useEffect(() => {
     ImageMap("img[usemap]");
   });
@@ -42,7 +43,7 @@ export default function Room8(props) {
   useEffect(() => {
     newImage
       ? setCurrentImage(newImage)
-      : setCurrentImage(imagesArrayObject["room8"]);
+      : setCurrentImage(imagesArrayObject["room8a"]);
   }, [newImage]);
 
   //changes the image based on the items collected in the room
@@ -84,8 +85,6 @@ export default function Room8(props) {
       switch (playerAction) {
         case "Look":
           return setScript(text);
-        case "Open":
-          return setScript(text);
         case "Use":
           return setScript(text);
         case "Take":
@@ -110,68 +109,6 @@ export default function Room8(props) {
     props.updateItem(event.target.alt);
   };
 
-  // useEffect(() => {
-  //   if (script) {
-  //     console.log("hello");
-  //     const textBox = document.querySelector(".text-box");
-  //     const scriptText = script;
-
-  //     //spaces on which to line break
-  //     let lastSpaces = [];
-  //     let spaceIndex = 0;
-  //     let counter = 0;
-  //     console.log(scriptText);
-  //     for (let i = 0; i < scriptText.length; i++) {
-  //       counter++;
-  //       if (counter <= 28 || scriptText[29] === " ") {
-  //         // console.log(scriptText[i]);
-  //         if (scriptText[i] === " ") {
-  //           spaceIndex = i;
-  //         }
-  //       } else {
-  //         if (spaceIndex !== 0) {
-  //           lastSpaces.push(spaceIndex);
-  //           spaceIndex = 0;
-  //           counter = 0;
-  //         }
-  //       }
-  //     }
-
-  //     console.log(lastSpaces);
-
-  //     //printing characters one by one breaking at "lastSpaces"
-  //     for (let i = 0; i < scriptText.length; i++) {
-  //       for (let j = 0; j < lastSpaces.length; j++) {
-  //         let testRegex = /^[a-z0-9._]+$/i;
-  //         //no match found for empty space
-  //         if (i !== lastSpaces[j]) {
-  //           if (testRegex.test(scriptText[i])) {
-  //             console.log("1");
-  //             setTimeout(() => {
-  //               textBox.innerText += scriptText[i];
-  //             }, i * 80);
-  //             break;
-  //           } else {
-  //             console.log("2");
-  //             setTimeout(() => {
-  //               textBox.innerText += "\xa0";
-  //             }, i * 80);
-  //             break;
-  //           }
-  //         } else {
-  //           console.log("line break");
-  //           console.log("3");
-  //           console.log(i);
-  //           setTimeout(() => {
-  //             textBox.innerText += "\n";
-  //             textBox.innerText += scriptText[i];
-  //           }, i * 80);
-  //         }
-  //       }
-  //     }
-  //   }
-  // }, [script, entryScript, reentryScript]);
-
   return (
     <div className="top-left-flex-container">
       <div className="player">
@@ -190,43 +127,40 @@ export default function Room8(props) {
         )}
       </div>
       <div className="image-container">
-        <img src={currentImage} useMap="#image-map" alt="room8" />
+        <img src={currentImage} useMap="#image-map" alt="room9a" />
         <map name="image-map">
           <area
             onClick={handleClick}
+            className="Leaf"
             target=""
-            alt="Plant"
-            // title="Plant"
+            alt="Leaf"
+            title="Leaf"
             href=""
-            coords="537,1002,76"
+            coords="432,555,57"
             shape="circle"
           />
           <area
             onClick={handleClick}
+            className="Shallow Pool"
             target=""
-            alt="Plant"
-            // title="Plant"
+            alt="Shallow Pool"
+            title="Shallow Pool"
             href=""
-            coords="1127,1422,81"
+            coords="771,176,111"
             shape="circle"
           />
           <area
             onClick={handleClick}
+            className="Tall Reed"
             target=""
-            alt="Rock"
-            // title="Rock"
+            alt="Tall Reeds"
+            title="Tall Reeds"
             href=""
-            coords="1446,1161,59"
+            coords="307,234,108"
             shape="circle"
           />
         </map>
       </div>
-      {/* <div>
-        <img alt="right arrow" src={rightArrow} />
-      </div> */}
-      {/* <div className="text-box">
-        <p style={{ style: "--n:53" }}>{script}</p>
-      </div> */}
       <div className="text-box">{script}</div>
     </div>
   );

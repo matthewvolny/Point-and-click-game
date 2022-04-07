@@ -1,6 +1,5 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import room9a from "../../images/room9a.jpg";
-import room9b from "../../images/room9b.jpg";
+import room9 from "../../images/room9-500.jpg";
 import ImageMap from "image-map";
 import playButton from "../../images/play_.png";
 import pauseButton from "../../images/pause_.png";
@@ -9,11 +8,10 @@ import "./room.css";
 
 //map the string value to the variable holding the file
 const imagesArrayObject = {
-  room9a: room9a,
-  room9b: room9b,
+  room9: room9,
 };
 
-export default function Room9(props) {
+export default function Room10(props) {
   const { entryScript, reentryScript, images, room, visited, itemsCollected } =
     props.roomEvaluateDetails;
   const isMounted = useRef(false);
@@ -43,7 +41,7 @@ export default function Room9(props) {
   useEffect(() => {
     newImage
       ? setCurrentImage(newImage)
-      : setCurrentImage(imagesArrayObject["room9a"]);
+      : setCurrentImage(imagesArrayObject["room9"]);
   }, [newImage]);
 
   //changes the image based on the items collected in the room
@@ -129,33 +127,27 @@ export default function Room9(props) {
         )}
       </div>
       <div className="image-container">
-        <img src={currentImage} useMap="#image-map" alt="room9a" />
+        <img src={currentImage} useMap="#image-map" alt="room10a" />
+
         <map name="image-map">
           <area
             onClick={handleClick}
             target=""
-            alt="Leaf"
-            className="Leaf"
+            className="Mark"
+            alt="Mark"
+            title="Mark"
             href=""
-            coords="776,1146,67"
+            coords="1175,1295,348"
             shape="circle"
           />
           <area
             onClick={handleClick}
             target=""
-            alt="Shallow Pool"
-            className="Shallow Pool"
+            className="Flower"
+            alt="Flower"
+            title="Flower"
             href=""
-            coords="1371,446,179"
-            shape="circle"
-          />
-          <area
-            onClick={handleClick}
-            target=""
-            alt="Large Reed"
-            className="Large Reed"
-            href=""
-            coords="555,567,172"
+            coords="2240,1180,151"
             shape="circle"
           />
         </map>

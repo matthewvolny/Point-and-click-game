@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef, useContext } from "react";
-import room13a from "../../images/room13a.jpg";
-import room13b from "../../images/room13b.jpg";
+import room13a from "../../images/room13a-500.jpg";
+import room13b from "../../images/room13b-500.jpg";
 import ImageMap from "image-map";
 import playButton from "../../images/play_.png";
 import pauseButton from "../../images/pause_.png";
