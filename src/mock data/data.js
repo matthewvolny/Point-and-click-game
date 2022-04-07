@@ -601,113 +601,44 @@ let roomEvaluateInfo = [
     room: 14,
     visited: false,
     itemsCollected: [],
-    entryScript: "A mostly barren hilltop, with stacked stones.",
+    entryScript: "A rocky hilltop scattered with stones.",
     reentryScript: `"this place gives me the creeps."`,
     images: [{ file: "room14", itemsCollected: [] }],
-    character: {
-      characterName: "Ellie",
-      item: "Leaf",
-      active: true,
-      script:
-        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take some acorns, on me.",
-    },
     items: [
       {
-        name: "Boulder",
+        name: "Rock Statue",
         present: true,
         Look: {
-          text: "It is a large boulder.",
+          text: "One of several stacks of stones.  They resemble little people.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: { text: "", effect: "" },
         Take: {
-          text: "You see no use for this, otherwise it would be impossible to move.",
+          text: "Whoever made these would not appreciate it.",
           effect: "",
           canTake: false,
         },
         Hit: { text: "", effect: "" },
         Speak: {
-          text: `"keep it together, your talking to a rock.`,
+          text: "You seem to be wasting your time.",
           effect: "",
         },
       },
       {
-        name: "Pebble",
+        name: "Leaf",
         present: true,
         Look: {
-          text: "A small round stone.  This would look nice on your windowsill you think to yourself.",
+          text: "A fresh green leaf.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: {
           text: "",
           effect: "",
         },
         Take: {
-          text: "You have taken the pebble",
-          effect: "",
-          canTake: true,
-        },
-        Hit: { text: "", effect: "" },
-        Speak: {
-          text: "",
-          effect: "",
-        },
-      },
-    ],
-  },
-  {
-    room: 14,
-    visited: false,
-    itemsCollected: [],
-    entryScript: "A mostly barren hilltop, with stacked stones.",
-    reentryScript: `"this place gives me the creeps."`,
-    images: [{ file: "room14", itemsCollected: [] }],
-    character: {
-      characterName: "Ellie",
-      item: "Leaf",
-      active: true,
-      script:
-        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take some acorns, on me.",
-    },
-    items: [
-      {
-        name: "Boulder",
-        present: true,
-        Look: {
-          text: "It is a large boulder.",
-          effect: "",
-        },
-        Open: { text: "", effect: "" },
-        Use: { text: "", effect: "" },
-        Take: {
-          text: "You see no use for this, otherwise it would be impossible to move.",
+          text: "You are afraid to come any closer.",
           effect: "",
           canTake: false,
-        },
-        Hit: { text: "", effect: "" },
-        Speak: {
-          text: `"keep it together, your talking to a rock.`,
-          effect: "",
-        },
-      },
-      {
-        name: "Pebble",
-        present: true,
-        Look: {
-          text: "A small round stone.  This would look nice on your windowsill you think to yourself.",
-          effect: "",
-        },
-        Open: { text: "", effect: "" },
-        Use: {
-          text: "",
-          effect: "",
-        },
-        Take: {
-          text: "You have taken the pebble",
-          effect: "",
-          canTake: true,
         },
         Hit: { text: "", effect: "" },
         Speak: {
@@ -721,57 +652,58 @@ let roomEvaluateInfo = [
     room: 15,
     visited: false,
     itemsCollected: [],
-    entryScript: "A mostly barren hilltop, with stacked stones.",
-    reentryScript: `"this place gives me the creeps."`,
-    images: [{ file: "room14", itemsCollected: [] }],
+    entryScript: "A clearing has been made opposite a tall stack of stones.",
+    reentryScript: "Julianne is still fast asleep.",
+    images: [
+      { file: "room15a", itemsCollected: [] },
+      { file: "room15b", itemsCollected: [] },
+    ],
     character: {
-      characterName: "Ellie",
-      item: "Leaf",
+      characterName: "Julianne Napkin",
+      item: "Acorns",
       active: true,
       script:
-        "Oh thanks, I was just looking for one of these!  You know what, my sister Julianne Napkin is a real whiz at making medicine.  But you might want to give her a present first, she is very moody.  Oh, and take some acorns, on me.",
+        "Yes, yes... This is a good start.  If only we had some mushrooms.",
     },
     items: [
       {
-        name: "Boulder",
+        name: "Julianne Napkin",
         present: true,
         Look: {
-          text: "It is a large boulder.",
+          text: "Ellie's sister is sleeping.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: { text: "", effect: "" },
         Take: {
-          text: "You see no use for this, otherwise it would be impossible to move.",
+          text: "You are wasting your time.",
           effect: "",
           canTake: false,
         },
         Hit: { text: "", effect: "" },
         Speak: {
-          text: `"keep it together, your talking to a rock.`,
+          text: `"Ahem... Julianne...?  It is Neville and Omar... Our friend Lyle is terribly ill, won't you help us?"`,
           effect: "",
         },
       },
       {
-        name: "Pebble",
+        name: "Forest Dweller",
         present: true,
         Look: {
-          text: "A small round stone.  This would look nice on your windowsill you think to yourself.",
+          text: "A worm of some kind.  You, don't know its name.",
           effect: "",
         },
-        Open: { text: "", effect: "" },
         Use: {
           text: "",
           effect: "",
         },
         Take: {
-          text: "You have taken the pebble",
+          text: "He would not like that.",
           effect: "",
-          canTake: true,
+          canTake: false,
         },
         Hit: { text: "", effect: "" },
         Speak: {
-          text: "",
+          text: "The worm seems preoccupied.",
           effect: "",
         },
       },

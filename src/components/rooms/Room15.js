@@ -122,8 +122,6 @@ export default function Room14(props) {
       switch (playerAction) {
         case "Look":
           return setScript(text);
-        case "Open":
-          return setScript(text);
         case "Use":
           return setScript(text);
         case "Take":
@@ -175,22 +173,22 @@ export default function Room14(props) {
         <map name="image-map">
           <area
             onClick={handleClick}
-            className="Rock statue"
+            className="Julianne Napkin"
             target=""
-            alt="Rock statue"
-            title="Rock statue"
+            alt="Julianne Napkin"
+            title="Julianne Napkin"
             href=""
-            coords="1353,904,269"
+            coords="647,476,223"
             shape="circle"
           />
           <area
             onClick={handleClick}
-            className="Tall rock statue"
+            className="Forest Dweller"
             target=""
-            alt="Tall rock statue"
-            title="Tall rock statue"
+            alt="Forest Dweller"
+            title="Forest Dweller"
             href=""
-            coords="405,882,314"
+            coords="234,249,68"
             shape="circle"
           />
         </map>
