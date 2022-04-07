@@ -162,7 +162,7 @@ let roomEvaluateInfo = [
     visited: false,
     itemsCollected: [],
     entryScript:
-      "Take our water for example. As it is well known that those in the city are constantly exposed to dangerous toxins, we make sure to filter all of our water through special stones.",
+      "Take our water for example.  As it is common knowledge that dangerous toxins can be anywhere, we filter all of our water through special stones.",
     reentryScript: "",
     items: [],
   },
@@ -497,7 +497,7 @@ let roomEvaluateInfo = [
       item: "Leaf",
       active: true,
       script:
-        "Thanks! You know my sister Julianne Napkin knows a great deal about forest medicine, perhaps she might be able to help. And take some acorns on me.",
+        "Thanks! You know my sister Julianne Napkin knows a great deal about forest medicine, perhaps she might be able to help.",
     },
     items: [
       {
