@@ -134,10 +134,9 @@ let roomEvaluateInfo = [
     room: 1,
     visited: false,
     itemsCollected: [],
-    entryScript:
-      "Richard's Valley is a truly wonderful place, where man and animal live in complete harmony with nature.",
+    entryScript: "Richard's Valley is a one of a kind place!",
     reentryScript: "",
-    images: [{ file: "room1", itemsCollected: [] }],
+    images: [],
     items: [],
   },
   {
@@ -145,7 +144,7 @@ let roomEvaluateInfo = [
     visited: false,
     itemsCollected: [],
     entryScript:
-      "Yes, life in the valley is great, but the residents the valley are keenly aware of the dangers of the outside world.  It is a known fact for example, that city dwellers are constantly exposed to poisonous toxins.",
+      "Yes, life here is great, but only because we residents of the valley know how to protect ourselves from the dangers of the outside world.",
     reentryScript: "",
     items: [],
   },
@@ -154,7 +153,7 @@ let roomEvaluateInfo = [
     visited: false,
     itemsCollected: [],
     entryScript:
-      "For this very reason, Richard makes sure that we filter all of our water through special stones, which we also rub all over our bodies.",
+      "Take our water for example.  As it is well known that those in the city are constantly exposed to dangerous toxins, we make sure to filter all of our water through special stones.",
     reentryScript: "",
     items: [],
   },
@@ -162,7 +161,8 @@ let roomEvaluateInfo = [
     room: 4,
     visited: false,
     itemsCollected: [],
-    entryScript: "Lyle...! What's wrong?!?  Are you not feeling well!?!",
+    entryScript:
+      "Lyle...?!! Are you not feeling well? Have you drunk enough water today.",
     reentryScript: "",
     items: [],
   },
@@ -170,7 +170,8 @@ let roomEvaluateInfo = [
     room: 5,
     visited: false,
     itemsCollected: [],
-    entryScript: "I... I think I drank too much water.",
+    entryScript:
+      "Shocked to see their friend so ill, two friends, Neville and Omar decide to help.",
     reentryScript: "",
     items: [],
   },
@@ -178,8 +179,7 @@ let roomEvaluateInfo = [
     room: 6,
     visited: false,
     itemsCollected: [],
-    entryScript:
-      "Seeing their friend in such poor shape, Neville and Omar decide right then and there that they will do whatever they can to help.",
+    entryScript: `"Let's see if we can't find Ellie.  Her sister sometimes helps Richard make medicine for sick animals."`,
     reentryScript: "",
     items: [],
   },
@@ -187,8 +187,7 @@ let roomEvaluateInfo = [
     room: 7,
     visited: false,
     itemsCollected: [],
-    entryScript:
-      "I think that Lyle would do well to have some medicine.  Let's see what we can gather up, and then see if Ellie (the squirrel) wouldn't mind helping us prepare it.",
+    entryScript: "",
     reentryScript: "",
     items: [],
   },
@@ -539,9 +538,7 @@ let roomEvaluateInfo = [
     itemsCollected: [],
     entryScript: "A mostly barren hilltop, with stacked stones.",
     reentryScript: `"this place gives me the creeps."`,
-    images: [
-      { file: "room14", itemsCollected: [] },
-    ],
+    images: [{ file: "room14", itemsCollected: [] }],
     character: {
       characterName: "Ellie",
       item: "Leaf",

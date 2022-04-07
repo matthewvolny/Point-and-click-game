@@ -447,7 +447,7 @@ function App() {
                     )
                   }
                 />
-                <Route
+                {/* <Route
                   path="/room2"
                   element={
                     <Room2
@@ -506,7 +506,7 @@ function App() {
                       toggleSong={toggleSong}
                     />
                   }
-                />
+                /> */}
                 <Route
                   path="/room8"
                   element={
