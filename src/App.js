@@ -140,7 +140,10 @@ function App() {
         case "Mark":
           return console.log("nothing");
         case "Julianne Napkin":
-          return console.log("nothing");
+          return setSidebarItemTriggeredEvents({
+            script: script,
+            image: "room15b",
+          });
         case "Lyle":
           return console.log("nothing");
         default:

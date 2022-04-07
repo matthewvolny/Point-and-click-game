@@ -40,41 +40,48 @@ export default function Room14(props) {
   //   window.sessionStorage.setItem("newImage", JSON.stringify(newImage));
   // }, [newImage]);
 
-  // const [mapReturn, setMapReturn] = useState(false);
+  const [mapReturn, setMapReturn] = useState(false);
+
+  //calls update item in the parent component when an item is clicked
+  const handleClick = (event) => {
+    event.preventDefault();
+    console.log(event.target.alt);
+    props.updateItem(event.target.alt);
+  };
 
   //triggered when sidebar items are used on characters, changes image and script
-  // useEffect(() => {
-  //   if (props.sidebarItemTriggeredEvents) {
-  //     const ellie = document.querySelector(".Ellie");
-  //     const { script, image } = props.sidebarItemTriggeredEvents;
-  //     setScript(script);
-  //     setCurrentImage(imagesArrayObject[image]);
-  //     //remove image map zone, then puts it back to remove green circle on image change
-  //     ellie.remove();
-  //     setMapReturn(true);
-  //     let timer = setTimeout(() => {
-  //       setCurrentImage(imagesArrayObject["room13a"]);
-  //       setScript();
-  //     }, 5000);
-  //     return () => {
-  //       clearTimeout(timer);
-  //     };
-  //   }
-  // }, [props.sidebarItemTriggeredEvents]);
+  useEffect(() => {
+    if (props.sidebarItemTriggeredEvents) {
+      const julianneNapkin = document.querySelector(".Julianne-Napkin");
+      const { script, image } = props.sidebarItemTriggeredEvents;
+      setScript(script);
+      setCurrentImage(imagesArrayObject[image]);
+      //remove image map zone, then puts it back to remove green circle on image change
+      julianneNapkin.remove();
+      setMapReturn(true);
+      let timer = setTimeout(() => {
+        setCurrentImage(imagesArrayObject["room15a"]);
+        setScript();
+      }, 5000);
+      return () => {
+        clearTimeout(timer);
+      };
+    }
+  }, [props.sidebarItemTriggeredEvents]);
 
   //area of the map to return following click(resets image-map green circle)
-  // const returnedMapArea = (
-  //   <area
-  //     onClick={handleClick}
-  //     className="Ellie"
-  //     target=""
-  //     alt="Ellie"
-  //     title="Ellie"
-  //     href=""
-  //     coords="747,1139,269"
-  //     shape="circle"
-  //   />
-  // );
+  const returnedMapArea = (
+    <area
+      onClick={handleClick}
+      className="Julianne-Napkin"
+      target=""
+      alt="Julianne Napkin"
+      title="Julianne Napkin"
+      href=""
+      coords="647,476,223"
+      shape="circle"
+    />
+  );
 
   //sets currentImage to the newImage (i.e. item taken) if there is one
   useEffect(() => {
@@ -139,13 +146,6 @@ export default function Room14(props) {
     }
   }, [text]);
 
-  //calls update item in the parent component when an item is clicked
-  const handleClick = (event) => {
-    event.preventDefault();
-    console.log(event.target.alt);
-    props.updateItem(event.target.alt);
-  };
-
   return (
     <div className="top-left-flex-container">
       <div className="player">
@@ -173,7 +173,7 @@ export default function Room14(props) {
         <map name="image-map">
           <area
             onClick={handleClick}
-            className="Julianne Napkin"
+            className="Julianne-Napkin"
             target=""
             alt="Julianne Napkin"
             title="Julianne Napkin"
@@ -181,6 +181,7 @@ export default function Room14(props) {
             coords="647,476,223"
             shape="circle"
           />
+          {mapReturn && returnedMapArea}
           <area
             onClick={handleClick}
             className="Forest Dweller"
