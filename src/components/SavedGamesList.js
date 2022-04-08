@@ -15,9 +15,6 @@ export default function SavedGamesList(props) {
     props.loginPastUser(event.currentTarget.id);
   };
 
-  // const gameDate = moment("2022-04-02T18:53:19.331Z");
-  // console.log(gameDate.format("MM/DD/YYYY"));
-
   const userGamesList = props.userGames?.map((game) => {
     return (
       <div

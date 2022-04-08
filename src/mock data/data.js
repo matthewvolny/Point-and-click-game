@@ -286,6 +286,10 @@ let roomEvaluateInfo = [
         present: true,
         Look: { text: "A leaf of shimmering green and gold.", effect: "" },
         Open: { text: "", effect: "" },
+        Use: {
+          text: "",
+          effect: "",
+        },
         Take: {
           text: "You have taken the leaf",
           effect: "",

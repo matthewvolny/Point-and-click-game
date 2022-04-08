@@ -69,6 +69,7 @@ function App() {
       setInventoryAction({
         action: action.playerAction,
         item: item,
+        used: false,
         // target: "",
       });
       setAction({ playerAction: "", item: "" });
@@ -78,11 +79,20 @@ function App() {
   //(dd)delete used item from player inventory
   const deleteInventoryItem = (itemToDelete) => {
     const playerInventoryArray = playerInventory;
+    console.log("playerInventory at delete");
+    console.log(playerInventoryArray);
     for (let i = 0; i < playerInventoryArray.length; i++) {
       if (playerInventoryArray[i].item == itemToDelete) {
-        playerInventoryArray.splice(i, 1);
+        // playerInventoryArray.splice(i, 1);
+        //that item is set to "used" in inventory (not deleted)
+        playerInventoryArray[i].used = true;
       }
     }
+    // for (let i = 0; i < playerInventoryArray.length; i++) {
+    //   if (playerInventoryArray[i].item == itemToDelete) {
+    //     playerInventoryArray.splice(i, 1);
+    //   }
+    // }
     setPlayerInventory(playerInventoryArray);
   };
 
@@ -137,7 +147,7 @@ function App() {
   const updateItem = (item) => {
     setAction({ ...action, item: item });
     //(bb)updates state if inventory item from the sidebar is collected
-    if (Object.keys(inventoryAction).length === 2) {
+    if (Object.keys(inventoryAction).length === 3) {
       const inventoryActionCopy = inventoryAction;
       inventoryActionCopy.target = item;
       setInventoryAction(inventoryActionCopy); //may not be needed

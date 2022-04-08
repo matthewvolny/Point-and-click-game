@@ -61,7 +61,7 @@ export default function Room1(props) {
     if (!finishedInterval) {
       intervalForImages = setInterval(() => {
         changeImages();
-      }, 6000);
+      }, 1000);
     }
     return () => clearInterval(intervalForImages);
   }, [finishedInterval]);
