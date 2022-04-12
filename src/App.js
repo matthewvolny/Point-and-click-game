@@ -201,7 +201,7 @@ function App() {
   useEffect(() => {
     if (isMounted.current) {
       axios
-        .post("http://localhost:3000/updatePlayerInventory", {
+        .post("/updatePlayerInventory", {
           playerInventory: playerInventory, //this is an array of items
           userId: userId,
         })
@@ -292,7 +292,7 @@ function App() {
     updateRoomMapDetails(newRoom);
     if (!loginRoomUpdate) {
       axios
-        .post("http://localhost:3000/updateRoom", {
+        .post("/updateRoom", {
           newRoom: newRoom,
           userId: userId,
         })
@@ -309,7 +309,7 @@ function App() {
   //generic function to update the player's game state
   const saveGameState = () => {
     axios
-      .post("http://localhost:3000/updatePlayerGameState", {
+      .post("/updatePlayerGameState", {
         roomEvaluateInfo: roomEvaluateInfo,
         userId: userId,
       })
@@ -371,7 +371,7 @@ function App() {
     } else {
       const randomNum = Math.floor(Math.random() * 10000);
       axios
-        .post("http://localhost:3000/signup", {
+        .post("/signup", {
           loginInfo: loginInfo,
           userId: randomNum,
         })
