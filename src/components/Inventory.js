@@ -35,7 +35,7 @@ export default function Inventory(props) {
     <div className="inventory-flex">
       <div className="inventory-heading">Inventory</div>
       <div className="inventory-list">{inventoryList}</div>
-      <a className="quit-game-button" href="http://localhost:3000/">
+      <a className="quit-game-button" href="/">
         Quit game
       </a>
     </div>
